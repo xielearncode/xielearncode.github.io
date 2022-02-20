@@ -23,14 +23,14 @@
 <meta property="og:site_name" content="蓝鸟x">
 <meta property="og:description" content="用两个栈实现队列用两个栈实现一个队列。队列的声明如下，请实现它的两个函数 appendTail 和 deleteHead ，分别完成在队列尾部插入整数和在队列头部删除整数的功能。(若队列中没有元素，deleteHead 操作返回 -1  示例1: 1234输入：[&quot;CQueue&quot;,&quot;appendTail&quot;,&quot;deleteHead&quot;,&amp;qu">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://assets.leetcode-cn.com/solution-static/jianzhi_09/jianzhi_9.gif">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/f1ebe6b526934309b05440a03f979dde.gif">
 <meta property="article:published_time" content="2022-02-20T02:28:48.000Z">
-<meta property="article:modified_time" content="2022-02-20T02:34:18.177Z">
+<meta property="article:modified_time" content="2022-02-20T04:13:37.689Z">
 <meta property="article:author" content="蓝鸟x">
 <meta property="article:tag" content="剑指offer">
 <meta property="article:tag" content="算法题">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://assets.leetcode-cn.com/solution-static/jianzhi_09/jianzhi_9.gif">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/f1ebe6b526934309b05440a03f979dde.gif">
   
   
   <title>用两个栈实现队列 - 蓝鸟x</title>
@@ -257,7 +257,7 @@
 <blockquote>
 <p>维护两个栈，第一个栈支持插入操作，第二个栈支持删除操做. 插入操作时, 数据元素先被顺序插入第一个栈, 随后再从第一个栈取出插入到第二个栈, 最后从第二个栈一一删除</p>
 </blockquote>
-<p><img src="https://assets.leetcode-cn.com/solution-static/jianzhi_09/jianzhi_9.gif" srcset="/img/loading.gif" lazyload alt="jianzhi_9.gif (853×480) (leetcode-cn.com)"></p>
+<p><img src="https://img-blog.csdnimg.cn/f1ebe6b526934309b05440a03f979dde.gif" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
 <p>代码: </p>
 <figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><code class="hljs csharp"><span class="hljs-keyword">class</span> <span class="hljs-title">CQueue</span> &#123;<br>    Deque&lt;Integer&gt; stack1;<br>    Deque&lt;Integer&gt; stack2;<br>    <br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">CQueue</span>()</span> &#123;<br>        stack1 = <span class="hljs-keyword">new</span> LinkedList&lt;Integer&gt;();<br>        stack2 = <span class="hljs-keyword">new</span> LinkedList&lt;Integer&gt;();<br>    &#125;<br>    <br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">appendTail</span>(<span class="hljs-params"><span class="hljs-built_in">int</span> <span class="hljs-keyword">value</span></span>)</span> &#123;<br>        stack1.push(<span class="hljs-keyword">value</span>);<br>    &#125;<br>    <br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-built_in">int</span> <span class="hljs-title">deleteHead</span>()</span> &#123;<br>        <span class="hljs-comment">// 第二个栈为空时, 执行数据元素从栈1向栈2转移</span><br>        <span class="hljs-keyword">if</span> (stack2.isEmpty()) &#123;<br>            <span class="hljs-keyword">while</span> (!stack1.isEmpty()) &#123;<br>                stack2.push(stack1.pop());<br>            &#125;<br>        &#125; <br>        <span class="hljs-comment">//转移完毕后, 栈2仍然为空返回-1, 否则将栈2元素一一删除</span><br>        <span class="hljs-keyword">if</span> (stack2.isEmpty()) &#123;<br>            <span class="hljs-keyword">return</span> <span class="hljs-number">-1</span>;<br>        &#125; <span class="hljs-keyword">else</span> &#123;<br>            <span class="hljs-built_in">int</span> deleteItem = stack2.pop();<br>            <span class="hljs-keyword">return</span> deleteItem;<br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
