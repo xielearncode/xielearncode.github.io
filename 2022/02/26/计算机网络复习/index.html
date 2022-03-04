@@ -1,0 +1,829 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="蓝鸟x">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="一 计算机网络概述 1.1 计算机网络的分类按照网络的作用范围: 广域网(WAN), 城域网(MAN), 局域网(LAN) 按照网络使用者: 公用网络, 专用网络 1.2计算机网络的层次结构 TCP&#x2F;IP四层模型与OS体系结构对比:  1.3 层次结构设计的基本原则 各层之间是相互独立的 每一层需要有足够的灵活性 各层之间完全解耦   1.4 计算机网络的性能指标速率:bps &amp;#x3D">
+<meta property="og:type" content="article">
+<meta property="og:title" content="蓝鸟x">
+<meta property="og:url" content="https://xielearncode.github.io/2022/02/26/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%A4%8D%E4%B9%A0/index.html">
+<meta property="og:site_name" content="蓝鸟x">
+<meta property="og:description" content="一 计算机网络概述 1.1 计算机网络的分类按照网络的作用范围: 广域网(WAN), 城域网(MAN), 局域网(LAN) 按照网络使用者: 公用网络, 专用网络 1.2计算机网络的层次结构 TCP&#x2F;IP四层模型与OS体系结构对比:  1.3 层次结构设计的基本原则 各层之间是相互独立的 每一层需要有足够的灵活性 各层之间完全解耦   1.4 计算机网络的性能指标速率:bps &amp;#x3D">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/img_convert/9b0e259a058e1e338ab3e50e728a2156.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/img_convert/67df7eca8ba486a7282bef74321e2722.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/img_convert/c2b921fd2023201a457a2b07fe3e8e9a.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/img_convert/ca899d9a067e8c6d6650f1b5f229648b.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/img_convert/969de8a50812f7772ed5cfef6969bef1.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/img_convert/40172930e675aa1e9b6d4852239144fc.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/img_convert/437533a74e891aa9c7dcd3ccb94440a4.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/img_convert/06765dad404a72429bead8950c219c10.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/img_convert/e976bb4dcb58a55615d825b0a808ebf0.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/img_convert/1512f8a9907449f746288ef22db5fa3a.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/img_convert/dc7ef170f6522ce68e09c59f0450ab14.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/img_convert/2b15d397bb6ae792c4f786a39a3a3a1e.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/img_convert/81ecde62bf5383da3864b011575d436d.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/img_convert/ccc6e95f8657ca6094042cfaa0c21b6c.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/img_convert/442e827fe069e4958f4cbedcc2f2fa13.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/img_convert/c5171aa88d22fe5055d682bb1d9681de.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/img_convert/0455a0dbe6b9689b32a117e9ab2db3e0.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/img_convert/b8b9bdad6fe98840d4b98a7c74414c44.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/img_convert/3e813c4865d3c90d5c960e3febc02152.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/img_convert/c1e2c463a94254f0e157e1ecb84051fb.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/img_convert/d88a84b462bac5a52716fc0d4de42856.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/img_convert/7dcb2a6d779a0424a4d0dcde5ce5fdd2.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/img_convert/90ea9c7215077889d809c598b88044b4.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/img_convert/059e327428c4997120ecd1099fd1bab5.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/img_convert/00f26c96e91c4bf95ef197940d0127f6.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/img_convert/6fff690ce568963043be6792251f4904.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/img_convert/77ff4adc711a615a88840a8abd37f1a0.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/img_convert/f93fcf682b6e89b628ee458693f5cd32.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/img_convert/1ad3ae0f896df40cfe163e93ca43ab11.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/img_convert/b55a473f789c42124afbfd0e82a9e811.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/img_convert/1fb9c88b10de4d3a77367645d5e93224.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/img_convert/55345eaf75c7aecad38bf2cbcd652a2f.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/img_convert/f182c08fd961d57d8e03263df7469c23.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/img_convert/dc7492094737809454912e47f9d54ff8.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/img_convert/a5e08c253ea159f3ef609ae157f08750.png">
+<meta property="article:published_time" content="2022-02-26T02:48:38.858Z">
+<meta property="article:modified_time" content="2022-02-28T05:44:16.666Z">
+<meta property="article:author" content="蓝鸟x">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/img_convert/9b0e259a058e1e338ab3e50e728a2156.png">
+  
+  
+  <title>蓝鸟x</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hint.css@2/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+  
+<link rel="stylesheet" href="/css/indeximg-hover.css">
+<link rel="stylesheet" href="/css/mac.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"xielearncode.github.io","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":60,"cursorChar":"","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>蓝鸟x</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('https://w.wallhaven.cc/full/72/wallhaven-72rd8e.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2022-02-26 10:48" pubdate>
+        2022年2月26日 上午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      7.3k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      61 分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none"></h1>
+            
+            <div class="markdown-body">
+              <h1 id="一-计算机网络概述"><a href="#一-计算机网络概述" class="headerlink" title="一 计算机网络概述"></a>一 计算机网络概述</h1><p><img src="https://img-blog.csdnimg.cn/img_convert/9b0e259a058e1e338ab3e50e728a2156.png" srcset="/img/loading.gif" lazyload alt="9b0e259a058e1e338ab3e50e728a2156.png (1120×1587) (csdnimg.cn)"></p>
+<h2 id="1-1-计算机网络的分类"><a href="#1-1-计算机网络的分类" class="headerlink" title="1.1 计算机网络的分类"></a>1.1 计算机网络的分类</h2><p>按照网络的作用范围: 广域网(WAN), 城域网(MAN), 局域网(LAN)</p>
+<p>按照网络使用者: 公用网络, 专用网络</p>
+<h2 id="1-2计算机网络的层次结构"><a href="#1-2计算机网络的层次结构" class="headerlink" title="1.2计算机网络的层次结构"></a>1.2计算机网络的层次结构</h2><p><img src="https://img-blog.csdnimg.cn/img_convert/67df7eca8ba486a7282bef74321e2722.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p>TCP&#x2F;IP四层模型与OS体系结构对比:</p>
+<p><img src="https://img-blog.csdnimg.cn/img_convert/c2b921fd2023201a457a2b07fe3e8e9a.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<h2 id="1-3-层次结构设计的基本原则"><a href="#1-3-层次结构设计的基本原则" class="headerlink" title="1.3 层次结构设计的基本原则"></a>1.3 层次结构设计的基本原则</h2><ul>
+<li>各层之间是相互独立的</li>
+<li>每一层需要有足够的灵活性</li>
+<li>各层之间完全解耦</li>
+</ul>
+<p><img src="https://img-blog.csdnimg.cn/img_convert/ca899d9a067e8c6d6650f1b5f229648b.png" srcset="/img/loading.gif" lazyload alt="image-20210824140534676"></p>
+<h2 id="1-4-计算机网络的性能指标"><a href="#1-4-计算机网络的性能指标" class="headerlink" title="1.4 计算机网络的性能指标"></a>1.4 计算机网络的性能指标</h2><p>速率:bps &#x3D; bit&#x2F;s</p>
+<p>时延: 发送时延, 传播时延, 排队时延, 处理时延</p>
+<p>往返时间RTT：数据报文在端到端通信中的来回一次的时间</p>
+<h1 id="二-物理层"><a href="#二-物理层" class="headerlink" title="二 物理层"></a>二 物理层</h1><h2 id="2-1-物理层的作用"><a href="#2-1-物理层的作用" class="headerlink" title="2.1 物理层的作用"></a>2.1 物理层的作用</h2><p>连接不同的物理设备, 传输比特流. 该层为上层协议提供了一个传输数据的可靠物理媒体. 简单来说, 物理层确保原始的数据可在各种物理媒体上传输</p>
+<h2 id="2-2-物理层设备"><a href="#2-2-物理层设备" class="headerlink" title="2.2 物理层设备:"></a>2.2 物理层设备:</h2><ul>
+<li>中继器: 同一局域网的再生信号, 两端口的网段必须同一个协议; 5-4-3规程; 10BASE-5以太网中, 最多可串联四个中继器, 5段中只能有3个连接主机</li>
+<li>集线器: 同一局域网的再生, 放大信号(多端口中继器); 半双工, 不能隔离冲突域也不能隔离广播域</li>
+</ul>
+<p>信道的基本概念: 信道是往一个方向传输信息的媒体, 一条通信电路包含一个发送信道和一个接收信道</p>
+<ol>
+<li>单工通信信道: 只能一个方向通信</li>
+<li>半双工通信信道: 双方都可以发送和接收信息, 但不能同时发送也不能同时接收</li>
+<li>全双工通信信道: 双方都可以同时发送和接收</li>
+</ol>
+<h1 id="三-数据链路层"><a href="#三-数据链路层" class="headerlink" title="三 数据链路层"></a>三 数据链路层</h1><h2 id="3-1-数据链路层概述"><a href="#3-1-数据链路层概述" class="headerlink" title="3.1 数据链路层概述"></a>3.1 数据链路层概述</h2><p>数据链路层在物理层提供的服务的基础上向网络层提供服务, 其最基本的服务是将源自网络层来的数据可靠地传输到相邻节点的目标机网络层. 数据链路层在不可靠的物理介质上提供可靠的传输.</p>
+<p>该层的作用包括: <strong>物理地址寻址, 数据的成帧, 流量控制, 数据的检错, 重发等</strong></p>
+<p>有关数据链路层的重要知识点:</p>
+<ul>
+<li>数据链路层为网络层提供可靠的数据传输</li>
+<li>基本数据单位为帧</li>
+<li>主要的协议: 以太网协议</li>
+<li>两个重要设备名称: 网桥和交换机</li>
+</ul>
+<p>封装成帧: “帧”是数据链路层数据的基本单位</p>
+<p><img src="https://img-blog.csdnimg.cn/img_convert/969de8a50812f7772ed5cfef6969bef1.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p>透明传输: “透明”是指即使控制字符在帧数据中, 但是要当作不存在去处理. 即在控制字符前加上转义字符ESC</p>
+<p><img src="https://img-blog.csdnimg.cn/img_convert/40172930e675aa1e9b6d4852239144fc.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<h2 id="3-2-数据链路层的差错检测"><a href="#3-2-数据链路层的差错检测" class="headerlink" title="3.2 数据链路层的差错检测"></a>3.2 数据链路层的差错检测</h2><p>差错检测: 奇偶校验码, 循环冗余校验码CRC</p>
+<ol>
+<li>奇偶校验码–局限性: 当出错为偶数位, 检测不到错误</li>
+<li>循环冗余校验码: 根据传输或保存的数据而产生固定位数校验码</li>
+</ol>
+<h2 id="3-3-最大传输单元"><a href="#3-3-最大传输单元" class="headerlink" title="3.3 最大传输单元"></a>3.3 最大传输单元</h2><p>最大传输单元MTU, 数据链路层的数据帧不是无限大的, 数据帧长度受到MTU限制</p>
+<p>路径MTU: 由链路中MTU的最小值决定</p>
+<p><img src="https://img-blog.csdnimg.cn/img_convert/437533a74e891aa9c7dcd3ccb94440a4.png" srcset="/img/loading.gif" lazyload alt="image-20210824145733146"></p>
+<h2 id="3-4-以太网协议详解"><a href="#3-4-以太网协议详解" class="headerlink" title="3.4 以太网协议详解"></a>3.4 以太网协议详解</h2><p>MAC地址: 每一个设备都拥有唯一的MAC地址, 共48位, 使用十六进制表示</p>
+<p>以太网协议: 是一种使用广泛的局域网技术, 是一种应用于数据链路层的协议, 使用以太网可以完成相邻设备的数据帧传输:</p>
+<p><img src="https://img-blog.csdnimg.cn/img_convert/06765dad404a72429bead8950c219c10.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p><strong>局域网分类</strong></p>
+<p>以太网IEEE802.3:</p>
+<ol>
+<li>以太网第一个广泛部署的高速局域网</li>
+<li>以太网数据速率快</li>
+<li>以太网硬件价格便宜, 网络造价成本低</li>
+</ol>
+<p><strong>以太网帧结构</strong></p>
+<ol>
+<li>类型: 标识上层协议(2字节)</li>
+<li>目的地址和源地址: MAC地址(每个6字节, 6*8&#x3D;48bit)</li>
+<li>数据: 封装的上层协议的分组(46 ~ 1500字节)</li>
+<li>CRC: 循环冗余码(4字节)</li>
+<li>以太网最短帧: 以太网最短64字节; 以太网帧除了数据部分18字节; 数据最短46字节</li>
+</ol>
+<p><strong>MAC地址(物理地址, 局域网地址)</strong></p>
+<ol>
+<li>MAC地址长度为6字节, 48位</li>
+<li>MAC地址具有唯一性, 每个网络适配器对应一个MAC地址</li>
+<li>通常采用十六进制表示法, 每个字节表示一个十六进制数, 用 - 或 : 连接起来</li>
+<li>MAC广播地址: FF-FF-FF-FF-FF-FF</li>
+</ol>
+<h1 id="四-网络层"><a href="#四-网络层" class="headerlink" title="四 网络层"></a>四 网络层</h1><p>网络层的目的是实现两个端系统之间的数据透明传送，具体功能包括寻址和路由选择、连接的建立、保持和终止等。数据交换技术是报文交换（基本上被分组所替代）：采用储存转发方式，数据交换单位是报文。</p>
+<p>网络层中涉及众多的协议，其中包括最重要的协议，也是TCP&#x2F;IP的核心协议——IP协议。IP协议非常简单，仅仅提供不可靠、无连接的传送服务。IP协议的主要功能有：无连接数据报传输、数据报路由选择和差错控制。与IP协议配套使用实现其功能的还有地址解析协议ARP、逆地址解析协议RARP、因特网报文协议ICMP、因特网组管理协议IGMP。具体的协议我们会在接下来的部分进行总结，有关网络层的重点为:</p>
+<ol>
+<li><strong>网络层负责对子网间的数据包进行路由选择。此外，网络层还可以实现拥塞控制、网际互连等功能</strong></li>
+<li><strong>基本数据单位为IP数据报</strong></li>
+<li><strong>包含的主要协议</strong><ul>
+<li>IP协议（Internet Protocol，因特网互联协议）</li>
+<li>ICMP协议（Internet Control Message Protocol，因特网控制报文协议）;</li>
+<li>ARP协议（Address Resolution Protocol，地址解析协议）;</li>
+<li>RARP协议（Reverse Address Resolution Protocol，逆地址解析协议）。</li>
+</ul>
+</li>
+<li>重要的设备: 路由器<img src="https://img-blog.csdnimg.cn/img_convert/e976bb4dcb58a55615d825b0a808ebf0.png" srcset="/img/loading.gif" lazyload alt="image-20210824150654047"></li>
+</ol>
+<h2 id="4-1-IP协议详解"><a href="#4-1-IP协议详解" class="headerlink" title="4.1 IP协议详解"></a>4.1 IP协议详解</h2><p>IP网际协议是 Internet <strong>网络层最核心</strong>的协议。虚拟互联网络的产生：实际的计算机网络错综复杂；物理设备通过使用IP协议，屏蔽了物理网络之间的差异；当网络中主机使用IP协议连接时，无需关注网络细节，于是形成了虚拟网络。</p>
+<p><img src="https://img-blog.csdnimg.cn/img_convert/1512f8a9907449f746288ef22db5fa3a.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<p>IP协议使得复杂的实际网络变为一个虚拟互联的网络；并且<strong>解决了在虚拟网络中数据报传输路径的问题</strong>。</p>
+<p><img src="https://img-blog.csdnimg.cn/img_convert/dc7ef170f6522ce68e09c59f0450ab14.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p>其中，版本指IP协议的版本，占4位，如IPv4和IPv6；首部位长度表示IP首部长度，占4位，最大数值位15；总长度表示IP数据报总长度，占16位，最大数值位65535；TTL表示IP数据报文在网络中的寿命，占8位；协议表明IP数据所携带的具体数据是什么协议的，如<a target="_blank" rel="noopener" href="https://so.csdn.net/so/search?q=TCP&spm=1001.2101.3001.7020">TCP</a>、UDP.</p>
+<h2 id="4-2-IP协议的转发流程"><a href="#4-2-IP协议的转发流程" class="headerlink" title="4.2 IP协议的转发流程"></a>4.2 IP协议的转发流程</h2><p><img src="https://img-blog.csdnimg.cn/img_convert/2b15d397bb6ae792c4f786a39a3a3a1e.png" srcset="/img/loading.gif" lazyload alt="image-20210829160514564"></p>
+<h2 id="4-3-IP地址的子网划分"><a href="#4-3-IP地址的子网划分" class="headerlink" title="4.3 IP地址的子网划分"></a>4.3 IP地址的子网划分</h2><p><img src="https://img-blog.csdnimg.cn/img_convert/81ecde62bf5383da3864b011575d436d.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p>A类（8网络号+24主机号）、B类（16网络号+16主机号）、C类（24网络号+8主机号）可以用于标识网络中的主机或路由器，D类地址作为组广播地址，E类是地址保留</p>
+<p><img src="https://img-blog.csdnimg.cn/img_convert/ccc6e95f8657ca6094042cfaa0c21b6c.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<h2 id="4-4-网络地址转换NAT技术"><a href="#4-4-网络地址转换NAT技术" class="headerlink" title="4.4 网络地址转换NAT技术"></a>4.4 网络地址转换NAT技术</h2><p>用于多个主机通过一个公有IP访问访问互联网的私有网络中，减缓了IP地址的消耗，但是增加了网络通信的复杂度。</p>
+<p><strong>NAT工作原理</strong></p>
+<ul>
+<li>从内网出去的IP数据报, 将其IP地址替换为NAT服务器拥有的合法的公共IP地址, 并将替换关系记录到NAT转换表中</li>
+<li>从公共互联网返回的IP数据报, 依据其目的的IP地址检索NAT转换表，　并利用检索到的内部私有IP地址替换目的IP地址，　然后将IP数据报转发到内部网络</li>
+</ul>
+<h2 id="4-5-ARP协议与RARP协议"><a href="#4-5-ARP协议与RARP协议" class="headerlink" title="4.5 ARP协议与RARP协议"></a>4.5 ARP协议与RARP协议</h2><p>地址解析协议 ARP（Address Resolution Protocol）：为网卡（网络适配器）的IP地址到对应的硬件地址提供动态映射。可以把<strong>网络层32位地址转化为数据链路层MAC48位地址</strong>。</p>
+<p>ARP 是<strong>即插即用</strong>的，一个ARP表是自动建立的，不需要系统管理员来配置。</p>
+<p><img src="https://img-blog.csdnimg.cn/img_convert/442e827fe069e4958f4cbedcc2f2fa13.png" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<p>RARP(Reverse Address Resolution Protocol)协议<strong>指逆地址解析协议</strong>，可以把数据链路层MAC48位地址转化为网络层32位地址.</p>
+<h2 id="4-6-ICMP协议详解"><a href="#4-6-ICMP协议详解" class="headerlink" title="4.6 ICMP协议详解"></a>4.6 ICMP协议详解</h2><p>网际控制报文协议（Internet Control Message Protocol），<strong>可以报告错误信息或者异常情况</strong>，ICMP报文封装在IP数据报当中。</p>
+<p><img src="https://img-blog.csdnimg.cn/img_convert/c5171aa88d22fe5055d682bb1d9681de.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p>ICMP协议的应用:</p>
+<ul>
+<li>Ping应用: 网络故障的排查</li>
+<li>Traceroute应用: 可以探测IP数据报在网络中走过的路径</li>
+</ul>
+<h2 id="4-7-网络层的路由概述"><a href="#4-7-网络层的路由概述" class="headerlink" title="4.7 网络层的路由概述"></a>4.7 网络层的路由概述</h2><p>关于路由算法的要求：正确的完整的、在计算上应该尽可能是简单的、可以适应网络中的变化、稳定的公平的。<br><strong>自治系统AS：</strong>指处于一个管理机构下的网络设备群，AS内部网络自治管理，对外提供一个或多个出入口，其中自治系统内部的路由协议为内部网关协议，如RIP、OSPF等；自治系统外部的路由协议为外部网关协议，如BGP。</p>
+<p><strong>静态路由:</strong> 人工配置, 难度和复杂度高</p>
+<p>动态路由:</p>
+<ol>
+<li>链路状态路由选择算法LS: 向所有隔壁路由发送信息收敛快; 全局式路由选择算法, 每个路由器计算路由时, 需要构建整个网络拓扑图, 利用Dijkstra算法求源端到目的端网络的最短路径;</li>
+<li>距离- 向量路由选择算法DV: 向所有隔壁路由发送信息收敛慢, 会存在回路, 基础是Bellman-Ford方程(简称B-F方程)</li>
+</ol>
+<h2 id="4-8-内部网关路由协议之RIP协议"><a href="#4-8-内部网关路由协议之RIP协议" class="headerlink" title="4.8 内部网关路由协议之RIP协议"></a>4.8 内部网关路由协议之RIP协议</h2><p>路由信息协议 RIP(Routing Information Protocol)【<strong>应用层</strong>】，基于距离-向量的路由选择算法，<strong>较小的AS</strong>（自治系统），适合小型网络；RIP报文，封装进UDP数据报</p>
+<p><strong>RIP协议特性：</strong></p>
+<ol>
+<li>RIP在度量路径时采用的是<strong>跳数</strong>（每个路由器维护自身到其他每个路由器的距离记录）；</li>
+<li>RIP的费用定义在源路由器和目的子网之间；</li>
+<li>RIP被限制的网络直径不超过<strong>15跳</strong>；</li>
+<li>和隔壁交换所有的信息，30<strong>主动</strong>一次（广播）。</li>
+</ol>
+<h2 id="4-9-内部网关路由协议之OSPF协议"><a href="#4-9-内部网关路由协议之OSPF协议" class="headerlink" title="4.9 内部网关路由协议之OSPF协议"></a>4.9 内部网关路由协议之OSPF协议</h2><p>开放最短路径优先协议 OSPF(Open Shortest Path First)【<strong>网络层</strong>】，基于链路状态的路由选择算法（即Dijkstra算法），<strong>较大规模的AS</strong> ，适合大型网络，直接封装在<strong>IP数据</strong>报传输。</p>
+<p><strong>OSPF协议优点：</strong></p>
+<ol>
+<li>安全；</li>
+<li>支持多条相同费用路径；</li>
+<li>支持区别化费用度量；</li>
+<li>支持单播路由和多播路由；</li>
+<li>分层路由。</li>
+</ol>
+<p><strong>RIP与OSPF的对比（路由算法决定其性质）：</strong></p>
+<p><img src="https://img-blog.csdnimg.cn/img_convert/0455a0dbe6b9689b32a117e9ab2db3e0.png" srcset="/img/loading.gif" lazyload alt="image-20210824203252103"></p>
+<h2 id="4-10外部网关路由协议之BGP协议"><a href="#4-10外部网关路由协议之BGP协议" class="headerlink" title="4.10外部网关路由协议之BGP协议"></a>4.10外部网关路由协议之BGP协议</h2><p>BGP（Border Gateway Protocol）边际网关协议【<strong>应用层</strong>】：是运行在AS之间的一种协议,寻找一条好路由：首次交换全部信息，以后只交换变化的部分,BGP封装进<strong>TCP</strong>报文段.</p>
+<h1 id="五-传输层"><a href="#五-传输层" class="headerlink" title="五 传输层"></a>五 传输层</h1><p>第一个端到端, 即主机到主机连接的层次. 传输层负责将上层数据分段并提供端到端的, 可靠的或不可靠的传输. 此外, 传输层还要处理端到端的差错控制和流量控制问题</p>
+<p>传输层的任务是根据通信子网的特性, 最佳的利用网络资源, 为两个端系统的会话层之间, 提供建立, 维护和取消传输连接的功能, 负责端到端的可靠数据传输. 在这一层, 信息传输的协议数据单元称为段或报文</p>
+<p>网络层只是根据网络地址将源结点发出的数据包传送到目的节点, 而传输层则负责将数据可靠地传送到相应的端口</p>
+<p>有关网络层的重点:</p>
+<ol>
+<li>传输层负责将上层数据分段并提供端到端的, 可靠的或不可靠的传输以及端到端的差错控制和流量控制问题</li>
+<li>包含的主要协议: TCP, UDP</li>
+<li>重要设备:网关</li>
+</ol>
+<p><img src="https://img-blog.csdnimg.cn/img_convert/b8b9bdad6fe98840d4b98a7c74414c44.png" srcset="/img/loading.gif" lazyload alt="image-20210824204416951"></p>
+<p><img src="https://img-blog.csdnimg.cn/img_convert/3e813c4865d3c90d5c960e3febc02152.png" srcset="/img/loading.gif" lazyload alt="image-20210825110057777"></p>
+<h2 id="5-1-UDP协议详解"><a href="#5-1-UDP协议详解" class="headerlink" title="5.1 UDP协议详解"></a>5.1 UDP协议详解</h2><p>UDP(用户数据报协议)</p>
+<p><img src="https://img-blog.csdnimg.cn/img_convert/c1e2c463a94254f0e157e1ecb84051fb.png" srcset="/img/loading.gif" lazyload alt="（11-2-0303）"></p>
+<p>UDP协议特点:</p>
+<ul>
+<li>UDP是无连接协议</li>
+<li>不能保证可靠啊的数据交付</li>
+<li>面向报文传输</li>
+<li>没有拥塞控制</li>
+<li>首部开销很小</li>
+</ul>
+<p>UDP数据报结构:</p>
+<p><img src="https://img-blog.csdnimg.cn/img_convert/d88a84b462bac5a52716fc0d4de42856.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<h2 id="5-2-TCP协议详解"><a href="#5-2-TCP协议详解" class="headerlink" title="5.2 TCP协议详解"></a>5.2 TCP协议详解</h2><p>TCP(传输控制协议)</p>
+<p><img src="https://img-blog.csdnimg.cn/img_convert/7dcb2a6d779a0424a4d0dcde5ce5fdd2.png" srcset="/img/loading.gif" lazyload alt="image-20210825101232465"></p>
+<p>TCP协议功能:</p>
+<ul>
+<li>对应用层数据报文进行分段和重组</li>
+<li>面向应用层实现复用和分解</li>
+<li>实现端到端流量控制</li>
+<li>拥塞控制</li>
+<li>传输层寻址</li>
+<li>对接收到的报文进行差错检测(首部和数据部分都检错)</li>
+<li>实现进程间的端到端可靠数据传输控制</li>
+</ul>
+<p>TCP协议特点:</p>
+<ul>
+<li>面向连接的协议</li>
+<li>面向字节流的协议</li>
+<li>点对点通信</li>
+<li>提供可靠的传输服务</li>
+<li>提供全双工通信</li>
+</ul>
+<p>TCP报文结构</p>
+<p><img src="https://img-blog.csdnimg.cn/img_convert/90ea9c7215077889d809c598b88044b4.png" srcset="/img/loading.gif" lazyload alt="image-20210825101507309"></p>
+<p>TCP首部:</p>
+<ul>
+<li>序号字段:TCP的序号是对每个应用层数据的每个字节进行编号</li>
+<li>确认序号字段: 期望从对方接收数据的字节序号, 即该序号对应的字节尚未收到. 用ack_seq标识</li>
+<li>TCP段的首部长度最短是20B, 最长为60字节. 但是长度必须为4B的整数倍</li>
+</ul>
+<p>TCP标记的作用：</p>
+<p><img src="https://img-blog.csdnimg.cn/img_convert/059e327428c4997120ecd1099fd1bab5.png" srcset="/img/loading.gif" lazyload alt="image-20210825101954996"></p>
+<h2 id="5-3-可靠传输的基本原理"><a href="#5-3-可靠传输的基本原理" class="headerlink" title="5.3 可靠传输的基本原理"></a>5.3 可靠传输的基本原理</h2><p>基本原理:</p>
+<ul>
+<li><p>不可靠传输信道在数据传输中可能发生的情况: 比特差错, 乱序, 重传, 丢失</p>
+</li>
+<li><p>基于不可靠信道实现可靠数据传输采取的措施:</p>
+<ul>
+<li>差错检测: 利用编码实现数据包传输过程中的比特差错检测</li>
+<li>确认: 接收方向发送方反馈接收状态</li>
+<li>重传: 发送方重新发送接收方没有正确接收的数据</li>
+<li>序号: 确保数据按序提交</li>
+<li>计时器: 解决数据丢失问题</li>
+</ul>
+</li>
+</ul>
+<p>停止等待协议: 是最简单的可靠传输协议, 但是该协议对信道利用率不高</p>
+<p>ARQ(自动重传请求)协议: 滑动窗口+累计确认, 大幅提高了信道利用率</p>
+<h3 id="5-3-1-TCP协议的可靠传输"><a href="#5-3-1-TCP协议的可靠传输" class="headerlink" title="5.3.1 TCP协议的可靠传输"></a>5.3.1 TCP协议的可靠传输</h3><p>基于连续的ARQ协议, 在某些情况下, 重传的效率并不高, 会重复传输部分已经成功接收的字节</p>
+<h3 id="5-3-2-TCP协议的流量控制"><a href="#5-3-2-TCP协议的流量控制" class="headerlink" title="5.3.2 TCP协议的流量控制"></a>5.3.2 TCP协议的流量控制</h3><p>流量控制: 让发送方发送速率不要太快, TCP协议使用滑动窗口实现流量控制</p>
+<p><img src="https://img-blog.csdnimg.cn/img_convert/00f26c96e91c4bf95ef197940d0127f6.png" srcset="/img/loading.gif" lazyload alt="image-20210825103907230"></p>
+<h2 id="5-4-TCP协议的拥塞控制"><a href="#5-4-TCP协议的拥塞控制" class="headerlink" title="5.4 TCP协议的拥塞控制"></a>5.4 TCP协议的拥塞控制</h2><p>拥塞控制与流量控制的区别: 流量控制考虑点对点的通信量的控制, 而拥塞控制考虑整个网络, 是全局性的考虑. 拥塞控制方法: 慢启动算法 + 拥塞避免算法</p>
+<p>慢开始和拥塞避免:</p>
+<ol>
+<li>慢开始: 拥塞窗口从1(2,4,8,16)指数增长</li>
+<li>达到阈值时进入拥塞避免, 变成+1增长</li>
+<li>发生超时, 阈值变为拥塞窗口的一半(必须大于等于2)</li>
+<li>再从慢开始增长</li>
+</ol>
+<p><img src="https://img-blog.csdnimg.cn/img_convert/6fff690ce568963043be6792251f4904.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p>快重传和快恢复:</p>
+<ol>
+<li>发送方连续接收到3个冗余ACK, 执行快重传, 不必等计时器超时</li>
+<li>执行快恢复, 阈值变为当前拥塞窗口的一半(须大于1), 并从此新的ssthresh点进入拥塞避免</li>
+</ol>
+<p><img src="https://img-blog.csdnimg.cn/img_convert/77ff4adc711a615a88840a8abd37f1a0.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<h2 id="5-5-TCP的三次握手"><a href="#5-5-TCP的三次握手" class="headerlink" title="5.5 TCP的三次握手"></a>5.5 TCP的三次握手</h2><p><img src="https://img-blog.csdnimg.cn/img_convert/f93fcf682b6e89b628ee458693f5cd32.png" srcset="/img/loading.gif" lazyload alt="image-20210825104544704"></p>
+<p><strong>为什么需要三次握手?</strong></p>
+<ul>
+<li>第一次握手: 客户机发送请求, 此时服务器知道客户能发送数据</li>
+<li>第二次握手: 服务器发送确认, 此时客户知道服务器能发送也能接收数据</li>
+<li>第三次握手: 客户发送确认, 此时服务器知道客户能接收数据</li>
+</ul>
+<p>建立连接:</p>
+<p><strong>第一次：</strong>客户向服务器发送连接请求段，建立连接请求控制段（SYN&#x3D;1），表示传输的报文段的第一个数据字节的序列号是x，此序列号代表整个报文段的序号（seq&#x3D;x）；客户端进入 SYN_SEND （同步发送状态）；</p>
+<p><strong>第二次：</strong>服务器发回确认报文段，同意建立新连接的确认段（SYN&#x3D;1），确认序号字段有效（ACK&#x3D;1），服务器告诉客户端报文段序号是y（seq&#x3D;y），表示服务器已经收到客户端序号为x的报文段，准备接受客户端序列号为x+1的报文段（ack_seq&#x3D;x+1）；服务器由LISTEN进入SYN_RCVD （同步收到状态）;</p>
+<p>**第三次:**客户对服务器的同一连接进行确认.确认序号字段有效(ACK&#x3D;1),客户此次的报文段的序列号是x+1(seq&#x3D;x+1),客户期望接受服务器序列号为y+1的报文段(ack_seq&#x3D;y+1);当客户发送ack时，客户端进入ESTABLISHED 状态;当服务收到客户发送的ack后，也进入ESTABLISHED状态;第三次握手可携带数据;<br><img src="https://img-blog.csdnimg.cn/img_convert/1ad3ae0f896df40cfe163e93ca43ab11.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<h2 id="5-6-TCP连接的四次挥手"><a href="#5-6-TCP连接的四次挥手" class="headerlink" title="5.6 TCP连接的四次挥手"></a>5.6 TCP连接的四次挥手</h2><p>释放连接（四次挥手）</p>
+<p>第一次：客户向服务器发送释放连接报文段，发送端数据发送完毕，请求释放连接（FIN&#x3D;1），传输的第一个数据字节的序号是x（seq&#x3D;x）；客户端状态由ESTABLISHED进入FIN_WAIT_1（终止等待1状态）；</p>
+<p>第二次：服务器向客户发送确认段，确认字号段有效（ACK&#x3D;1），服务器传输的数据序号是y（seq&#x3D;y），服务器期望接收客户数据序号为x+1（ack_seq&#x3D;x+1）;服务器状态由ESTABLISHED进入CLOSE_WAIT（关闭等待）； 客户端收到ACK段后，由FIN_WAIT_1进入FIN_WAIT_2；</p>
+<p>第三次:服务器向客户发送释放连接报文段，请求释放连接（FIN&#x3D;1），确认字号段有效（ACK&#x3D;1），表示服务器期望接收客户数据序号为x+1（ack_seq&#x3D;x+1）;表示自己传输的第一个字节序号是y+1（seq&#x3D;y+1）；服务器状态由CLOSE_WAIT 进入 LAST_ACK （最后确认状态）；</p>
+<p>第四次：客户向服务器发送确认段，确认字号段有效（ACK&#x3D;1），表示客户传输的数据序号是x+1（seq&#x3D;x+1），表示客户期望接收服务器数据序号为y+1+1（ack_seq&#x3D;y+1+1）；客户端状态由FIN_WAIT_2进入TIME_WAIT，等待2MSL时间，进入CLOSED状态；服务器在收到最后一次ACK后，由LAST_ACK进入CLOSED；</p>
+<p><img src="https://img-blog.csdnimg.cn/img_convert/b55a473f789c42124afbfd0e82a9e811.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p><img src="https://img-blog.csdnimg.cn/img_convert/1fb9c88b10de4d3a77367645d5e93224.png" srcset="/img/loading.gif" lazyload alt="image-20210825105441970"></p>
+<p>为什么需要等待2MSL?</p>
+<ol>
+<li>最后一个报文没有确认；</li>
+<li>确保发送方的ACK可以到达接收方；</li>
+<li>2MSL时间内没有收到，则接收方会重发；</li>
+<li>确保当前连接的所有报文都已经过期。</li>
+</ol>
+<h1 id="六-应用层"><a href="#六-应用层" class="headerlink" title="六 应用层"></a>六 应用层</h1><p>为操作系统或网络应用程序提供访问网络服务的接口。</p>
+<p>应用层重点:</p>
+<ol>
+<li>数据传输单位为报文</li>
+<li>包含主要的协议: FTP(文件传输协议), Telnet(远程登录协议), DNS(域名解析协议), SMTP(邮件传输协议), POP3(邮局协议), HTTP协议</li>
+</ol>
+<h2 id="6-1-DNS详解"><a href="#6-1-DNS详解" class="headerlink" title="6.1 DNS详解"></a>6.1 DNS详解</h2><p>DNS（Domain Name System:域名系统）<strong>【C&#x2F;S，UDP，端口53】</strong>：解决IP地址复杂难以记忆的问题,存储并完成自己所管辖范围内主机的 域名 到 IP 地址的映射。</p>
+<p><strong>域名解析的顺序：</strong>【1】浏览器缓存，【2】找本机的hosts文件，【3】路由缓存，【4】找DNS服务器（本地域名、顶级域名、根域名）-&gt;迭代解析、递归查询。</p>
+<ol>
+<li><p>IP—&gt;DNS服务—&gt;便于记忆的域名</p>
+</li>
+<li><p>域名由点、字母和数字组成，分为顶级域（com，cn，net，gov，org）、二级域（baidu,taobao,qq,alibaba）、三级域（www）(12-2-0852)</p>
+</li>
+</ol>
+<p><img src="https://img-blog.csdnimg.cn/img_convert/55345eaf75c7aecad38bf2cbcd652a2f.png" srcset="/img/loading.gif" lazyload alt="image-20210825130407844"></p>
+<h2 id="6-2-DHCP协议"><a href="#6-2-DHCP协议" class="headerlink" title="6.2 DHCP协议"></a>6.2 DHCP协议</h2><p>DHCP（Dynamic Configuration Protocol:动态主机设置协议）：<strong>是一个局域网协议，是应用UDP协议的应用层协议。</strong> <strong>作用：为临时接入局域网的用户自动分配IP地址。</strong></p>
+<h2 id="6-3-FTP协议"><a href="#6-3-FTP协议" class="headerlink" title="6.3 FTP协议"></a>6.3 FTP协议</h2><p><strong>文件传输协议（FTP）</strong>：控制连接（端口21）：传输控制信息（连接、传输请求），以<strong>7位ASCII码的格式</strong>。<strong>整个会话期间一直打开。</strong></p>
+<h2 id="6-4-HTTP协议"><a href="#6-4-HTTP协议" class="headerlink" title="6.4 HTTP协议"></a>6.4 HTTP协议</h2><p><strong>HTTP（HyperText Transfer Protocol:超文本传输协议）</strong>【<strong>TCP，端口80</strong>】：是可靠的数据传输协议，<strong>浏览器向服务器发收报文前，先建立TCP连接，HTTP使用TCP连接方式（HTTP自身无连接）</strong>。</p>
+<p>HTTP请求报文方式：</p>
+<ol>
+<li>GET：请求指定的页面信息，并返回实体主体；</li>
+<li>POST：向指定资源提交数据进行处理请求；</li>
+<li>DELETE：请求服务器删除指定的页面；</li>
+<li>HEAD：请求读取URL标识的信息的首部，只返回报文头；</li>
+<li>OPETION：请求一些选项的信息；</li>
+<li>PUT：在指明的URL下存储一个文档。</li>
+</ol>
+<p><img src="https://img-blog.csdnimg.cn/img_convert/f182c08fd961d57d8e03263df7469c23.png" srcset="/img/loading.gif" lazyload alt="image-20210825131432665"></p>
+<p><img src="https://img-blog.csdnimg.cn/img_convert/dc7492094737809454912e47f9d54ff8.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p><img src="https://img-blog.csdnimg.cn/img_convert/a5e08c253ea159f3ef609ae157f08750.png" srcset="/img/loading.gif" lazyload alt="image-20210825131827137"></p>
+<h3 id=""><a href="#" class="headerlink" title=""></a></h3><p>HTTPS(Secure)是安全的HTTP协议，<strong>端口号443</strong>。基于HTTP协议，通过SSL或TLS提供加密处理数据、验证对方身份以及数据完整性保护。</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/02/27/%E9%9B%86%E5%90%88/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">集合</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/02/24/%E5%B8%B8%E7%94%A8%E7%B1%BB/">
+                        <span class="hidden-mobile">常用类</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div class="disqus" style="width:100%">
+    <div id="disqus_thread"></div>
+    
+      <script type="text/javascript">
+        var disqus_config = function() {
+          this.page.url = 'https://xielearncode.github.io/2022/02/26/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%A4%8D%E4%B9%A0/';
+          this.page.identifier = '/2022/02/26/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%A4%8D%E4%B9%A0/';
+        };
+        Fluid.utils.loadComments('#disqus_thread', function() {
+          var d = document, s = d.createElement('script');
+          s.src = '//' + 'fluid' + '.disqus.com/embed.js';
+          s.setAttribute('data-timestamp', new Date());
+          (d.head || d.body).appendChild(s);
+        });
+      </script>
+    
+    <noscript>Please enable JavaScript to view the comments</noscript>
+  </div>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+	<!--《添加网站运行时间 -->
+<br/>
+
+<span id="timeDate">载入天数...</span><span id="times">载入时分秒...</span>
+<script>
+var now = new Date(); 
+
+function createtime() {
+    //此处修改你的建站时间或者网站上线时间
+    var grt = new Date('02/1/2022 8:00:00');
+    now.setTime(now.getTime() + 250);
+    days = (now - grt) / 1000 / 60 / 60 / 24;
+
+    dnum = Math.floor(days);
+    hours = (now - grt) / 1000 / 60 / 60 - (24 * dnum);
+    hnum = Math.floor(hours);
+    if (String(hnum).length == 1) {
+        hnum = "0" + hnum;
+    }
+    minutes = (now - grt) / 1000 / 60 - (24 * 60 * dnum) - (60 * hnum);
+    mnum = Math.floor(minutes);
+    if (String(mnum).length == 1) {
+        mnum = "0" + mnum;
+    }
+    seconds = (now - grt) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+    snum = Math.round(seconds);
+    if (String(snum).length == 1) {
+        snum = "0" + snum;
+    }
+    document.getElementById("timeDate").innerHTML = " 本站已安全运行 " + dnum + " 天 ";
+    document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒";
+}
+setInterval("createtime()", 250);
+</script>
+
+<!-- 添加网站运行时间》-->
+  </div>
+  
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+        typing(title);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+<script src="/js/bubble.js"></script>
+<script src="//cdn.jsdelivr.net/gh/bynotes/texiao/source/js/qipao.js"></script>
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"jsonPath":"/live2dw/assets/shizuku.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/love.js"></script>
+<!-- 页面上方泡泡 -->
+<script type="text/javascript" src="/js/bubble.js"></script>
+<script type="text/javascript" src="/js/snow.js"></script>
