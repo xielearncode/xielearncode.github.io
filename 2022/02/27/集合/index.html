@@ -25,7 +25,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/7320afbd0cd948d998cc02f4cb9ec4b5.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6JOd6bifeA==,size_20,color_FFFFFF,t_70,g_se,x_16">
 <meta property="article:published_time" content="2022-02-27T06:54:00.000Z">
-<meta property="article:modified_time" content="2022-03-04T08:16:19.710Z">
+<meta property="article:modified_time" content="2022-03-04T09:18:47.380Z">
 <meta property="article:author" content="蓝鸟x">
 <meta property="article:tag" content="Java基础">
 <meta property="article:tag" content="集合">
@@ -205,7 +205,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      16k 字
+      18k 字
     </span>
   
 
@@ -214,7 +214,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      134 分钟
+      152 分钟
     </span>
   
 
@@ -599,7 +599,7 @@
 <li>无参构造器是无序的</li>
 <li>实现类Comparator接口的匿名内部类, 可以自定义顺序排序</li>
 </ol>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> &#123;<br>    <span class="hljs-type">TreeMap</span> <span class="hljs-variable">treeMap</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">TreeMap</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">Comparator</span>() &#123;<br>        <span class="hljs-meta">@Override</span><br>        <span class="hljs-keyword">public</span> <span class="hljs-type">int</span> <span class="hljs-title function_">compare</span><span class="hljs-params">(Object o1, Object o2)</span> &#123;<br>            <span class="hljs-keyword">return</span> ((String)o1).compareTo((String)o2);<br>        &#125;<br>    &#125;);<br>    treeMap.put(<span class="hljs-string">&quot;jack&quot;</span>,<span class="hljs-string">&quot;杰克&quot;</span>);<br>    treeMap.put(<span class="hljs-string">&quot;rose&quot;</span>,<span class="hljs-string">&quot;罗丝&quot;</span>);<br>    treeMap.put(<span class="hljs-string">&quot;kristin&quot;</span>,<span class="hljs-string">&quot;克里斯汀&quot;</span>);<br>    treeMap.put(<span class="hljs-string">&quot;zz&quot;</span>,<span class="hljs-string">&quot;渣渣&quot;</span>);<br><br>    System.out.println(treeMap);<br>&#125;   <br></code></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> &#123;<br>    <span class="hljs-type">TreeMap</span> <span class="hljs-variable">treeMap</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">TreeMap</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">Comparator</span>() &#123;<br>        <span class="hljs-meta">@Override</span><br>        <span class="hljs-keyword">public</span> <span class="hljs-type">int</span> <span class="hljs-title function_">compare</span><span class="hljs-params">(Object o1, Object o2)</span> &#123;<br>            <span class="hljs-keyword">return</span> ((String)o1).compareTo((String)o2);<span class="hljs-comment">//比较的key</span><br>        &#125;<br>    &#125;);<br>    treeMap.put(<span class="hljs-string">&quot;jack&quot;</span>,<span class="hljs-string">&quot;杰克&quot;</span>);<br>    treeMap.put(<span class="hljs-string">&quot;rose&quot;</span>,<span class="hljs-string">&quot;罗丝&quot;</span>);<br>    treeMap.put(<span class="hljs-string">&quot;kristin&quot;</span>,<span class="hljs-string">&quot;克里斯汀&quot;</span>);<br>    treeMap.put(<span class="hljs-string">&quot;zz&quot;</span>,<span class="hljs-string">&quot;渣渣&quot;</span>);<br><br>    System.out.println(treeMap);<br>&#125;   <br></code></pre></td></tr></table></figure>
 
 
 
@@ -630,6 +630,36 @@
 </ul>
 </li>
 </ol>
+<h1 id="七-工具类-Collections"><a href="#七-工具类-Collections" class="headerlink" title="七 工具类 Collections"></a>七 工具类 Collections</h1><ol>
+<li>Collections 是一个操作Set, LIst 和Map 等集合的工具类</li>
+<li>Collections 中提供了一系列静态方法对集合元素进行排序, 查询和修改等操作</li>
+</ol>
+<ul>
+<li>​    第一组方法List<ul>
+<li>reverse(List)   反转List中元素的顺序</li>
+<li>frequency( List, Object)</li>
+<li>shuffle(List)    对List集合元素进行随机排序&#x2F;&#x2F;&#x2F;   洗牌</li>
+<li>sort(List) : 根据元素的自然顺序对指定List集合元素按升序排序</li>
+<li>sort(List, Comparator): 自定义顺序排序</li>
+<li>swap(List, int, int): 将指定list 集合中的i处元素和j处元素进行交换</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> &#123;<br>    <span class="hljs-type">List</span> <span class="hljs-variable">list</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ArrayList</span>();<br>    list.add(<span class="hljs-string">&quot;a&quot;</span>);<br>    list.add(<span class="hljs-string">&quot;b&quot;</span>);<br>    list.add(<span class="hljs-string">&quot;c&quot;</span>);<br>    list.add(<span class="hljs-string">&quot;d&quot;</span>);<br>    list.add(<span class="hljs-string">&quot;e&quot;</span>);<br>    list.add(<span class="hljs-string">&quot;f&quot;</span>);<br>    list.add(<span class="hljs-string">&quot;g&quot;</span>);<br>    list.add(<span class="hljs-string">&quot;h&quot;</span>);<br>    System.out.println(list);<br>    Collections.reverse(list);<span class="hljs-comment">//反转</span><br>    System.out.println(list);<span class="hljs-comment">//</span><br><br>    System.out.println(Collections.frequency(list,<span class="hljs-string">&quot;a&quot;</span>));<span class="hljs-comment">//频率 int</span><br>    Collections.shuffle(list);<span class="hljs-comment">//洗牌, 用于抽奖活动等</span><br>    System.out.println(list);<br><br>    Collections.sort(list);<br>    System.out.println(<span class="hljs-string">&quot;自然排序(字符串)= &quot;</span> + list);<br><br>    Collections.sort(list, <span class="hljs-keyword">new</span> <span class="hljs-title class_">Comparator</span>() &#123;<span class="hljs-comment">//自定义排序</span><br>        <span class="hljs-meta">@Override</span><br>        <span class="hljs-keyword">public</span> <span class="hljs-type">int</span> <span class="hljs-title function_">compare</span><span class="hljs-params">(Object o1, Object o2)</span> &#123;<br>            <span class="hljs-keyword">return</span> ((String)o1).length() - ((String)o2).length();<br>        &#125;<br>    &#125;);<br><br>    Collections.swap(list,<span class="hljs-number">3</span>,<span class="hljs-number">1</span>); <span class="hljs-comment">//两处下标交换, 范围超出抛出越界异常</span><br>    System.out.println(<span class="hljs-string">&quot;交换后 = &quot;</span> + list);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>第二组方法 Collection<ul>
+<li>Object max(Collection): 根据元素的自然排序, 返回指定集合的最大值</li>
+<li>Object max(Collection, Comparator): 自定义顺序</li>
+<li>min 同上</li>
+<li>int frequency( Collection, Object)</li>
+<li>void copy(LIst dest, LIst src) : 将src中的内容复制到dest中   要求: dest.size( ) &gt;&#x3D; src.size( )    &#x3D;&#x3D;&#x3D;&gt; destination , source</li>
+<li>boolean replaceAll(LIst list , Object oldVal, Object newVal) : 使用新值替换List对象的所有旧值</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs java">System.out.println(<span class="hljs-string">&quot;自然Max = &quot;</span> + Collections.max(list));<br> System.out.println(Collections.max(list, <span class="hljs-keyword">new</span> <span class="hljs-title class_">Comparator</span>()&#123;<span class="hljs-comment">//自定义排序</span><br>     <span class="hljs-meta">@Override</span><br>     <span class="hljs-keyword">public</span> <span class="hljs-type">int</span> <span class="hljs-title function_">compare</span><span class="hljs-params">(Object o1, Object o2)</span> &#123;<br>         <span class="hljs-keyword">return</span> ((String)o1).compareTo((String)o2);<br>     &#125;<br> &#125; ));<br> System.out.println(<span class="hljs-string">&quot;list.size() = &quot;</span> + list.size());<br> <span class="hljs-type">List</span> <span class="hljs-variable">list1</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ArrayList</span>(list.size());<span class="hljs-comment">//定义了初始空间, 但是每初始元素仍为0 , 所以list1.size() = 0</span><br> System.out.println(list1.size() + <span class="hljs-string">&quot; &lt;== list1.size()&quot;</span>);<br><br> <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">20</span>; i++) &#123;<br>     list1.add(i);<br> &#125;<br><br> Collections.copy(list1,list);<br> System.out.println(<span class="hljs-string">&quot;list1 = &quot;</span> + list1);<br> Collections.replaceAll(list,<span class="hljs-string">&quot;f&quot;</span>,<span class="hljs-string">&quot;爱抚&quot;</span>);<span class="hljs-comment">//将list中&quot;f&quot;替换为新的&quot;爱抚&quot;</span><br> System.out.println(<span class="hljs-string">&quot;替换后 = &quot;</span> + list);<br></code></pre></td></tr></table></figure>
+
 
             </div>
             <hr>
