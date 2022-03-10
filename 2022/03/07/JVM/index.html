@@ -16,21 +16,41 @@
   <meta name="author" content="蓝鸟x">
   <meta name="keywords" content="">
   
-    <meta name="description" content="蓝鸟x的博客">
-<meta property="og:type" content="website">
-<meta property="og:title" content="标签">
-<meta property="og:url" content="https://xielearncode.github.io/tags/index.html">
+    <meta name="description" content="JVM 探究 请你谈谈jvm的理解?  java8虚拟机和之前的变化?  什么是OOM , 什么是 StackOverflowError?">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JVM">
+<meta property="og:url" content="https://xielearncode.github.io/2022/03/07/JVM/index.html">
 <meta property="og:site_name" content="蓝鸟x">
-<meta property="og:description" content="蓝鸟x的博客">
+<meta property="og:description" content="JVM 探究 请你谈谈jvm的理解?  java8虚拟机和之前的变化?  什么是OOM , 什么是 StackOverflowError?">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://tse2-mm.cn.bing.net/th/id/OIP-C.ITqUPApwM4f80eJqiUNV9AHaEA?w=333&h=180&c=7&r=0&o=5&dpr=1.25&pid=1.7">
+<meta property="article:published_time" content="2022-03-07T05:57:22.000Z">
+<meta property="article:modified_time" content="2022-03-10T09:37:44.695Z">
 <meta property="article:author" content="蓝鸟x">
+<meta property="article:tag" content="JVM">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://tse2-mm.cn.bing.net/th/id/OIP-C.ITqUPApwM4f80eJqiUNV9AHaEA?w=333&h=180&c=7&r=0&o=5&dpr=1.25&pid=1.7">
   
   
-  <title>标签 - 蓝鸟x</title>
+  <title>JVM - 蓝鸟x</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
 
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hint.css@2/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
 
 
 <!-- 主题依赖的图标库，不要自行修改 -->
@@ -62,7 +82,7 @@
 
 
 <body>
-  <header style="height: 80vh;">
+  <header style="height: 70vh;">
     <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand" href="/">
@@ -158,22 +178,52 @@
 </nav>
 
     <div class="banner" id="banner" parallax=true
-         style="background: url('https://w.wallhaven.cc/full/k7/wallhaven-k7v9yq.png') no-repeat center center;
+         style="background: url('https://w.wallhaven.cc/full/72/wallhaven-72rd8e.jpg') no-repeat center center;
            background-size: cover;">
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="标签">
+            <span class="h2" id="subtitle" title="JVM">
               
             </span>
 
             
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2022-03-07 13:57" pubdate>
+        2022年3月7日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      60 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      1 分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
           </div>
 
-          
-            <div class="scroll-down-bar">
-              <i class="iconfont icon-arrowdown"></i>
-            </div>
           
         </div>
       </div>
@@ -182,24 +232,125 @@
 
   <main>
     
-      <div class="container nopadding-x-md">
-        <div class="py-5" id="board"
-          >
-          
-          <div class="container">
-            <div class="row">
-              <div class="col-12 col-md-10 m-auto">
-                
+      
 
-<div class="text-center tagcloud">
-  <a href="/tags/CRM%E7%B3%BB%E7%BB%9F/" style="font-size: 20px; color: #8ea5dc">CRM系统</a> <a href="/tags/Hi-Hexo/" style="font-size: 15px; color: #bbe">Hi! Hexo</a> <a href="/tags/IO%E6%B5%81/" style="font-size: 15px; color: #bbe">IO流</a> <a href="/tags/JVM/" style="font-size: 15px; color: #bbe">JVM</a> <a href="/tags/Java%E5%9F%BA%E7%A1%80/" style="font-size: 30px; color: #337ab7">Java基础</a> <a href="/tags/Java%E9%A1%B9%E7%9B%AE/" style="font-size: 25px; color: #6090c9">Java项目</a> <a href="/tags/MySQL/" style="font-size: 15px; color: #bbe">MySQL</a> <a href="/tags/%E5%89%91%E6%8C%87offer/" style="font-size: 15px; color: #bbe">剑指offer</a> <a href="/tags/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/" style="font-size: 20px; color: #8ea5dc">博客搭建</a> <a href="/tags/%E5%9B%BE%E4%B9%A6%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F/" style="font-size: 15px; color: #bbe">图书管理系统</a> <a href="/tags/%E5%9D%A6%E5%85%8B%E5%A4%A7%E6%88%98/" style="font-size: 15px; color: #bbe">坦克大战</a> <a href="/tags/%E5%B8%B8%E7%94%A8%E7%B1%BB/" style="font-size: 15px; color: #bbe">常用类</a> <a href="/tags/%E5%BC%82%E5%B8%B8/" style="font-size: 15px; color: #bbe">异常</a> <a href="/tags/%E6%88%BF%E5%B1%8B%E5%87%BA%E7%A7%9F/" style="font-size: 15px; color: #bbe">房屋出租</a> <a href="/tags/%E6%B3%9B%E5%9E%8B/" style="font-size: 15px; color: #bbe">泛型</a> <a href="/tags/%E7%AC%94%E8%AF%95/" style="font-size: 15px; color: #bbe">笔试</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 15px; color: #bbe">算法</a> <a href="/tags/%E7%AE%97%E6%B3%95%E9%A2%98/" style="font-size: 15px; color: #bbe">算法题</a> <a href="/tags/%E7%BA%BF%E7%A8%8B/" style="font-size: 15px; color: #bbe">线程</a> <a href="/tags/%E9%9B%86%E5%90%88/" style="font-size: 15px; color: #bbe">集合</a> <a href="/tags/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E9%83%A8%E5%88%86/" style="font-size: 15px; color: #bbe">面向对象部分</a>
-</div>
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">JVM</h1>
+            
+            <div class="markdown-body">
+              <h1 id="JVM-探究"><a href="#JVM-探究" class="headerlink" title="JVM 探究"></a>JVM 探究</h1><ul>
+<li>请你谈谈jvm的理解?  java8虚拟机和之前的变化?  什么是OOM , 什么是 StackOverflowError?</li>
+</ul>
 
-              </div>
             </div>
-          </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/JVM/">JVM</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/JVM/">JVM</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/03/08/%E5%9B%BE%E4%B9%A6%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">图书管理系统</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/03/07/%E7%BA%BF%E7%A8%8B/">
+                        <span class="hidden-mobile">线程</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div class="disqus" style="width:100%">
+    <div id="disqus_thread"></div>
+    
+      <script type="text/javascript">
+        var disqus_config = function() {
+          this.page.url = 'https://xielearncode.github.io/2022/03/07/JVM/';
+          this.page.identifier = '/2022/03/07/JVM/';
+        };
+        Fluid.utils.loadComments('#disqus_thread', function() {
+          var d = document, s = d.createElement('script');
+          s.src = '//' + 'fluid' + '.disqus.com/embed.js';
+          s.setAttribute('data-timestamp', new Date());
+          (d.head || d.body).appendChild(s);
+        });
+      </script>
+    
+    <noscript>Please enable JavaScript to view the comments</noscript>
+  </div>
+
+
+              </article>
+            
+          </article>
         </div>
       </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
     
 
     
@@ -318,6 +469,19 @@ setInterval("createtime()", 250);
   
 
 
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
 
 
 

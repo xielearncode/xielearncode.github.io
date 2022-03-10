@@ -247,18 +247,18 @@
             <div class="markdown-body">
               <h1 id="个人博客的优化"><a href="#个人博客的优化" class="headerlink" title="个人博客的优化"></a>个人博客的优化</h1><h2 id="1-自动部署"><a href="#1-自动部署" class="headerlink" title="1. 自动部署"></a>1. 自动部署</h2><p>对于个人博客，如果设置为自动部署，每一次发布文章时还需要手动更新 GitHub 仓库中的内容，如果设置为自动部署，那么以后在本地修改博客内容以后便会自动更新 GitHub 中的内容</p>
 <h3 id="Hexo"><a href="#Hexo" class="headerlink" title="Hexo"></a>Hexo</h3><p>首先我们要确保本地 Hexo 是可以正确运行的，比如</p>
-<figure class="highlight crystal"><table><tr><td class="gutter"><div class="code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></div></td><td class="code"><pre><code class="hljs crystal"><span class="hljs-variable">$ </span>hexo clean<br><span class="hljs-variable">$ </span>hexo deploy<br></code></pre></td></tr></table></figure>
+<figure class="highlight crystal"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs crystal"><span class="hljs-variable">$ </span>hexo clean<br><span class="hljs-variable">$ </span>hexo deploy<br></code></pre></div></td></tr></table></figure>
 
 <h3 id="生成密钥"><a href="#生成密钥" class="headerlink" title="生成密钥"></a>生成密钥</h3><p>如果 Hexo 可以正常地部署到 GitHub，那么实际上你原来的秘钥是可以正常使用的。</p>
 <p>以下为 macOS 下的操作，Linux 下操作方法相同，Windows 10 用户可以在市场中安装 Ubuntu 以后执行：</p>
 <h2 id="添加标签页和分类页"><a href="#添加标签页和分类页" class="headerlink" title="添加标签页和分类页"></a>添加标签页和分类页</h2><p>现在使用的主题里打开<code>_config.yml</code>文件（这里一定要是themes文件下所含的主题，不要弄错了）。按下<code>Ctrl+F</code>，搜索<code>menu</code>，找到如下内容：</p>
-<p><img src="C:\Users\Administrator.DESKTOP-VVE6ROJ\AppData\Roaming\Typora\typora-user-images\image-20220216180517037.png" srcset="/img/loading.gif" lazyload alt="image-20220216180517037"></p>
+<p><img src="/2022/02/16/%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E7%9A%84%E4%BC%98%E5%8C%96/Users\Administrator.DESKTOP-VVE6ROJ\AppData\Roaming\Typora\typora-user-images\image-20220216180517037.png" srcset="/img/loading.gif" lazyload alt="image-20220216180517037"></p>
 <p>按照自己的要求对代码进行修改，让菜单按钮显示出来。</p>
 <p>在blog文件夹下打开 git bash 键入如下命令</p>
-<figure class="highlight crystal"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs crystal"><span class="hljs-variable">$ </span>hexo n page tags<br></code></pre></td></tr></table></figure>
+<figure class="highlight crystal"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs crystal"><span class="hljs-variable">$ </span>hexo n page tags<br></code></pre></div></td></tr></table></figure>
 
 <p>可以发现在 source  文件夹下出现一个 tags 文件夹，</p>
-<h3 id="文章页"><a href="#文章页" class="headerlink" title="文章页"></a>文章页</h3><h4 id="便签使用"><a href="#便签使用" class="headerlink" title="便签使用"></a>便签使用</h4><figure class="highlight django"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs django"><span class="hljs-template-tag">&#123;% <span class="hljs-name">note</span> success %&#125;</span><span class="language-xml"></span><br><span class="language-xml">文字 或者 `markdown` 均可</span><br><span class="language-xml"></span><span class="hljs-template-tag">&#123;% <span class="hljs-name">endnote</span> %&#125;</span><br></code></pre></td></tr></table></figure>
+<h3 id="文章页"><a href="#文章页" class="headerlink" title="文章页"></a>文章页</h3><h4 id="便签使用"><a href="#便签使用" class="headerlink" title="便签使用"></a>便签使用</h4><figure class="highlight django"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs django"><span class="hljs-template-tag">&#123;% <span class="hljs-name">note</span> success %&#125;</span><span class="language-xml"></span><br><span class="language-xml">文字 或者 `markdown` 均可</span><br><span class="language-xml"></span><span class="hljs-template-tag">&#123;% <span class="hljs-name">endnote</span> %&#125;</span><br></code></pre></div></td></tr></table></figure>
 
 <p>使用时 <div class="note note-primary">
             <p>和 </p>

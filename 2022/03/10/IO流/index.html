@@ -16,21 +16,42 @@
   <meta name="author" content="蓝鸟x">
   <meta name="keywords" content="">
   
-    <meta name="description" content="蓝鸟x的博客">
-<meta property="og:type" content="website">
-<meta property="og:title" content="标签">
-<meta property="og:url" content="https://xielearncode.github.io/tags/index.html">
+    <meta name="description" content="[toc] 一  文件1.1 概念文件是保存数据的地方, 如word文档, txt文件…. 它既可以是图片,也可以是视频, 音频,,,,,, 文件流:   文件在程序中是以流的形式来操作:  ​        Java 程序(内存)  &lt;&lt;&#x3D;&#x3D;&#x3D;输入流&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;文件(磁盘) ​">
+<meta property="og:type" content="article">
+<meta property="og:title" content="IO流">
+<meta property="og:url" content="https://xielearncode.github.io/2022/03/10/IO%E6%B5%81/index.html">
 <meta property="og:site_name" content="蓝鸟x">
-<meta property="og:description" content="蓝鸟x的博客">
+<meta property="og:description" content="[toc] 一  文件1.1 概念文件是保存数据的地方, 如word文档, txt文件…. 它既可以是图片,也可以是视频, 音频,,,,,, 文件流:   文件在程序中是以流的形式来操作:  ​        Java 程序(内存)  &lt;&lt;&#x3D;&#x3D;&#x3D;输入流&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;文件(磁盘) ​">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/7320afbd0cd948d998cc02f4cb9ec4b5.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6JOd6bifeA==,size_20,color_FFFFFF,t_70,g_se,x_16">
+<meta property="article:published_time" content="2022-03-10T09:30:22.000Z">
+<meta property="article:modified_time" content="2022-03-10T11:28:56.807Z">
 <meta property="article:author" content="蓝鸟x">
+<meta property="article:tag" content="Java基础">
+<meta property="article:tag" content="IO流">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/7320afbd0cd948d998cc02f4cb9ec4b5.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6JOd6bifeA==,size_20,color_FFFFFF,t_70,g_se,x_16">
   
   
-  <title>标签 - 蓝鸟x</title>
+  <title>IO流 - 蓝鸟x</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
 
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hint.css@2/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
 
 
 <!-- 主题依赖的图标库，不要自行修改 -->
@@ -62,7 +83,7 @@
 
 
 <body>
-  <header style="height: 80vh;">
+  <header style="height: 70vh;">
     <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand" href="/">
@@ -158,22 +179,52 @@
 </nav>
 
     <div class="banner" id="banner" parallax=true
-         style="background: url('https://w.wallhaven.cc/full/k7/wallhaven-k7v9yq.png') no-repeat center center;
+         style="background: url('https://w.wallhaven.cc/full/72/wallhaven-72rd8e.jpg') no-repeat center center;
            background-size: cover;">
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="标签">
+            <span class="h2" id="subtitle" title="IO流">
               
             </span>
 
             
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2022-03-10 17:30" pubdate>
+        2022年3月10日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      433 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      4 分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
           </div>
 
-          
-            <div class="scroll-down-bar">
-              <i class="iconfont icon-arrowdown"></i>
-            </div>
           
         </div>
       </div>
@@ -182,24 +233,134 @@
 
   <main>
     
-      <div class="container nopadding-x-md">
-        <div class="py-5" id="board"
-          >
-          
-          <div class="container">
-            <div class="row">
-              <div class="col-12 col-md-10 m-auto">
-                
+      
 
-<div class="text-center tagcloud">
-  <a href="/tags/CRM%E7%B3%BB%E7%BB%9F/" style="font-size: 20px; color: #8ea5dc">CRM系统</a> <a href="/tags/Hi-Hexo/" style="font-size: 15px; color: #bbe">Hi! Hexo</a> <a href="/tags/IO%E6%B5%81/" style="font-size: 15px; color: #bbe">IO流</a> <a href="/tags/JVM/" style="font-size: 15px; color: #bbe">JVM</a> <a href="/tags/Java%E5%9F%BA%E7%A1%80/" style="font-size: 30px; color: #337ab7">Java基础</a> <a href="/tags/Java%E9%A1%B9%E7%9B%AE/" style="font-size: 25px; color: #6090c9">Java项目</a> <a href="/tags/MySQL/" style="font-size: 15px; color: #bbe">MySQL</a> <a href="/tags/%E5%89%91%E6%8C%87offer/" style="font-size: 15px; color: #bbe">剑指offer</a> <a href="/tags/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/" style="font-size: 20px; color: #8ea5dc">博客搭建</a> <a href="/tags/%E5%9B%BE%E4%B9%A6%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F/" style="font-size: 15px; color: #bbe">图书管理系统</a> <a href="/tags/%E5%9D%A6%E5%85%8B%E5%A4%A7%E6%88%98/" style="font-size: 15px; color: #bbe">坦克大战</a> <a href="/tags/%E5%B8%B8%E7%94%A8%E7%B1%BB/" style="font-size: 15px; color: #bbe">常用类</a> <a href="/tags/%E5%BC%82%E5%B8%B8/" style="font-size: 15px; color: #bbe">异常</a> <a href="/tags/%E6%88%BF%E5%B1%8B%E5%87%BA%E7%A7%9F/" style="font-size: 15px; color: #bbe">房屋出租</a> <a href="/tags/%E6%B3%9B%E5%9E%8B/" style="font-size: 15px; color: #bbe">泛型</a> <a href="/tags/%E7%AC%94%E8%AF%95/" style="font-size: 15px; color: #bbe">笔试</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 15px; color: #bbe">算法</a> <a href="/tags/%E7%AE%97%E6%B3%95%E9%A2%98/" style="font-size: 15px; color: #bbe">算法题</a> <a href="/tags/%E7%BA%BF%E7%A8%8B/" style="font-size: 15px; color: #bbe">线程</a> <a href="/tags/%E9%9B%86%E5%90%88/" style="font-size: 15px; color: #bbe">集合</a> <a href="/tags/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E9%83%A8%E5%88%86/" style="font-size: 15px; color: #bbe">面向对象部分</a>
-</div>
-
-              </div>
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">IO流</h1>
+            
+            <div class="markdown-body">
+              <p>[toc]</p>
+<h1 id="一-文件"><a href="#一-文件" class="headerlink" title="一  文件"></a>一  文件</h1><h2 id="1-1-概念"><a href="#1-1-概念" class="headerlink" title="1.1 概念"></a>1.1 概念</h2><p><strong>文件是保存数据的地方</strong>, 如word文档, txt文件…. 它既可以是图片,也可以是视频, 音频,,,,,,</p>
+<p>文件流: </p>
+<ol>
+<li>文件在程序中是以流的形式来操作:</li>
+</ol>
+<p>​        Java 程序(内存)  &lt;&lt;&#x3D;&#x3D;&#x3D;输入流&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;文件(磁盘)</p>
+<p>​        Java 程序 ( 内存 )  &#x3D;&#x3D;&#x3D;&#x3D;&#x3D;输出流  &#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&gt;&gt; 磁盘</p>
+<ol start="2">
+<li><p><strong>流:</strong> 数据在数据源(文件) 和程序(内存) 之经历的路径</p>
+</li>
+<li><p><strong>输入流:</strong> 数据从数据源(文件) 到程序(内存) 的路径</p>
+</li>
+<li><p><strong>输出流:</strong> 数据从程序(内存) 到数据源(文件)的路径</p>
+</li>
+</ol>
+<h1 id="二-IO流原理及流的分类"><a href="#二-IO流原理及流的分类" class="headerlink" title="二  IO流原理及流的分类"></a>二  IO流原理及流的分类</h1><h1 id="三-节点流和处理流"><a href="#三-节点流和处理流" class="headerlink" title="三  节点流和处理流"></a>三  节点流和处理流</h1><h1 id="四-输入流🚒🚚🚛🚘"><a href="#四-输入流🚒🚚🚛🚘" class="headerlink" title="四  输入流🚒🚚🚛🚘"></a>四  输入流🚒🚚🚛🚘</h1><h2 id="4-1-InputSteam"><a href="#4-1-InputSteam" class="headerlink" title="4.1 InputSteam"></a>4.1 InputSteam</h2><h2 id="4-2-Reaer"><a href="#4-2-Reaer" class="headerlink" title="4.2 Reaer"></a>4.2 Reaer</h2><h1 id="五-输出流🦽🦼🚲🛴🛴🛵🏍"><a href="#五-输出流🦽🦼🚲🛴🛴🛵🏍" class="headerlink" title="五  输出流🦽🦼🚲🛴🛴🛵🏍"></a>五  输出流🦽🦼🚲🛴🛴🛵🏍</h1><h2 id="5-1-OutPutStream"><a href="#5-1-OutPutStream" class="headerlink" title="5.1 OutPutStream"></a>5.1 OutPutStream</h2><h2 id="5-2-Writer"><a href="#5-2-Writer" class="headerlink" title="5.2  Writer"></a>5.2  Writer</h2><h1 id="六-Properties-类"><a href="#六-Properties-类" class="headerlink" title="六  Properties 类"></a>六  Properties 类</h1>
             </div>
-          </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/Java%E5%9F%BA%E7%A1%80/">Java基础</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/Java%E5%9F%BA%E7%A1%80/">Java基础</a>
+                    
+                      <a class="hover-with-bg" href="/tags/IO%E6%B5%81/">IO流</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/03/08/%E5%9B%BE%E4%B9%A6%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F/">
+                        <span class="hidden-mobile">图书管理系统</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div class="disqus" style="width:100%">
+    <div id="disqus_thread"></div>
+    
+      <script type="text/javascript">
+        var disqus_config = function() {
+          this.page.url = 'https://xielearncode.github.io/2022/03/10/IO%E6%B5%81/';
+          this.page.identifier = '/2022/03/10/IO%E6%B5%81/';
+        };
+        Fluid.utils.loadComments('#disqus_thread', function() {
+          var d = document, s = d.createElement('script');
+          s.src = '//' + 'fluid' + '.disqus.com/embed.js';
+          s.setAttribute('data-timestamp', new Date());
+          (d.head || d.body).appendChild(s);
+        });
+      </script>
+    
+    <noscript>Please enable JavaScript to view the comments</noscript>
+  </div>
+
+
+              </article>
+            
+          </article>
         </div>
       </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
     
 
     
@@ -318,6 +479,19 @@ setInterval("createtime()", 250);
   
 
 
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
 
 
 
