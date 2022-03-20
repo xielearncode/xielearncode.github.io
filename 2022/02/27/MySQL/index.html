@@ -25,7 +25,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://tse3-mm.cn.bing.net/th/id/OIP-C.WGEJImd7fbNABsn3ax8GGgHaD4?w=343&h=180&c=7&r=0&o=5&dpr=1.25&pid=1.7">
 <meta property="article:published_time" content="2022-02-27T11:29:00.000Z">
-<meta property="article:modified_time" content="2022-03-13T09:08:48.080Z">
+<meta property="article:modified_time" content="2022-03-20T07:01:46.037Z">
 <meta property="article:author" content="蓝鸟x">
 <meta property="article:tag" content="MySQL">
 <meta name="twitter:card" content="summary_large_image">
@@ -204,7 +204,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      25k 字
+      30k 字
     </span>
   
 
@@ -213,7 +213,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      211 分钟
+      251 分钟
     </span>
   
 
@@ -468,7 +468,7 @@
 
 <ol>
 <li>order by 指定排序的列, 排序的列既可以是表中的列名, 也可以是select 语句后指定的列名</li>
-<li>ASC 升序(默认)   DESC 降序</li>
+<li><strong>ASC 升序(默认)   DESC 降序</strong></li>
 <li>ORDER BY 子句应位于SELECT语句的末尾</li>
 </ol>
 <figure class="highlight plaintext"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs mysql"># 升序<br>SELECT * FROM student<br>	ORDER BY math;<br>	<br># 降序<br>SELECT (chinese + english + math) AS &#x27;总分&#x27; FROM student<br>	ORDER BY (chinese + english + math) DESC;<br>	<br>	<br></code></pre></div></td></tr></table></figure>
@@ -479,13 +479,23 @@
 <p>使用HAVING 子句对分组后的结果进行过滤</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs mysq">SELECT column1,column2... FROM table <br>	GROUP BY column HAVING ...<br></code></pre></div></td></tr></table></figure>
 
-<figure class="highlight plaintext"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs mysql"># 创建表<br>CREATE TABLE dept( #部门表<br>deptno MEDIUMINT UNSIGNED NOT NULL DEFAULT 0,<br>dname VARCHAR(20) NOT NULL DEFAULT &quot;&quot;,<br>loc VARCHAR(13) NOT NULL DEFAULT &quot;&quot;);<br><br>INSERT INTO dept VALUES(10,&#x27;ACCOUNTING&#x27;,&#x27;NEW YORK&#x27;),(20,&#x27;RESEARCH&#x27;,&#x27;DALLAS&#x27;),(40,&#x27;OPERATIONS&#x27;,&#x27;BOSTON&#x27;);<br>SELECT * FROM dept<br><br># 员工表<br>CREATE TABLE emp<br>(empno MEDIUMINT UNSIGNED NOT NULL DEFAULT 0, # 编号<br>ename VARCHAR(20) NOT NULL DEFAULT &quot;&quot;,<br>job VARCHAR(9) NOT NULL DEFAULT &quot;&quot;,<br>mgr MEDIUMINT UNSIGNED, # 上级编号<br>hiredate DATE NOT NULL, # 入职时间<br>sal DECIMAL(7,2) NOT NULL, # 薪水<br>comm DECIMAL(7,2),  # 红利<br>deptno MEDIUMINT UNSIGNED NOT NULL DEFAULT 0); # 部门编号<br><br>INSERT INTO emp VALUES(7936,&#x27;smith&#x27;,&#x27;clerk&#x27;,7906,&#x27;1990-01-23&#x27;,800.00,NULL,20);<br>INSERT INTO emp VALUES(7936,&#x27;allen&#x27;,&#x27;clerk&#x27;,7906,&#x27;1990-11-23&#x27;,800.00,NULL,25);<br>INSERT INTO emp VALUES(7936,&#x27;ward&#x27;,&#x27;clerk&#x27;,7906,&#x27;1993-12-23&#x27;,800.00,NULL,21);<br>INSERT INTO emp VALUES(7936,&#x27;smith&#x27;,&#x27;clerk&#x27;,7906,&#x27;1980-12-23&#x27;,8100.00,564,22);<br>INSERT INTO emp VALUES(7936,&#x27;smith&#x27;,&#x27;clerk&#x27;,7906,&#x27;1994-2-23&#x27;,8100.00,NULL,30);<br>INSERT INTO emp VALUES(7936,&#x27;jackh&#x27;,&#x27;clerk&#x27;,7906,&#x27;1996-12-23&#x27;,2800.00,3423,16);<br>INSERT INTO emp VALUES(7936,&#x27;tom&#x27;,&#x27;clerk&#x27;,7906,&#x27;1994-12-23&#x27;,8100.00,NULL,270);<br>INSERT INTO emp VALUES(7936,&#x27;rose&#x27;,&#x27;clerk&#x27;,7906,&#x27;1995-12-3&#x27;,1800.00,NULL,90);<br>INSERT INTO emp VALUES(7936,&#x27;fdsoa&#x27;,&#x27;clerk&#x27;,7906,&#x27;1992-12-23&#x27;,800.00,NULL,20);<br><br>SELECT * FROM emp;<br><br># 工资级别表<br>CREATE TABLE salgrade<br>(<br>grade MEDIUMINT UNSIGNED NOT NULL DEFAULT 0, # 级别<br>losal DECIMAL(17,2) NOT NULL, # 该级别最低工资<br>hisal DECIMAL(17,2) NOT NULL # 该级别的最高工资<br>);<br>INSERT INTO salgrade VALUES(1,700,1200);<br>INSERT INTO salgrade VALUES(2,1201,1400);<br>INSERT INTO salgrade VALUES(3,1402,2000);<br>INSERT INTO salgrade VALUES(4,2001,3000);<br>INSERT INTO salgrade VALUES(5,3001,9999); #<br>SELECT * FROM salgrade<br><br><br><br><br><br># 演示group by<br><br><br># 显示某个部门的平均工资和最高工资<br>SELECT AVG(sal),MAX(sal), deptno FROM emp<br>	GROUP BY deptno;<br><br><br># 显示每个部门的每种岗位的平均工资和最低工资<br>SELECT AVG(sal), MIN(sal), deptno ,job<br>	FROM emp GROUP BY deptno,job;<br><br><br># 显示平均工资低于2000的部门号和他的平均工资<br><br>SELECT AVG(sal) ,deptno<br>	FROM emp <br>	GROUP BY deptno  HAVING AVG(sal)&lt;2000;<br>	<br>SELECT AVG(sal) AS avg_sal ,deptno<br>	FROM emp <br>	GROUP BY deptno  HAVING avg_sal&lt;2000  # 使用了别名ji, 效率更高<br></code></pre></div></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs mysql"># 创建表<br>CREATE TABLE dept (deptno INT PRIMARY KEY, <br>	dname NVARCHAR(30),<br>	 loc NVARCHAR(30)) <br>	 DEFAULT CHARACTER SET utf8;<br>CREATE TABLE emp (<br>	empno INT PRIMARY KEY, <br>	ename NVARCHAR(30), <br>	job NVARCHAR(30), mgr INT ,<br>	hiredate DATETIME, sal DECIMAL(6.2), <br>	comm DECIMAL(6.2), deptno INT ,<br>	FOREIGN KEY(deptno) <br>	REFERENCES dept(deptno)) <br>	DEFAULT CHARACTER SET utf8;<br><br>INSERT INTO dept (deptno, dname, loc) <br>VALUES (10, &#x27;ACCOUNTING&#x27;, &#x27;NEW YORK&#x27;),<br>(20, &#x27;RESEARCH&#x27;, &#x27;DALLAS&#x27;),<br>(30, &#x27;SALES&#x27;, &#x27;CHICAGO&#x27;),<br>(40, &#x27;OPERATIONS&#x27;, &#x27;BOSTON&#x27;);<br><br>INSERT INTO emp (empno,ename,job,mgr,hiredate,sal,comm,deptno) VALUES (7369,&#x27;SMITH&#x27;,&#x27;CLERK&#x27;,7902,&#x27;1980-12-17&#x27;,800.00,NULL,20);<br>INSERT INTO emp (empno,ename,job,mgr,hiredate,sal,comm,deptno) VALUES (7499,&#x27;ALLEN&#x27;,&#x27;SALESMAN&#x27;,7698,&#x27;1981-2-20&#x27;,1600,300,30);<br>INSERT INTO emp (empno,ename,job,mgr,hiredate,sal,comm,deptno) VALUES ( 7521, &#x27;WARD&#x27;, &#x27;SALESMAN&#x27;, 7698, &#x27;1981-2-22&#x27;, 1250, 500, 30);<br>INSERT INTO emp (empno,ename,job,mgr,hiredate,sal,comm,deptno) VALUES ( 7566, &#x27;JONES&#x27;, &#x27;MANAGER&#x27;, 7839, &#x27;1981-4-2&#x27;, 2975, NULL, 20);<br>INSERT INTO emp (empno,ename,job,mgr,hiredate,sal,comm,deptno) VALUES ( 7654, &#x27;MARTIN&#x27;, &#x27;SALESMAN&#x27;, 7698, &#x27;1981-9-28&#x27;, 1250, 1400, 30);<br>INSERT INTO emp (empno,ename,job,mgr,hiredate,sal,comm,deptno) VALUES ( 7698, &#x27;BLAKE&#x27;, &#x27;MANAGER&#x27;, 7839, &#x27;1981-5-1&#x27;, 2850, NULL, 30);<br>INSERT INTO emp (empno,ename,job,mgr,hiredate,sal,comm,deptno) VALUES ( 7782, &#x27;CLARK&#x27;, &#x27;MANAGER&#x27;, 7839, &#x27;1981-6-9&#x27;, 2450, NULL, 10);<br>INSERT INTO emp (empno,ename,job,mgr,hiredate,sal,comm,deptno) VALUES ( 7788, &#x27;SCOTT&#x27;, &#x27;ANALYST&#x27;, 7566, &#x27;1987-4-19&#x27;, 3000, NULL, 20);<br>INSERT INTO emp (empno,ename,job,mgr,hiredate,sal,comm,deptno) VALUES ( 7839, &#x27;KING&#x27;, &#x27;PRESIDENT&#x27;, NULL, &#x27;1981-11-17&#x27;, 5000, NULL, 10);<br>INSERT INTO emp (empno,ename,job,mgr,hiredate,sal,comm,deptno) VALUES ( 7844, &#x27;TURNER&#x27;, &#x27;SALESMAN&#x27;, 7698, &#x27;1981-9-8&#x27;, 1500, 0, 30);<br>INSERT INTO emp (empno,ename,job,mgr,hiredate,sal,comm,deptno) VALUES (7876, &#x27;ADAMS&#x27;, &#x27;CLERK&#x27;, 7788, &#x27;1987-5-23&#x27;, 1100, NULL, 20);<br>INSERT INTO emp (empno,ename,job,mgr,hiredate,sal,comm,deptno) VALUES (7900, &#x27;JAMES&#x27;, &#x27;CLERK&#x27;, 7698, &#x27;1981-12-3&#x27;, 950, NULL, 30);<br>INSERT INTO emp (empno,ename,job,mgr,hiredate,sal,comm,deptno) VALUES ( 7902, &#x27;FORD&#x27;, &#x27;ANALYST&#x27;, 7566, &#x27;1981-12-3&#x27;, 3000, NULL, 20);<br>INSERT INTO emp (empno,ename,job,mgr,hiredate,sal,comm,deptno) VALUES (7934, &#x27;MILLER&#x27;, &#x27;CLERK&#x27;, 7782, &#x27;1982-1-23&#x27;, 1300, NULL, 10);<br><br>SELECT * FROM emp;<br><br># 工资级别表<br>CREATE TABLE salgrade<br>(<br>grade MEDIUMINT UNSIGNED NOT NULL DEFAULT 0, # 级别<br>losal DECIMAL(17,2) NOT NULL, # 该级别最低工资<br>hisal DECIMAL(17,2) NOT NULL # 该级别的最高工资<br>);<br>INSERT INTO salgrade VALUES(1,700,1200);<br>INSERT INTO salgrade VALUES(2,1201,1400);<br>INSERT INTO salgrade VALUES(3,1402,2000);<br>INSERT INTO salgrade VALUES(4,2001,3000);<br>INSERT INTO salgrade VALUES(5,3001,9999); #<br>SELECT * FROM salgrade<br><br><br><br><br><br># 演示group by<br><br><br># 显示某个部门的平均工资和最高工资<br>SELECT AVG(sal),MAX(sal), deptno FROM emp<br>	GROUP BY deptno;<br><br><br># 显示每个部门的每种岗位的平均工资和最低工资<br>SELECT AVG(sal), MIN(sal), deptno ,job<br>	FROM emp GROUP BY deptno,job;<br><br><br># 显示平均工资低于2000的部门号和他的平均工资<br><br>SELECT AVG(sal) ,deptno<br>	FROM emp <br>	GROUP BY deptno  HAVING AVG(sal)&lt;2000;<br>	<br>SELECT AVG(sal) AS avg_sal ,deptno<br>	FROM emp <br>	GROUP BY deptno  HAVING avg_sal&lt;2000  # 使用了别名ji, 效率更高<br></code></pre></div></td></tr></table></figure>
 
 <p>如何理解分组:</p>
-<div class="hljs code-wrapper"><pre><code class="hljs"> 1. 查询了一堆记录A
- 2. 对A进行分组处理得到 B
- 3. 对B 进行过滤使用HAVING
-</code></pre></div>
+<figure class="highlight plaintext"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs mysql"># 1. 查询了一堆记录A<br># 2. 对A进行分组处理得到 B<br># 3. 对B 进行过滤使用HAVING<br><br><br>SELECT COUNT(*), AVG(sal) <br>	FROM emp<br>	GROUP BY deptno;  # 计算各部门总人数和平均薪资<br>	<br>SELECT COUNT(*),COUNT(IF(comm IS NULL, 1,NULL)) FROM emp  # 总人数和 comm 不null 的总人数<br><br>SELECT COUNT(DISTINCT ename) FROM emp; # 计算员工人数 ( 去重) <br><br>SELECT MAX(sal)-MIN(sal) FROM emp;# 显示雇员最大薪资差额<br>	<br></code></pre></div></td></tr></table></figure>
+
+<h5 id="group-by-order-by…-顺序"><a href="#group-by-order-by…-顺序" class="headerlink" title="group by, order by… 顺序"></a>group by, order by… 顺序</h5><ol>
+<li>group by </li>
+<li>having</li>
+<li>order by</li>
+<li>limit</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs MySQL">SELECT AVG(sal) AS avg_sal FROM emp<br>	GROUP BY deptno<br>	HAVING avg_sal &gt; 1000<br>	ORDER BY avg_sal DESC<br>	LIMIT 0,2;<br></code></pre></div></td></tr></table></figure>
+
+
+
+
+
 <h4 id="5-4-2-多表🚆🚉🚊🚇🚄🏎"><a href="#5-4-2-多表🚆🚉🚊🚇🚄🏎" class="headerlink" title="5.4.2 多表🚆🚉🚊🚇🚄🏎"></a>5.4.2 多表🚆🚉🚊🚇🚄🏎</h4><figure class="highlight plaintext"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs MySQL">SELECT * FROM emp;  # 表一<br>SELECT * FROM dept;  # 表二<br>SELECT * FROM salgrade;  # 表三<br></code></pre></div></td></tr></table></figure>
 
 <ul>
@@ -496,8 +506,46 @@
 </ol>
 <figure class="highlight plaintext"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs MySQL"># 查找1992.1.1 后入职的员工<br># # 查找1992.1.1 后入职的员工<br>SELECT * FROM emp<br>	WHERE DATEDIFF(hiredate, &#x27;1992-1-1&#x27;) &gt; 0;<br>	<br>SELECT * FROM emp<br>	WHERE (hiredate - &#x27;1992-01-01&#x27;) &gt; 0  # 日期类型可以直接计算或比较, 但是需要格式一致<br><br># 显示第三个字符为s的所有员工<br>SELECT * FROM emp<br>	WHERE ename LIKE &#x27;__s%&#x27; # 两个下划线 + s + %<br><br># 查询表的结构<br>DESC emp;<br><br># 按照工资从低到高排序<br>SELECT ename,sal FROM emp # ASC 从低到高    DESC降序<br>ORDER BY sal DESC<br><br># 部门升序, 工资降序<br>SELECT * FROM emp<br>	ORDER BY deptno ASC, sal DESC;<br></code></pre></div></td></tr></table></figure>
 
+<h5 id="分页查询"><a href="#分页查询" class="headerlink" title="分页查询"></a>分页查询</h5><p>案例: 按照雇员的id升序取出, 每页显示3条记录, 请分别显示第一页, 第二页, 第三页</p>
+<p>基本语法: select …limt start, rows : 表示从start+1行开始取, 取出rows行, 从0开始计算</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs mysql">## 分页查询<br><br>## 第一页<br>SELECT * FROM emp<br>	ORDER BY empno<br>	LIMIT 0,3  #  从0开始显示3行<br><br>## 第二页	<br>SELECT * FROM emp<br>	ORDER BY empno<br>	LIMIT 3,3;<br>	<br>	<br>## 第三页<br>SELECT * FROM emp<br>	ORDER BY empno<br>	LIMIT 6,3;<br><br>## 第四页<br>SELECT * FROM emp<br>	ORDER BY empno<br>	LIMIT 9,3;<br>	<br>## 第n页<br>SELECT * FROM emp<br>	ORDER BY empno<br>	LIMIT 每页显示的记录数*(第n页 - 1), 每页显示的记录数;<br><br><br><br></code></pre></div></td></tr></table></figure>
+
+<h5 id="多表查询🚩🚩🚩🚩"><a href="#多表查询🚩🚩🚩🚩" class="headerlink" title="多表查询🚩🚩🚩🚩"></a>多表查询🚩🚩🚩🚩</h5><p>基于两个或两个以上的表查询.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs MySQL">## 案例: 显示雇员名, 雇员工资及所在部门的名字, 并按部门降序排序<br><br># 多表查询<br><br># 显示雇员名, 雇员工资以及所在部门的名称<br># 1. 雇员名, 雇员工资来自emp表<br># 2. 部门名来自dept表     =====&gt; 表名.列名  表一,表二<br>SELECT emp.ename, emp.sal, dept.dname FROM emp,dept<br>	WHERE emp.deptno = dept.deptno<br>	ORDER BY sal DESC;<br></code></pre></div></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs mysql">SELECT dept.dname, emp.ename, emp.sal, emp.deptno,dept.deptno <br>	FROM dept, emp<br>	WHERE dept.deptno = 20 AND dept.deptno = emp.deptno<br>	<br>SELECT emp.ename, emp.sal, emp.job ,salgrade.grade, salgrade.losal, salgrade.hisal<br>	FROM emp, salgrade<br>	WHERE emp.sal &gt;= salgrade.losal AND emp.sal &lt; salgrade.hisal<br>	ORDER BY sal<br>	<br><br></code></pre></div></td></tr></table></figure>
+
+<h6 id="自连接"><a href="#自连接" class="headerlink" title="自连接"></a>自连接</h6><p>自连接是指在同一张表的连接查询(将同一张表看作两张表)</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs MySQL"># 查询员工和其上级的名称<br>SELECT worker.ename, boss.ename <br>	FROM emp AS worker,emp AS boss   # 笛卡尔集 14*14<br>	WHERE worker.mgr = boss.empno;   # 加上限制条件后 14*14 - 14*13 = 14*1<br></code></pre></div></td></tr></table></figure>
+
+<h6 id="单列子查询"><a href="#单列子查询" class="headerlink" title="单列子查询"></a>单列子查询</h6><p>子查询是指嵌入在其他sql语句中的select语句, 也叫嵌套查询</p>
+<ol>
+<li><p>单行子查询</p>
+<p>只返回一行数据的子查询语句</p>
+</li>
+<li><p>多行子查询</p>
+<p>返回多行数据的子查询 使用关键字in</p>
+</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs MySQL"># 子查询<br><br># 显示与Smith同一个部门的所有员工<br><br><br># 不用子查询<br>SELECT emp2.ename, emp1.deptno FROM emp AS emp1, emp AS emp2<br>	WHERE emp1.ename = &#x27;SMITH&#x27; AND emp1.deptno = emp2.deptno AND emp2.ename != &#x27;SMITH&#x27;<br>	<br>	<br># 使用子查询<br>SELECT emp.ename FROM emp<br>	WHERE deptno = (SELECT deptno FROM emp # [1]<br>				WHERE emp.ename = &#x27;Smith&#x27;)<br>## 因为这里[1]返回的只有一行数据, 所以称为单行子查询<br><br><br><br># 多行子查询<br><br>SELECT ename, job, sal, deptno FROM emp<br>	WHERE job IN (<br>		SELECT DISTINCT job <br>			FROM emp<br>			WHERE deptno = 10<br>		) AND deptno != 10;    # 不等号:   &lt;&gt; 或者 !=<br></code></pre></div></td></tr></table></figure>
 
 
+
+<ol start="3">
+<li>将子查询当做 <strong>临时表</strong> 使用</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs MySQL"># 子查询 - 临时表			<br>SELECT * FROM  (SELECT  MAX(sal) AS max_sal, deptno FROM emp<br>	GROUP BY deptno) temp, emp<br>	WHERE emp.deptno = temp.deptno<br>	AND temp.max_sal = emp.sal<br></code></pre></div></td></tr></table></figure>
+
+<h6 id="ALL-与-ANY"><a href="#ALL-与-ANY" class="headerlink" title="ALL 与 ANY"></a>ALL 与 ANY</h6><figure class="highlight plaintext"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs MySQL"><br># 使用ALL<br>SELECT ename, sal, deptno<br>	FROM emp<br>	WHERE sal &gt; ALL(<br>		SELECT sal FROM emp<br>			WHERE deptno = 30)  # 大于子查询的所有值  ========&gt;&gt;&gt;  相当于大于 MAX<br><br># 使用ANY  <br>SELECT ename, sal, deptno<br>	FROM emp<br>	WHERE sal &gt; ANY(<br>		SELECT sal FROM emp<br>			WHERE deptno = 30)  # 大于其中任何一个都可以 =======&gt;&gt;&gt; 相当于大于 MIN<br><br><br><br></code></pre></div></td></tr></table></figure>
+
+
+
+<h6 id="多列子查询"><a href="#多列子查询" class="headerlink" title="多列子查询"></a>多列子查询</h6><figure class="highlight plaintext"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs mysql">SELECT * FROM emp<br>	WHERE (deptno, job )<br>	= (SELECT deptno,job FROM emp<br>		WHERE ename = &#x27;Allen&#x27;) AND ename != &#x27;Allen&#x27;<br>		<br>		<br>SELECT * FROM student<br><br>INSERT INTO student VALUES(6,&#x27;李刚&#x27;,67,87,90);<br>INSERT INTO student VALUES(7,&#x27;王强&#x27;,67,87,90);<br>INSERT INTO student VALUES(8,&#x27;张军&#x27;,67,87,90);<br>INSERT INTO student VALUES(9,&#x27;刘壮&#x27;,67,87,90);<br><br>SELECT * FROM student<br>	WHERE (chinese,english,math) = (<br>				SELECT chinese,english,math FROM student<br>					WHERE `name` = &#x27;刘壮&#x27;)<br><br>#####工资大于所在部门平均工资的员工信息<br>SELECT * FROM emp, (SELECT AVG(sal) AS avg_sal,deptno FROM emp<br>	GROUP BY deptno) temp<br>	WHERE emp.sal &gt; temp.avg_sal AND emp.deptno = temp.deptno<br><br>## 查找每个部门工资最高的人的详细资料<br><br>SELECT * FROM emp, (SELECT MAX(sal) AS max_sal, deptno <br>			FROM emp GROUP BY deptno) temp<br>		WHERE temp.max_sal = emp.sal AND  emp.deptno = temp.deptno<br>		<br>## 查找每个部门名,编号,地址, 人数		<br>SELECT dept.dname, dept.deptno,dept.loc,temp.count				<br>	FROM dept,(SELECT COUNT(*) AS `count` ,deptno FROM emp<br>				GROUP BY deptno) temp<br>	WHERE  dept.deptno = temp.deptno						<br><br></code></pre></div></td></tr></table></figure>
+
+<h6 id="合并查询"><a href="#合并查询" class="headerlink" title="合并查询"></a>合并查询</h6><p><img src="/2022/02/27/MySQL/image-20220317222114801.png" srcset="/img/loading.gif" lazyload alt="image-20220317222114801"></p>
+<p>union all  : 不去重</p>
+<p>union : 去重</p>
+<p> <img src="/2022/02/27/MySQL/image-20220317224305560.png" srcset="/img/loading.gif" lazyload alt="image-20220317224305560"></p>
 <h1 id="六-函数"><a href="#六-函数" class="headerlink" title="六 函数"></a>六 函数</h1><h2 id="6-1-合计-x2F-统计函数count"><a href="#6-1-合计-x2F-统计函数count" class="headerlink" title="6.1 合计&#x2F;统计函数count"></a>6.1 合计&#x2F;统计函数count</h2><p>返回总行数</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs mysql">SELECT COUNT(*) FROM table_name<br>	WHERE...<br><br>SELECT COUNT(列名) FROM table_name<br>	WHERE...<br></code></pre></div></td></tr></table></figure>
 
@@ -701,70 +749,62 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+<h1 id="MySQL约束"><a href="#MySQL约束" class="headerlink" title="MySQL约束"></a>MySQL约束</h1><p><img src="/2022/02/27/MySQL/image-20220319151109753.png" srcset="/img/loading.gif" lazyload alt="image-20220319151109753"></p>
+<p><img src="/2022/02/27/MySQL/image-20220319151350415.png" srcset="/img/loading.gif" lazyload alt="image-20220319151350415"></p>
+<p><img src="/2022/02/27/MySQL/image-20220319152129404.png" srcset="/img/loading.gif" lazyload alt="image-20220319152129404"> </p>
+<p><img src="/2022/02/27/MySQL/image-20220319152802605.png" srcset="/img/loading.gif" lazyload alt="image-20220319152802605"></p>
+<p><img src="/2022/02/27/MySQL/image-20220319153126055.png" srcset="/img/loading.gif" lazyload alt="image-20220319153126055"></p>
+<p><img src="/2022/02/27/MySQL/image-20220319153152411.png" srcset="/img/loading.gif" lazyload alt="image-20220319153152411"></p>
+<p><img src="/2022/02/27/MySQL/image-20220319153959647.png" srcset="/img/loading.gif" lazyload alt="image-20220319153959647"></p>
+<p><img src="/2022/02/27/MySQL/image-20220319155720899.png" srcset="/img/loading.gif" lazyload alt="image-20220319155720899"></p>
+<p><img src="/2022/02/27/MySQL/image-20220319160441489.png" srcset="/img/loading.gif" lazyload alt="image-20220319160441489"></p>
+<p><img src="/2022/02/27/MySQL/image-20220319160819992.png" srcset="/img/loading.gif" lazyload alt="image-20220319160819992"></p>
+<p><img src="/2022/02/27/MySQL/image-20220317225146556.png" srcset="/img/loading.gif" lazyload alt="image-20220317225146556"></p>
+<p><img src="/2022/02/27/MySQL/image-20220319164521029.png" srcset="/img/loading.gif" lazyload alt="image-20220319164521029"></p>
+<p><img src="/2022/02/27/MySQL/image-20220319170755729.png" srcset="/img/loading.gif" lazyload alt="image-20220319170755729"></p>
+<h1 id="MySQL索引"><a href="#MySQL索引" class="headerlink" title="MySQL索引"></a>MySQL索引</h1><p><img src="/2022/02/27/MySQL/image-20220319171053466.png" srcset="/img/loading.gif" lazyload alt="image-20220319171053466"></p>
+<p><img src="/2022/02/27/MySQL/image-20220319171111368.png" srcset="/img/loading.gif" lazyload alt="image-20220319171111368"></p>
+<p><img src="/2022/02/27/MySQL/image-20220319172527695.png" srcset="/img/loading.gif" lazyload alt="image-20220319172527695"></p>
+<p><img src="/2022/02/27/MySQL/image-20220319174217961.png" srcset="/img/loading.gif" lazyload alt="image-20220319174217961"> </p>
+<p><img src="/2022/02/27/MySQL/image-20220319174534729.png" srcset="/img/loading.gif" lazyload alt="image-20220319174534729"></p>
+<p><img src="/2022/02/27/MySQL/image-20220319174701510.png" srcset="/img/loading.gif" lazyload alt="image-20220319174701510"></p>
+<p><img src="/2022/02/27/MySQL/image-20220319180705015.png" srcset="/img/loading.gif" lazyload alt="image-20220319180705015">    <img src="/2022/02/27/MySQL/image-20220319180952743.png" srcset="/img/loading.gif" lazyload alt="image-20220319180952743"></p>
+<p><img src="/2022/02/27/MySQL/image-20220319181015101.png" srcset="/img/loading.gif" lazyload alt="image-20220319181015101"></p>
+<p><img src="/2022/02/27/MySQL/image-20220319183430213.png" srcset="/img/loading.gif" lazyload alt="image-20220319183430213"></p>
+<h1 id="MySQL-事务"><a href="#MySQL-事务" class="headerlink" title="MySQL  事务"></a>MySQL  事务</h1><p><img src="/2022/02/27/MySQL/image-20220319183711655.png" srcset="/img/loading.gif" lazyload alt="image-20220319183711655"></p>
+<p><img src="/2022/02/27/MySQL/image-20220319184227149.png" srcset="/img/loading.gif" lazyload alt="image-20220319184227149"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs mysql"># 事务<br>CREATE TABLE table_t(<br>	id INT ,<br>	`name` VARCHAR(32),<br>	price DECIMAL(3,2));<br>#开始事务	<br>START TRANSACTION;<br>#操作<br>INSERT INTO table_t VALUES(23,&#x27;nihao&#x27;,3);<br><br>SELECT * FROM table_t;<br># 存档<br>SAVEPOINT a;<br># 操作<br>INSERT INTO table_t VALUES(34,&#x27;你好&#x27;,2);<br><br># 存档<br>SAVEPOINT b; <br><br># 清表  -------------- 此操作后不能够回退<br>TRUNCATE table_t;<br><br># 回退到a<br>ROLLBACK TO a;<br>SELECT * FROM table_t;<br><br><br># 回退全部事务<br>ROLLBACK;<br><br><br># 提交事务, 不能再回退了<br>COMMIT;<br></code></pre></div></td></tr></table></figure>
+
+
+
+<p><img src="/2022/02/27/MySQL/image-20220319191007367.png" srcset="/img/loading.gif" lazyload alt="image-20220319191007367"></p>
+<p><img src="/2022/02/27/MySQL/image-20220319191923508.png" srcset="/img/loading.gif" lazyload alt="image-20220319191923508"></p>
+<p><img src="/2022/02/27/MySQL/image-20220319193131456.png" srcset="/img/loading.gif" lazyload alt="image-20220319193131456"></p>
+<p><img src="/2022/02/27/MySQL/image-20220319193343140.png" srcset="/img/loading.gif" lazyload alt="image-20220319193343140"></p>
+<p><img src="/2022/02/27/MySQL/image-20220319194059133.png" srcset="/img/loading.gif" lazyload alt="image-20220319194059133"></p>
+<p><img src="/2022/02/27/MySQL/image-20220319194449365.png" srcset="/img/loading.gif" lazyload alt="image-20220319194449365"></p>
+<p><img src="/2022/02/27/MySQL/image-20220319194922371.png" srcset="/img/loading.gif" lazyload alt="image-20220319194922371"></p>
+<p><img src="/2022/02/27/MySQL/image-20220319195047978.png" srcset="/img/loading.gif" lazyload alt="image-20220319195047978"></p>
+<p><img src="/2022/02/27/MySQL/image-20220319201849107.png" srcset="/img/loading.gif" lazyload alt="image-20220319201849107"> </p>
+<p><img src="/2022/02/27/MySQL/image-20220319202544686.png" srcset="/img/loading.gif" lazyload alt="image-20220319202544686"></p>
+<h1 id="MySQL-表类型和存储引擎"><a href="#MySQL-表类型和存储引擎" class="headerlink" title="MySQL 表类型和存储引擎"></a>MySQL 表类型和存储引擎</h1><p><img src="/2022/02/27/MySQL/image-20220320115819569.png" srcset="/img/loading.gif" lazyload alt="image-20220320115819569"></p>
+<p><img src="/2022/02/27/MySQL/image-20220320120324837.png" srcset="/img/loading.gif" lazyload alt="image-20220320120324837"></p>
+<p><img src="/2022/02/27/MySQL/image-20220320120826650.png" srcset="/img/loading.gif" lazyload alt="image-20220320120826650"></p>
+<p><img src="/2022/02/27/MySQL/image-20220320122449340.png" srcset="/img/loading.gif" lazyload alt="image-20220320122449340"></p>
+<p><img src="/2022/02/27/MySQL/image-20220320122748866.png" srcset="/img/loading.gif" lazyload alt="image-20220320122748866"></p>
+<h1 id="视图"><a href="#视图" class="headerlink" title="视图"></a>视图</h1><p><img src="/2022/02/27/MySQL/image-20220320123222163.png" srcset="/img/loading.gif" lazyload alt="image-20220320123222163">     <img src="/2022/02/27/MySQL/image-20220320124029041.png" srcset="/img/loading.gif" lazyload alt="image-20220320124029041"></p>
+<p><img src="/2022/02/27/MySQL/image-20220320124115769.png" srcset="/img/loading.gif" lazyload alt="image-20220320124115769"></p>
+<p><img src="/2022/02/27/MySQL/image-20220320125029738.png" srcset="/img/loading.gif" lazyload alt="image-20220320125029738"> </p>
+<p><img src="/2022/02/27/MySQL/image-20220320125859663.png" srcset="/img/loading.gif" lazyload alt="image-20220320125859663"></p>
+<h1 id="MySQL-管理"><a href="#MySQL-管理" class="headerlink" title="MySQL 管理"></a>MySQL 管理</h1><p><img src="/2022/02/27/MySQL/image-20220320132054082.png" srcset="/img/loading.gif" lazyload alt="image-20220320132054082"></p>
+<p><img src="/2022/02/27/MySQL/image-20220320132452276.png" srcset="/img/loading.gif" lazyload alt="image-20220320132452276"></p>
+<p><img src="/2022/02/27/MySQL/image-20220320133827333.png" srcset="/img/loading.gif" lazyload alt="image-20220320133827333"></p>
+<p><img src="/2022/02/27/MySQL/image-20220320134925610.png" srcset="/img/loading.gif" lazyload alt="image-20220320134925610"></p>
+<p><img src="/2022/02/27/MySQL/image-20220320135143145.png" srcset="/img/loading.gif" lazyload alt="image-20220320135143145"> </p>
+<p><img src="/2022/02/27/MySQL/image-20220320135751668.png" srcset="/img/loading.gif" lazyload alt="image-20220320135751668"></p>
+<p><img src="/2022/02/27/MySQL/image-20220320135915256.png" srcset="/img/loading.gif" lazyload alt="image-20220320135915256"></p>
+<p><img src="/2022/02/27/MySQL/image-20220320140155849.png" srcset="/img/loading.gif" lazyload alt="image-20220320140155849"></p>
+<p>  <img src="/2022/02/27/MySQL/image-20220320150050516.png" srcset="/img/loading.gif" lazyload alt="image-20220320150050516"></p>
 <p><strong>用户管理：</strong></p>
 <p>　　<strong>1、新建用户：</strong></p>
 <p>　　　　<strong>&gt;CREATE USER name IDENTIFIED BY ‘ssapdrow’;</strong></p>
