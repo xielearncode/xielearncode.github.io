@@ -16,16 +16,16 @@
   <meta name="author" content="蓝鸟x">
   <meta name="keywords" content="">
   
-    <meta name="description" content="本项目用到的核心技术是颜色检查以及轮廓&#x2F;形状检查  一、画面获取​    对于这个项目，我们首先需要找到我们摄像头画面中的颜色，将RGB通道转换为HSV颜色模型并获取图像的轮廓。然后我们可以在图像轮廓中心放置绘制点，从而进行绘制。不论是哪一种颜色，都可以找到其轮廓，并放置绘制点进行图案的绘制。 ​    因此， 我们首先需要的是通过OpenCV库函数获取连接笔记本的摄像头，并将获取的画">
+    <meta name="description" content="[toc]  本项目用到的核心技术是颜色检查以及轮廓&#x2F;形状检查  一、画面获取​    对于这个项目，我们首先需要找到我们摄像头画面中的颜色，将RGB通道转换为HSV颜色模型并获取图像的轮廓。然后我们可以在图像轮廓中心放置绘制点，从而进行绘制。不论是哪一种颜色，都可以找到其轮廓，并放置绘制点进行图案的绘制。 ​    因此， 我们首先需要的是通过OpenCV库函数获取连接笔记本的摄像头，">
 <meta property="og:type" content="article">
 <meta property="og:title" content="虚拟画笔 - 基于OpenCV">
 <meta property="og:url" content="https://xielearncode.github.io/2022/02/27/%E8%99%9A%E6%8B%9F%E7%94%BB%E7%AC%94/index.html">
 <meta property="og:site_name" content="蓝鸟x">
-<meta property="og:description" content="本项目用到的核心技术是颜色检查以及轮廓&#x2F;形状检查  一、画面获取​    对于这个项目，我们首先需要找到我们摄像头画面中的颜色，将RGB通道转换为HSV颜色模型并获取图像的轮廓。然后我们可以在图像轮廓中心放置绘制点，从而进行绘制。不论是哪一种颜色，都可以找到其轮廓，并放置绘制点进行图案的绘制。 ​    因此， 我们首先需要的是通过OpenCV库函数获取连接笔记本的摄像头，并将获取的画">
+<meta property="og:description" content="[toc]  本项目用到的核心技术是颜色检查以及轮廓&#x2F;形状检查  一、画面获取​    对于这个项目，我们首先需要找到我们摄像头画面中的颜色，将RGB通道转换为HSV颜色模型并获取图像的轮廓。然后我们可以在图像轮廓中心放置绘制点，从而进行绘制。不论是哪一种颜色，都可以找到其轮廓，并放置绘制点进行图案的绘制。 ​    因此， 我们首先需要的是通过OpenCV库函数获取连接笔记本的摄像头，">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://pic1.zhimg.com/v2-32c4194eadd450868842042b010d3efd_720w.jpg?source=172ae18bt">
 <meta property="article:published_time" content="2022-02-26T16:00:00.000Z">
-<meta property="article:modified_time" content="2022-03-24T12:19:22.573Z">
+<meta property="article:modified_time" content="2022-03-24T14:42:41.100Z">
 <meta property="article:author" content="蓝鸟x">
 <meta property="article:tag" content="OpenCV">
 <meta property="article:tag" content="虚拟画笔">
@@ -247,7 +247,8 @@
             <h1 style="display: none">虚拟画笔 - 基于OpenCV</h1>
             
             <div class="markdown-body">
-              <blockquote>
+              <p>[toc]</p>
+<blockquote>
 <p>本项目用到的核心技术是颜色检查以及轮廓&#x2F;形状检查</p>
 </blockquote>
 <h1 id="一、画面获取"><a href="#一、画面获取" class="headerlink" title="一、画面获取"></a>一、画面获取</h1><p>​    对于这个项目，我们首先需要找到我们摄像头画面中的颜色，将RGB通道转换为HSV颜色模型并获取图像的轮廓。然后我们可以在图像轮廓中心放置绘制点，从而进行绘制。不论是哪一种颜色，都可以找到其轮廓，并放置绘制点进行图案的绘制。</p>
@@ -267,7 +268,7 @@
 
 <p>以上代码运行后就可以通过调节HSV操作杆来识别镜头中的颜色（期望识别的颜色）</p>
 <p><img src="/2022/02/27/%E8%99%9A%E6%8B%9F%E7%94%BB%E7%AC%94/image-20220324185204443.png" srcset="/img/loading.gif" lazyload alt="image-20220324185204443"></p>
-<p><img src="/2022/02/27/%E8%99%9A%E6%8B%9F%E7%94%BB%E7%AC%94/image-20220324185151868.png" srcset="/img/loading.gif" lazyload alt="这里我识别的是绿色"></p>
+<p><img src="/2022/02/27/%E8%99%9A%E6%8B%9F%E7%94%BB%E7%AC%94/image-20220324222559879.png" srcset="/img/loading.gif" lazyload alt="image-20220324222559879"></p>
 <p>如果颜色识别很多噪点，是因为光线太暗。也不要在有颜色的灯光下进行识别，否则只能在调节的时候所处的环境下才能够成功识别。当然，最好是在特定的灯光下，如果是变化的光线比如白天，调节得到的值下次用还得调（亲身经历🤕）</p>
 <p>识别好颜色后， 通过记录操作杆的数值，并将其放入<code>myColors</code>数组中，进行后续操作。</p>
 <figure class="highlight python"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs python">myColors = [[<span class="hljs-number">30</span>,<span class="hljs-number">108</span>,<span class="hljs-number">114</span>,<span class="hljs-number">179</span>,<span class="hljs-number">255</span>,<span class="hljs-number">255</span>] <span class="hljs-comment"># 绿色</span><br>           ] <span class="hljs-comment"># 颜色数组，如果有其他颜色，可以添加 </span><br><br><br><span class="hljs-comment"># 画笔的颜色</span><br>myColorValues = [[<span class="hljs-number">51</span>,<span class="hljs-number">153</span>,<span class="hljs-number">255</span>],    <span class="hljs-comment">##BGR not RGB</span><br>                 [<span class="hljs-number">255</span>,<span class="hljs-number">0</span>,<span class="hljs-number">255</span>],   <br>                 [<span class="hljs-number">0</span>,<span class="hljs-number">255</span>,<span class="hljs-number">0</span>]]<br><br></code></pre></div></td></tr></table></figure>
@@ -286,8 +287,9 @@
 <ul>
 <li>效果</li>
 </ul>
-<p><img src="/2022/02/27/%E8%99%9A%E6%8B%9F%E7%94%BB%E7%AC%94/image-20220324194035557.png" srcset="/img/loading.gif" lazyload alt="image-20220324194035557"></p>
+<p><img src="/2022/02/27/%E8%99%9A%E6%8B%9F%E7%94%BB%E7%AC%94/image-20220324222235949.png" srcset="/img/loading.gif" lazyload alt="image-20220324222235949"></p>
 <p>获取轮廓之后，可以根据实际情况设置特定的一个点来作为笔尖。比如这里可以设置矩形的中心点来作为虚拟画笔的笔尖。为了便于处理，我设置的是图案的顶点作为笔尖</p>
+<p><img src="/2022/02/27/%E8%99%9A%E6%8B%9F%E7%94%BB%E7%AC%94/image-20220324222856333.png" srcset="/img/loading.gif" lazyload alt="image-20220324222856333"></p>
 <h1 id="四、绘制图案"><a href="#四、绘制图案" class="headerlink" title="四、绘制图案"></a>四、绘制图案</h1><p>总所周知，任意的曲线都可以看作是无数的点连接而成。因此在获得图像中的一个特殊点之后，便可以将这个点记录到一个数组中，通过不断绘制这个数组中的点，就可以达到绘制线条的效果，从而实现虚拟画笔的效果</p>
 <ul>
 <li>绘制单个圆点</li>
@@ -301,7 +303,7 @@
 
 <ul>
 <li><p>效果</p>
-<p><img src="/2022/02/27/%E8%99%9A%E6%8B%9F%E7%94%BB%E7%AC%94/image-20220324200347731.png" srcset="/img/loading.gif" lazyload alt="image-20220324200347731"></p>
+<p><img src="https://img-blog.csdnimg.cn/f016ef58e2464c6bae69f1f505869dab.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6JOd6bifeA==,size_20,color_FFFFFF,t_70,g_se,x_16" srcset="/img/loading.gif" lazyload alt="五角星"><img src="/2022/02/27/%E8%99%9A%E6%8B%9F%E7%94%BB%E7%AC%94/image-20220324224132888.png" srcset="/img/loading.gif" lazyload alt="image-20220324224132888"></p>
 </li>
 </ul>
 <h1 id="五、总结"><a href="#五、总结" class="headerlink" title="五、总结"></a>五、总结</h1><p>​    通过以上的操作，虽然能够实现虚拟画笔的效果，但是仍然有许多不足之处。比如绘制点的频率还没有调节，当画笔移动速度过快，将会导致线条不连续，形成一个个小点。比如下述结果：</p>
