@@ -1,0 +1,608 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="蓝鸟x">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="[toc]  一、功能说明初始阶段先用HashMap来存放用户名和密码，快速实现所有功能，后期再使用MySQL对所有的数据处理进行优化 二、思路分析 + 程序框架图将客户端用户信息和服务端用户的信息分别封装成User类和Message类，在传输过程中实现对象的序列化   三、代码实现3.1 消息类型接口1234567891011package com.hspedu.common;&#x2F;** * 消息">
+<meta property="og:type" content="article">
+<meta property="og:title" content="用户登录">
+<meta property="og:url" content="https://xielearncode.github.io/2022/03/04/%E5%A4%9A%E7%94%A8%E6%88%B7%E9%80%9A%E8%AE%AF%E7%B3%BB%E7%BB%9F(%E7%94%A8%E6%88%B7%E7%99%BB%E5%BD%95)/index.html">
+<meta property="og:site_name" content="蓝鸟x">
+<meta property="og:description" content="[toc]  一、功能说明初始阶段先用HashMap来存放用户名和密码，快速实现所有功能，后期再使用MySQL对所有的数据处理进行优化 二、思路分析 + 程序框架图将客户端用户信息和服务端用户的信息分别封装成User类和Message类，在传输过程中实现对象的序列化   三、代码实现3.1 消息类型接口1234567891011package com.hspedu.common;&#x2F;** * 消息">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20201124204536103.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl8zOTI3NDY1OQ==,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="article:published_time" content="2022-03-04T05:28:48.000Z">
+<meta property="article:modified_time" content="2022-04-02T09:47:13.718Z">
+<meta property="article:author" content="蓝鸟x">
+<meta property="article:tag" content="Java项目">
+<meta property="article:tag" content="多用户通讯系统">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20201124204536103.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl8zOTI3NDY1OQ==,size_16,color_FFFFFF,t_70#pic_center">
+  
+  
+  <title>用户登录 - 蓝鸟x</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hint.css@2/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+  
+<link rel="stylesheet" href="/css/indeximg-hover.css">
+<link rel="stylesheet" href="/css/mac.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"xielearncode.github.io","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":60,"cursorChar":"","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":6},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>蓝鸟x</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('https://w.wallhaven.cc/full/72/wallhaven-72rd8e.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="用户登录">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2022-03-04 13:28" pubdate>
+        2022年3月4日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      16k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      130 分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">用户登录</h1>
+            
+            <div class="markdown-body">
+              <blockquote>
+<p>[toc]</p>
+</blockquote>
+<h1 id="一、功能说明"><a href="#一、功能说明" class="headerlink" title="一、功能说明"></a>一、功能说明</h1><p>初始阶段先用HashMap来存放用户名和密码，快速实现所有功能，后期再使用MySQL对所有的数据处理进行优化</p>
+<h1 id="二、思路分析-程序框架图"><a href="#二、思路分析-程序框架图" class="headerlink" title="二、思路分析 + 程序框架图"></a>二、思路分析 + 程序框架图</h1><p>将客户端用户信息和服务端用户的信息分别封装成User类和Message类，在传输过程中实现对象的序列化 </p>
+<p><img src="/2022/03/04/%E5%A4%9A%E7%94%A8%E6%88%B7%E9%80%9A%E8%AE%AF%E7%B3%BB%E7%BB%9F(%E7%94%A8%E6%88%B7%E7%99%BB%E5%BD%95)/image-20220330222014120.png" srcset="/img/loading.gif" lazyload alt="image-20220330222014120"></p>
+<h1 id="三、代码实现"><a href="#三、代码实现" class="headerlink" title="三、代码实现"></a>三、代码实现</h1><h2 id="3-1-消息类型接口"><a href="#3-1-消息类型接口" class="headerlink" title="3.1 消息类型接口"></a>3.1 消息类型接口</h2><figure class="highlight java"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.hspedu.common;<br><br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * 消息类型</span><br><span class="hljs-comment"> * 接口中定义一些常量，用来表示不同的消息类型</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title class_">MessageType</span> &#123;<br>    <span class="hljs-type">String</span> <span class="hljs-variable">MESSAGE_LOGIN_SUCCEED</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;1&quot;</span>; <span class="hljs-comment">//表示登录成功</span><br>    <span class="hljs-type">String</span> <span class="hljs-variable">MESSAGE_LOGIN_FILE</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;2&quot;</span>; <span class="hljs-comment">//表示登录失败</span><br>    <br>&#125;<br></code></pre></div></td></tr></table></figure>
+
+<h2 id="3-2-用户类"><a href="#3-2-用户类" class="headerlink" title="3.2 用户类"></a>3.2 用户类</h2><figure class="highlight java"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.hspedu.common;<br><br><span class="hljs-keyword">import</span> java.io.Serializable;<br><br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> *</span><br><span class="hljs-comment"> * 表示一个用户的信息</span><br><span class="hljs-comment"> *</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">User</span> <span class="hljs-keyword">implements</span> <span class="hljs-title class_">Serializable</span> &#123;<br><br>     <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-type">long</span> <span class="hljs-variable">serialVersionUID</span> <span class="hljs-operator">=</span> <span class="hljs-number">1L</span>;<span class="hljs-comment">//增强兼容性</span><br>     <span class="hljs-keyword">private</span> String userId;<br>     <span class="hljs-keyword">private</span> String password;<br><br>     <span class="hljs-keyword">public</span> String <span class="hljs-title function_">getUserId</span><span class="hljs-params">()</span> &#123;<br>          <span class="hljs-keyword">return</span> userId;<br>     &#125;<br><br>     <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">setUserId</span><span class="hljs-params">(String userId)</span> &#123;<br>          <span class="hljs-built_in">this</span>.userId = userId;<br>     &#125;<br><br>     <span class="hljs-keyword">public</span> String <span class="hljs-title function_">getPassword</span><span class="hljs-params">()</span> &#123;<br>          <span class="hljs-keyword">return</span> password;<br>     &#125;<br><br>     <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">setPassword</span><span class="hljs-params">(String password)</span> &#123;<br>          <span class="hljs-built_in">this</span>.password = password;<br>     &#125;<br><br>     <span class="hljs-keyword">public</span> <span class="hljs-title function_">User</span><span class="hljs-params">(String userId, String password)</span> &#123;<br>          <span class="hljs-built_in">this</span>.userId = userId;<br>          <span class="hljs-built_in">this</span>.password = password;<br>     &#125;<br>&#125;<br><br></code></pre></div></td></tr></table></figure>
+
+
+
+<h2 id="3-3-消息类"><a href="#3-3-消息类" class="headerlink" title="3.3 消息类"></a>3.3 消息类</h2><figure class="highlight java"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.hspedu.common;<br><br><span class="hljs-keyword">import</span> java.io.Serializable;<br><br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> *</span><br><span class="hljs-comment"> * 聊天信息</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Message</span> <span class="hljs-keyword">implements</span> <span class="hljs-title class_">Serializable</span> &#123;<br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-type">long</span> <span class="hljs-variable">serialVersionUID</span> <span class="hljs-operator">=</span> <span class="hljs-number">1L</span>;<br>    <span class="hljs-keyword">private</span> String sender;<br>    <span class="hljs-keyword">private</span> String getter;<br>    <span class="hljs-keyword">private</span> String content;<br>    <span class="hljs-keyword">private</span> String sendTime;<br>    <span class="hljs-keyword">private</span> String mesType;<span class="hljs-comment">//消息类型  可以在接口中定义多个接口类型</span><br><br>    <span class="hljs-keyword">public</span> String <span class="hljs-title function_">getMesType</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-keyword">return</span> mesType;<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">setMesType</span><span class="hljs-params">(String mesType)</span> &#123;<br>        <span class="hljs-built_in">this</span>.mesType = mesType;<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> String <span class="hljs-title function_">getSender</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-keyword">return</span> sender;<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">setSender</span><span class="hljs-params">(String sender)</span> &#123;<br>        <span class="hljs-built_in">this</span>.sender = sender;<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> String <span class="hljs-title function_">getGetter</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-keyword">return</span> getter;<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">setGetter</span><span class="hljs-params">(String getter)</span> &#123;<br>        <span class="hljs-built_in">this</span>.getter = getter;<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> String <span class="hljs-title function_">getContent</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-keyword">return</span> content;<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">setContent</span><span class="hljs-params">(String content)</span> &#123;<br>        <span class="hljs-built_in">this</span>.content = content;<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> String <span class="hljs-title function_">getSendTime</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-keyword">return</span> sendTime;<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">setSendTime</span><span class="hljs-params">(String sendTime)</span> &#123;<br>        <span class="hljs-built_in">this</span>.sendTime = sendTime;<br>    &#125;<br>&#125;<br><br></code></pre></div></td></tr></table></figure>
+
+<h2 id="3-4-一级与二级菜单-–-用户登录"><a href="#3-4-一级与二级菜单-–-用户登录" class="headerlink" title="3.4 一级与二级菜单 – 用户登录"></a>3.4 一级与二级菜单 – 用户登录</h2><p>采集用户输入信息我们这里使用房屋出租系统使用的工具类Utiles类</p>
+<figure class="highlight java"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.hspedu.client.utils;<br><br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@author</span> 谢飞</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@version</span> 1.0</span><br><span class="hljs-comment"> */</span><br><br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> 工具类的作用:</span><br><span class="hljs-comment"> 处理各种情况的用户输入，并且能够按照程序员的需求，得到用户的控制台输入。</span><br><span class="hljs-comment"> */</span><br><br><span class="hljs-keyword">import</span> java.util.*;<br><span class="hljs-comment">/**</span><br><span class="hljs-comment"></span><br><span class="hljs-comment"></span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Utility</span> &#123;<br>    <span class="hljs-comment">//静态属性。。。</span><br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-type">Scanner</span> <span class="hljs-variable">scanner</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Scanner</span>(System.in);<br><br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 功能：读取键盘输入的一个菜单选项，值：1——5的范围</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@return</span> 1——5</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-type">char</span> <span class="hljs-title function_">readMenuSelection</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-type">char</span> c;<br>        <span class="hljs-keyword">for</span> (; ; ) &#123;<br>            <span class="hljs-type">String</span> <span class="hljs-variable">str</span> <span class="hljs-operator">=</span> readKeyBoard(<span class="hljs-number">1</span>, <span class="hljs-literal">false</span>);<span class="hljs-comment">//包含一个字符的字符串</span><br>            c = str.charAt(<span class="hljs-number">0</span>);<span class="hljs-comment">//将字符串转换成字符char类型</span><br>            <span class="hljs-keyword">if</span> (c != <span class="hljs-string">&#x27;1&#x27;</span> &amp;&amp; c != <span class="hljs-string">&#x27;2&#x27;</span> &amp;&amp;<br>                    c != <span class="hljs-string">&#x27;3&#x27;</span> &amp;&amp; c != <span class="hljs-string">&#x27;4&#x27;</span> &amp;&amp; c != <span class="hljs-string">&#x27;5&#x27;</span>) &#123;<br>                System.out.print(<span class="hljs-string">&quot;选择错误，请重新输入：&quot;</span>);<br>            &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">break</span>;<br>        &#125;<br>        <span class="hljs-keyword">return</span> c;<br>    &#125;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 功能：读取键盘输入的一个字符</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@return</span> 一个字符</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-type">char</span> <span class="hljs-title function_">readChar</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-type">String</span> <span class="hljs-variable">str</span> <span class="hljs-operator">=</span> readKeyBoard(<span class="hljs-number">1</span>, <span class="hljs-literal">false</span>);<span class="hljs-comment">//就是一个字符</span><br>        <span class="hljs-keyword">return</span> str.charAt(<span class="hljs-number">0</span>);<br>    &#125;<br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 功能：读取键盘输入的一个字符，如果直接按回车，则返回指定的默认值；否则返回输入的那个字符</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> defaultValue 指定的默认值</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@return</span> 默认值或输入的字符</span><br><span class="hljs-comment">     */</span><br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-type">char</span> <span class="hljs-title function_">readChar</span><span class="hljs-params">(<span class="hljs-type">char</span> defaultValue)</span> &#123;<br>        <span class="hljs-type">String</span> <span class="hljs-variable">str</span> <span class="hljs-operator">=</span> readKeyBoard(<span class="hljs-number">1</span>, <span class="hljs-literal">true</span>);<span class="hljs-comment">//要么是空字符串，要么是一个字符</span><br>        <span class="hljs-keyword">return</span> (str.length() == <span class="hljs-number">0</span>) ? defaultValue : str.charAt(<span class="hljs-number">0</span>);<br>    &#125;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 功能：读取键盘输入的整型，长度小于10位</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@return</span> 整数</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-type">int</span> <span class="hljs-title function_">readInt</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-type">int</span> n;<br>        <span class="hljs-keyword">for</span> (; ; ) &#123;<br>            <span class="hljs-type">String</span> <span class="hljs-variable">str</span> <span class="hljs-operator">=</span> readKeyBoard(<span class="hljs-number">10</span>, <span class="hljs-literal">false</span>);<span class="hljs-comment">//一个整数，长度&lt;=10位</span><br>            <span class="hljs-keyword">try</span> &#123;<br>                n = Integer.parseInt(str);<span class="hljs-comment">//将字符串转换成整数</span><br>                <span class="hljs-keyword">break</span>;<br>            &#125; <span class="hljs-keyword">catch</span> (NumberFormatException e) &#123;<br>                System.out.print(<span class="hljs-string">&quot;数字输入错误，请重新输入：&quot;</span>);<br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">return</span> n;<br>    &#125;<br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 功能：读取键盘输入的 整数或默认值，如果直接回车，则返回默认值，否则返回输入的整数</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> defaultValue 指定的默认值</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@return</span> 整数或默认值</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-type">int</span> <span class="hljs-title function_">readInt</span><span class="hljs-params">(<span class="hljs-type">int</span> defaultValue)</span> &#123;<br>        <span class="hljs-type">int</span> n;<br>        <span class="hljs-keyword">for</span> (; ; ) &#123;<br>            <span class="hljs-type">String</span> <span class="hljs-variable">str</span> <span class="hljs-operator">=</span> readKeyBoard(<span class="hljs-number">10</span>, <span class="hljs-literal">true</span>);<br>            <span class="hljs-keyword">if</span> (str.equals(<span class="hljs-string">&quot;&quot;</span>)) &#123;<br>                <span class="hljs-keyword">return</span> defaultValue;<br>            &#125;<br><br>            <span class="hljs-comment">//异常处理...</span><br>            <span class="hljs-keyword">try</span> &#123;<br>                n = Integer.parseInt(str);<br>                <span class="hljs-keyword">break</span>;<br>            &#125; <span class="hljs-keyword">catch</span> (NumberFormatException e) &#123;<br>                System.out.print(<span class="hljs-string">&quot;数字输入错误，请重新输入：&quot;</span>);<br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">return</span> n;<br>    &#125;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 功能：读取键盘输入的指定长度的字符串</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> limit 限制的长度</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@return</span> 指定长度的字符串</span><br><span class="hljs-comment">     */</span><br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> String <span class="hljs-title function_">readString</span><span class="hljs-params">(<span class="hljs-type">int</span> limit)</span> &#123;<br>        <span class="hljs-keyword">return</span> readKeyBoard(limit, <span class="hljs-literal">false</span>);<br>    &#125;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 功能：读取键盘输入的指定长度的字符串或默认值，如果直接回车，返回默认值，否则返回字符串</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> limit 限制的长度</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> defaultValue 指定的默认值</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@return</span> 指定长度的字符串</span><br><span class="hljs-comment">     */</span><br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> String <span class="hljs-title function_">readString</span><span class="hljs-params">(<span class="hljs-type">int</span> limit, String defaultValue)</span> &#123;<br>        <span class="hljs-type">String</span> <span class="hljs-variable">str</span> <span class="hljs-operator">=</span> readKeyBoard(limit, <span class="hljs-literal">true</span>);<br>        <span class="hljs-keyword">return</span> str.equals(<span class="hljs-string">&quot;&quot;</span>)? defaultValue : str;<br>    &#125;<br><br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 功能：读取键盘输入的确认选项，Y或N</span><br><span class="hljs-comment">     * 将小的功能，封装到一个方法中.</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@return</span> Y或N</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-type">char</span> <span class="hljs-title function_">readConfirmSelection</span><span class="hljs-params">()</span> &#123;<br>        System.out.println(<span class="hljs-string">&quot;请输入你的选择(Y/N): 请小心选择&quot;</span>);<br>        <span class="hljs-type">char</span> c;<br>        <span class="hljs-keyword">for</span> (; ; ) &#123;<span class="hljs-comment">//无限循环</span><br>            <span class="hljs-comment">//在这里，将接受到字符，转成了大写字母</span><br>            <span class="hljs-comment">//y =&gt; Y n=&gt;N</span><br>            <span class="hljs-type">String</span> <span class="hljs-variable">str</span> <span class="hljs-operator">=</span> readKeyBoard(<span class="hljs-number">1</span>, <span class="hljs-literal">false</span>).toUpperCase();<br>            c = str.charAt(<span class="hljs-number">0</span>);<br>            <span class="hljs-keyword">if</span> (c == <span class="hljs-string">&#x27;Y&#x27;</span> || c == <span class="hljs-string">&#x27;N&#x27;</span>) &#123;<br>                <span class="hljs-keyword">break</span>;<br>            &#125; <span class="hljs-keyword">else</span> &#123;<br>                System.out.print(<span class="hljs-string">&quot;选择错误，请重新输入：&quot;</span>);<br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">return</span> c;<br>    &#125;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 功能： 读取一个字符串</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> limit 读取的长度</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> blankReturn 如果为true ,表示 可以读空字符串。</span><br><span class="hljs-comment">     * 					  如果为false表示 不能读空字符串。</span><br><span class="hljs-comment">     *</span><br><span class="hljs-comment">     *	如果输入为空，或者输入大于limit的长度，就会提示重新输入。</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@return</span></span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> String <span class="hljs-title function_">readKeyBoard</span><span class="hljs-params">(<span class="hljs-type">int</span> limit, <span class="hljs-type">boolean</span> blankReturn)</span> &#123;<br><br>        <span class="hljs-comment">//定义了字符串</span><br>        <span class="hljs-type">String</span> <span class="hljs-variable">line</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;&quot;</span>;<br><br>        <span class="hljs-comment">//scanner.hasNextLine() 判断有没有下一行</span><br>        <span class="hljs-keyword">while</span> (scanner.hasNextLine()) &#123;<br>            line = scanner.nextLine();<span class="hljs-comment">//读取这一行</span><br><br>            <span class="hljs-comment">//如果line.length=0, 即用户没有输入任何内容，直接回车</span><br>            <span class="hljs-keyword">if</span> (line.length() == <span class="hljs-number">0</span>) &#123;<br>                <span class="hljs-keyword">if</span> (blankReturn) <span class="hljs-keyword">return</span> line;<span class="hljs-comment">//如果blankReturn=true,可以返回空串</span><br>                <span class="hljs-keyword">else</span> <span class="hljs-keyword">continue</span>; <span class="hljs-comment">//如果blankReturn=false,不接受空串，必须输入内容</span><br>            &#125;<br><br>            <span class="hljs-comment">//如果用户输入的内容大于了 limit，就提示重写输入</span><br>            <span class="hljs-comment">//如果用户如的内容 &gt;0 &lt;= limit ,我就接受</span><br>            <span class="hljs-keyword">if</span> (line.length() &lt; <span class="hljs-number">1</span> || line.length() &gt; limit) &#123;<br>                System.out.print(<span class="hljs-string">&quot;输入长度（不能大于&quot;</span> + limit + <span class="hljs-string">&quot;）错误，请重新输入：&quot;</span>);<br>                <span class="hljs-keyword">continue</span>;<br>            &#125;<br>            <span class="hljs-keyword">break</span>;<br>        &#125;<br><br>        <span class="hljs-keyword">return</span> line;<br>    &#125;<br>&#125;<br><br><br><br></code></pre></div></td></tr></table></figure>
+
+
+
+<p>登录界面代码</p>
+<figure class="highlight java"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.hspedu.client.view;<br><br><span class="hljs-keyword">import</span> com.hspedu.client.utils.Utility;<br><br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@author</span> 谢飞</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@version</span> 1.0</span><br><span class="hljs-comment"> * 客户端菜单界面、登录界面</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">View</span> &#123;<br><span class="hljs-comment">//    显示主菜单</span><br>    <span class="hljs-keyword">private</span> <span class="hljs-type">boolean</span> <span class="hljs-variable">loop</span> <span class="hljs-operator">=</span> <span class="hljs-literal">true</span>;<span class="hljs-comment">//控制是否显示菜单</span><br>    <span class="hljs-keyword">private</span> <span class="hljs-type">String</span> <span class="hljs-variable">key</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;&quot;</span>; <span class="hljs-comment">// 用于接收用户的键盘输入</span><br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> &#123;<br>        <span class="hljs-comment">//主方法测试菜单</span><br>        <span class="hljs-keyword">new</span> <span class="hljs-title class_">View</span>().mainMenu();<br>        System.out.println(<span class="hljs-string">&quot;客户端退出系统&quot;</span>);<br>    &#125;<br><br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">mainMenu</span><span class="hljs-params">()</span>&#123;<br>        <span class="hljs-keyword">while</span>(loop)&#123;<br>            System.out.println(<span class="hljs-string">&quot;========欢迎登录网络通讯系统========&quot;</span>);<br>            System.out.println(<span class="hljs-string">&quot;\t\t 1 登录系统&quot;</span>);<br>            System.out.println(<span class="hljs-string">&quot;\t\t 9 退出系统&quot;</span>);<br><br>            System.out.print(<span class="hljs-string">&quot;请输入你的选择：&quot;</span>);<br>            key = Utility.readString(<span class="hljs-number">1</span>);<span class="hljs-comment">//读取一个字符串</span><br><br><br>            <span class="hljs-comment">//根据用户输入处理不同的逻辑</span><br>            <span class="hljs-keyword">switch</span>(key)&#123;<br>                <span class="hljs-keyword">case</span> <span class="hljs-string">&quot;1&quot;</span> :<br>                    System.out.print(<span class="hljs-string">&quot;请输入用户号：&quot;</span>);<span class="hljs-comment">//先简化模拟登录</span><br>                    <span class="hljs-type">String</span> <span class="hljs-variable">userId</span> <span class="hljs-operator">=</span> Utility.readString(<span class="hljs-number">50</span>);<br>                    System.out.print(<span class="hljs-string">&quot;请输入密码：&quot;</span>);<br>                    <span class="hljs-type">String</span> <span class="hljs-variable">password</span> <span class="hljs-operator">=</span> Utility.readString(<span class="hljs-number">50</span>);<br>                    System.out.println();<span class="hljs-comment">//行间隔</span><br><br>                    <span class="hljs-comment">//构建用户User类对象，发送到服务端验证个人信息</span><br><br>                    <span class="hljs-comment">//代码、、</span><br><br>                    <span class="hljs-comment">//根据服务端返回结果进行判断，然后进行登录界面的显示</span><br>                    <span class="hljs-keyword">if</span>(<span class="hljs-literal">true</span>)&#123;<span class="hljs-comment">//假设验证成功</span><br>                        System.out.println(<span class="hljs-string">&quot;========欢迎 &quot;</span> + userId + <span class="hljs-string">&quot;========&quot;</span>);<br>                        <span class="hljs-comment">//进入二级菜单</span><br>                        <span class="hljs-keyword">while</span>(loop)&#123;<br>                            System.out.println(<span class="hljs-string">&quot;\n======== 网络通讯系统二级菜单 （用户：&quot;</span>+userId + <span class="hljs-string">&quot; ========&quot;</span>);<br>                            System.out.println(<span class="hljs-string">&quot;\t\t 1 显示在线用户列表&quot;</span>);<br>                            System.out.println(<span class="hljs-string">&quot;\t\t 2 群发消息&quot;</span>);<br>                            System.out.println(<span class="hljs-string">&quot;\t\t 3 私聊消息&quot;</span>);<br>                            System.out.println(<span class="hljs-string">&quot;\t\t 4 发送文件&quot;</span>);<br>                            System.out.println(<span class="hljs-string">&quot;\t\t 9 退出系统文件&quot;</span>);<br>                            System.out.print(<span class="hljs-string">&quot;请输入你的选择：&quot;</span>);<br>                            key = Utility.readString(<span class="hljs-number">1</span>);<br>                            <span class="hljs-keyword">switch</span> (key)&#123;<br>                                <span class="hljs-keyword">case</span> <span class="hljs-string">&quot;1&quot;</span>:<br>                                    System.out.println(<span class="hljs-string">&quot;显示在线用户列表&quot;</span>);<br>                                    <span class="hljs-keyword">break</span>;<br><br>                                <span class="hljs-keyword">case</span> <span class="hljs-string">&quot;2&quot;</span>:<br>                                    System.out.println(<span class="hljs-string">&quot;群发消息&quot;</span>);<br>                                    <span class="hljs-keyword">break</span>;<br>                                <span class="hljs-keyword">case</span> <span class="hljs-string">&quot;3&quot;</span>:<br>                                    System.out.println(<span class="hljs-string">&quot;私聊消息&quot;</span>);<br>                                    <span class="hljs-keyword">break</span>;<br>                                <span class="hljs-keyword">case</span> <span class="hljs-string">&quot;4&quot;</span>:<br>                                    System.out.println(<span class="hljs-string">&quot;文件传输&quot;</span>);<br>                                    <span class="hljs-keyword">break</span>;<br>                                <span class="hljs-keyword">case</span> <span class="hljs-string">&quot;9&quot;</span>:<br>                                    System.out.println(<span class="hljs-string">&quot;成功退出&quot;</span>);<br>                                    loop = <span class="hljs-literal">false</span>;<br>                                    <span class="hljs-keyword">break</span>;<br>                                <span class="hljs-keyword">default</span>:<br>                                    System.out.println(<span class="hljs-string">&quot;输入有误，请重新输入&quot;</span>);<br><br>                            &#125;<br><br>                        &#125;<br>                    &#125; <span class="hljs-keyword">else</span>&#123;<br>                        System.out.println(<span class="hljs-string">&quot;登录失败，请重新登录&quot;</span>);<br>                    &#125;<br><br><br>                    <span class="hljs-keyword">break</span>;<br>                <span class="hljs-keyword">case</span> <span class="hljs-string">&quot;9&quot;</span>:<br>                    System.out.println(<span class="hljs-string">&quot;退出系统&quot;</span>);<br>                    loop = <span class="hljs-literal">false</span>;<br>                    <span class="hljs-keyword">break</span>;<br>                <span class="hljs-keyword">default</span>:<br>                    System.out.println(<span class="hljs-string">&quot;输入有误，请重新输入&quot;</span>);<br>                    <span class="hljs-keyword">break</span>;<br>            &#125;<br>        &#125;<br>    &#125;<br><br>&#125;<br><br><br></code></pre></div></td></tr></table></figure>
+
+<h2 id="3-5-用户登录验证和用户注册功能"><a href="#3-5-用户登录验证和用户注册功能" class="headerlink" title="3.5 用户登录验证和用户注册功能"></a>3.5 用户登录验证和用户注册功能</h2><p><strong>客户端服务类</strong>：checkUser（）方法，用于和服务器连接，并返回用户的信息是否在服务端存在</p>
+<figure class="highlight java"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.hspedu.client.service;<br><br><span class="hljs-keyword">import</span> com.hspedu.common.Message;<br><span class="hljs-keyword">import</span> com.hspedu.common.MessageType;<br><span class="hljs-keyword">import</span> com.hspedu.common.User;<br><br><span class="hljs-keyword">import</span> java.io.*;<br><span class="hljs-keyword">import</span> java.net.InetAddress;<br><span class="hljs-keyword">import</span> java.net.Socket;<br><br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@author</span> 谢飞</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@version</span> 1.0</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@date</span> 2022</span><br><span class="hljs-comment"> * 客户端服务</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">UserClientService</span> &#123;<br><br>    <span class="hljs-keyword">private</span> <span class="hljs-type">User</span> <span class="hljs-variable">user</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">User</span>() ;<span class="hljs-comment">//因为我们可能在其他地方使用user信息，所以设置为成员属性</span><br><br>    <span class="hljs-comment">//因为Socket在其他地方也要使用，所以将之作为成员属性</span><br>    <span class="hljs-keyword">private</span> Socket socket;<br><br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 验证用户登录的信息是否有效</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> userId</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> password</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@return</span></span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-type">boolean</span> <span class="hljs-title function_">checkUser</span><span class="hljs-params">(String userId, String password)</span>&#123;<br>        <span class="hljs-type">boolean</span> <span class="hljs-variable">b</span> <span class="hljs-operator">=</span> <span class="hljs-literal">false</span>;<br>        user.setUserId(userId);<br>        user.setPassword(password);<br><br>        <span class="hljs-comment">//连接到服务端</span><br>        <span class="hljs-keyword">try</span> &#123;<br>            socket = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Socket</span>(InetAddress.getByName(<span class="hljs-string">&quot;127.0.0.1&quot;</span>), <span class="hljs-number">9999</span>);<br>            <span class="hljs-comment">//获取对象流，objectoutputStream</span><br>            <span class="hljs-type">ObjectOutputStream</span> <span class="hljs-variable">oos</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ObjectOutputStream</span>(socket.getOutputStream());<br>            oos.writeObject(user);<span class="hljs-comment">//发送user对象</span><br><br>            <span class="hljs-comment">//获取服务端回送的Message对象</span><br>            <span class="hljs-type">ObjectInputStream</span> <span class="hljs-variable">ois</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ObjectInputStream</span>(socket.getInputStream());<br>            <span class="hljs-type">Message</span> <span class="hljs-variable">ms</span> <span class="hljs-operator">=</span> (Message)ois.readObject();<br><br>            <span class="hljs-keyword">if</span>(ms.getMesType().equals(MessageType.MESSAGE_LOGIN_SUCCEED))&#123;<span class="hljs-comment">//登录成功</span><br>                b = <span class="hljs-literal">true</span>;<br>                <span class="hljs-comment">//登录成功，则由一个线程来维护一个socket，一直持有这个线程，用于和服务端保持通讯</span><br>                <span class="hljs-comment">//由此得知需要创建一个线程类，来保持socket进行客户端和服务端进行通信，clientconnectserverThread</span><br>                <span class="hljs-type">ClientConnectServerThread</span> <span class="hljs-variable">clientConnectServerThread</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ClientConnectServerThread</span>(socket);<br>                clientConnectServerThread.start();<br>                <span class="hljs-comment">//为了扩展客户端， 将线程放入集合中进行管理</span><br><br><br><br>            &#125;<span class="hljs-keyword">else</span>&#123;<br><br>            &#125;<br><br>        &#125; <span class="hljs-keyword">catch</span> (Exception e) &#123;<br>            e.printStackTrace();<br>        &#125;<br><br>        <span class="hljs-keyword">return</span>  b;<br><br>    &#125;<br><br><br>&#125;<br><br></code></pre></div></td></tr></table></figure>
+
+<p>用一个线程来持有客户端的一个socket，该socket与服务器保持连接</p>
+<figure class="highlight java"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.hspedu.client.service;<br><br><span class="hljs-keyword">import</span> com.hspedu.common.Message;<br><br><span class="hljs-keyword">import</span> java.io.IOException;<br><span class="hljs-keyword">import</span> java.io.ObjectInputStream;<br><span class="hljs-keyword">import</span> java.net.Socket;<br><br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@author</span> 谢飞</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@version</span> 1.0</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@date</span> 2022</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">ClientConnectServerThread</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_">Thread</span>&#123;<br>    <span class="hljs-comment">//该线程需要持有Socket</span><br>    <span class="hljs-keyword">private</span> Socket socket;<br><br>    <span class="hljs-comment">//接收socket对象</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-title function_">ClientConnectServerThread</span><span class="hljs-params">(Socket socket)</span>&#123;<br>        <span class="hljs-built_in">this</span>.socket = socket;<br>    &#125;<br><br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 因为此线程需要一直读取服务端发来的信息</span><br><span class="hljs-comment">     * 在后台和服务器通讯，用while(true)持续监听</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">run</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-keyword">while</span>(<span class="hljs-literal">true</span>)&#123;<span class="hljs-comment">//正常情况，不停读socket的输入流，保证随时能收到消息</span><br>            <span class="hljs-keyword">try</span> &#123;<br>                System.out.println(<span class="hljs-string">&quot;客户端等待服务器端的数据&quot;</span>);<br>                <span class="hljs-type">ObjectInputStream</span> <span class="hljs-variable">ois</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ObjectInputStream</span>(socket.getInputStream());<br>                <span class="hljs-type">Message</span> <span class="hljs-variable">message</span> <span class="hljs-operator">=</span> (Message)ois.readObject();<span class="hljs-comment">//如果服务器没有发送Message对象，则会阻塞在这里</span><br>            &#125; <span class="hljs-keyword">catch</span> (Exception e) &#123;<br>                e.printStackTrace();<br>            &#125;<br><br>        &#125;<br>    &#125;<br><br>    <span class="hljs-comment">//为了方便获取socket对象，设置get方法</span><br>    <span class="hljs-keyword">public</span> Socket <span class="hljs-title function_">getSocket</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-keyword">return</span> socket;<br>    &#125;<br><br>&#125;<br><br></code></pre></div></td></tr></table></figure>
+
+<p>用一个自建的集合类，来存放用户端的线程</p>
+<figure class="highlight java"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.hspedu.client.service;<br><br><span class="hljs-keyword">import</span> com.hspedu.common.Message;<br><br><span class="hljs-keyword">import</span> java.io.IOException;<br><span class="hljs-keyword">import</span> java.io.ObjectInputStream;<br><span class="hljs-keyword">import</span> java.net.Socket;<br><br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@author</span> 谢飞</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@version</span> 1.0</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@date</span> 2022</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">ClientConnectServerThread</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_">Thread</span>&#123;<br>    <span class="hljs-comment">//该线程需要持有Socket</span><br>    <span class="hljs-keyword">private</span> Socket socket;<br><br>    <span class="hljs-comment">//接收socket对象</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-title function_">ClientConnectServerThread</span><span class="hljs-params">(Socket socket)</span>&#123;<br>        <span class="hljs-built_in">this</span>.socket = socket;<br>    &#125;<br><br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 因为此线程需要一直读取服务端发来的信息</span><br><span class="hljs-comment">     * 在后台和服务器通讯，用while(true)持续监听</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">run</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-keyword">while</span>(<span class="hljs-literal">true</span>)&#123;<span class="hljs-comment">//正常情况，不停读socket的输入流，保证随时能收到消息</span><br>            <span class="hljs-keyword">try</span> &#123;<br>                System.out.println(<span class="hljs-string">&quot;客户端等待服务器端的数据&quot;</span>);<br>                <span class="hljs-type">ObjectInputStream</span> <span class="hljs-variable">ois</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ObjectInputStream</span>(socket.getInputStream());<br>                <span class="hljs-type">Message</span> <span class="hljs-variable">message</span> <span class="hljs-operator">=</span> (Message)ois.readObject();<span class="hljs-comment">//如果服务器没有发送Message对象，则会阻塞在这里</span><br>            &#125; <span class="hljs-keyword">catch</span> (Exception e) &#123;<br>                e.printStackTrace();<br>            &#125;<br><br>        &#125;<br>    &#125;<br><br>    <span class="hljs-comment">//为了方便获取socket对象，设置get方法</span><br>    <span class="hljs-keyword">public</span> Socket <span class="hljs-title function_">getSocket</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-keyword">return</span> socket;<br>    &#125;<br><br>&#125;<br><br></code></pre></div></td></tr></table></figure>
+
+<h2 id="3-6-服务端接收用户登录信息并处理"><a href="#3-6-服务端接收用户登录信息并处理" class="headerlink" title="3.6 服务端接收用户登录信息并处理"></a>3.6 服务端接收用户登录信息并处理</h2><p>服务端在一个端口持续监听，将从socket的输入流中读取的User对象与数据库数据进行验证，验证通过后就创建一个线程，让这个线程持有此scoket,然后不停监听，将监听到的Message对象进行处理</p>
+<figure class="highlight java"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.hspedu.server.service;<br><br><span class="hljs-keyword">import</span> com.hspedu.common.Message;<br><span class="hljs-keyword">import</span> com.hspedu.common.MessageType;<br><span class="hljs-keyword">import</span> com.hspedu.common.User;<br><br><span class="hljs-keyword">import</span> java.io.IOException;<br><span class="hljs-keyword">import</span> java.io.ObjectInputStream;<br><span class="hljs-keyword">import</span> java.io.ObjectOutputStream;<br><span class="hljs-keyword">import</span> java.net.ServerSocket;<br><span class="hljs-keyword">import</span> java.net.Socket;<br><br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@author</span> 谢飞</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@version</span> 1.0</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@date</span> 2022</span><br><span class="hljs-comment"> *</span><br><span class="hljs-comment"> * 这是服务器， 在监听9999端口 ，等待客户端的连接，并保持通讯</span><br><span class="hljs-comment"> *</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Server</span> &#123;<br>    <span class="hljs-keyword">private</span> <span class="hljs-type">ServerSocket</span> <span class="hljs-variable">ss</span> <span class="hljs-operator">=</span> <span class="hljs-literal">null</span>;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-title function_">Server</span><span class="hljs-params">()</span>&#123;<br><br>        <span class="hljs-comment">//端口可以写在一个配置文件中</span><br>        <span class="hljs-keyword">try</span> &#123;<br>            System.out.println(<span class="hljs-string">&quot;服务端在端口9999监听&quot;</span>);<br>            ss = <span class="hljs-keyword">new</span> <span class="hljs-title class_">ServerSocket</span>(<span class="hljs-number">9999</span>);<br><br>            <span class="hljs-comment">//客户端应当在9999端口持续监听， 以提供服务</span><br>            <span class="hljs-keyword">while</span>(<span class="hljs-literal">true</span>)&#123;<span class="hljs-comment">//当和某个客户端建立连接后，会继续监听，因此while循环</span><br>                <span class="hljs-type">Socket</span> <span class="hljs-variable">socket</span> <span class="hljs-operator">=</span> ss.accept();<br>                <span class="hljs-comment">//得到socket对象关联的输入流</span><br>                <span class="hljs-type">ObjectInputStream</span> <span class="hljs-variable">ois</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ObjectInputStream</span>(socket.getInputStream());<br>                <span class="hljs-type">User</span> <span class="hljs-variable">user</span> <span class="hljs-operator">=</span> (User)ois.readObject();<span class="hljs-comment">//读取客户端发送的User对象</span><br>                <span class="hljs-comment">//创建一个Message对象，准备回复客户端</span><br>                <span class="hljs-type">Message</span> <span class="hljs-variable">messagee</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Message</span>();<span class="hljs-comment">//因为无论成功还是失败，都需要给用户发送信息，所以这里定义在ifelse外边</span><br>                <span class="hljs-comment">//验证用户信息  先死后活， 先锁定用户信息，后面用集合 最后用数据库替换</span><br>                <span class="hljs-type">ObjectOutputStream</span> <span class="hljs-variable">oos</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ObjectOutputStream</span>(socket.getOutputStream());<span class="hljs-comment">//获得输出流，用于回传给客户端Message对象</span><br>                <span class="hljs-keyword">if</span>(user.getUserId().equals(<span class="hljs-string">&quot;100&quot;</span>) &amp;&amp; user.getPassword().equals(<span class="hljs-string">&quot;123456&quot;</span>))&#123;<br>                    <span class="hljs-comment">//登录验证通过</span><br>                    messagee.setMesType(MessageType.MESSAGE_LOGIN_SUCCEED);<br>                    oos.writeObject(messagee);<br>                    <span class="hljs-comment">//创建一个线程，该线程持有socket，保持与客户端的通信</span><br>                    <span class="hljs-type">ServerConnectClientThread</span> <span class="hljs-variable">serverConnectClientThread</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ServerConnectClientThread</span>(socket, user.getUserId());<br>                    serverConnectClientThread.start();<span class="hljs-comment">//启动一个线程</span><br>                    <span class="hljs-comment">//把该线程对象放入到一个集合中，进行管理</span><br>                    <br><br><br>                &#125;<span class="hljs-keyword">else</span> &#123;<span class="hljs-comment">//登录失败</span><br>					message.setMessageType(MesssageType.MESSAGE_TYPE_LOGIN_FILE);<br>                    oos.writeObject(message);<br>                    socket.close;<br>                &#125;<br><br>            &#125;<br><br><br><br><br>        &#125; <span class="hljs-keyword">catch</span> (Exception e) &#123;<br>            e.printStackTrace();<br>        &#125;<span class="hljs-keyword">finally</span>&#123;<br>			ss.close;<br>        &#125;<br>    &#125;<br><br>&#125;<br><br></code></pre></div></td></tr></table></figure>
+
+<p>服务端连接保持线程类</p>
+<figure class="highlight java"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.hspedu.server.service;<br><br><span class="hljs-keyword">import</span> com.hspedu.common.Message;<br><span class="hljs-keyword">import</span> com.hspedu.common.User;<br><br><span class="hljs-keyword">import</span> java.io.IOException;<br><span class="hljs-keyword">import</span> java.io.ObjectInputStream;<br><span class="hljs-keyword">import</span> java.io.ObjectOutputStream;<br><span class="hljs-keyword">import</span> java.net.Socket;<br><br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@author</span> 谢飞</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@version</span> 1.0</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@date</span> 2022</span><br><span class="hljs-comment"> *</span><br><span class="hljs-comment"> * 该类某个对象，保持和客户端的一个通信</span><br><span class="hljs-comment"> * 一个对象持有一个socket，保证点对点服务</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">ServerConnectClientThread</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_">Thread</span>&#123;<br>    <span class="hljs-keyword">private</span> Socket socket;<br>    <span class="hljs-keyword">private</span> String userId;<span class="hljs-comment">//用户id，表示连接到服务端的某个用户</span><br><br>    <span class="hljs-keyword">public</span> <span class="hljs-title function_">ServerConnectClientThread</span><span class="hljs-params">(Socket socket,String userId)</span>&#123;<br>        <span class="hljs-built_in">this</span>.socket = socket;<br>        <span class="hljs-built_in">this</span>.userId = userId;<br>    &#125;<br><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">run</span><span class="hljs-params">()</span> &#123;<span class="hljs-comment">//持续在一个端口监听客户端的请求</span><br>        <span class="hljs-keyword">while</span>(<span class="hljs-literal">true</span>)&#123;<br>            <span class="hljs-keyword">try</span> &#123;<br>                System.out.println(<span class="hljs-string">&quot;服务端和客户端保持连接 读取数据&quot;</span>);<br>                <span class="hljs-type">ObjectInputStream</span> <span class="hljs-variable">ois</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ObjectInputStream</span>(socket.getInputStream());<br>                <span class="hljs-type">Message</span> <span class="hljs-variable">message</span> <span class="hljs-operator">=</span> (Message)ois.readObject();<br>                <span class="hljs-comment">// 用户发送给服务器的message对象，</span><br><br>            &#125; <span class="hljs-keyword">catch</span> (Exception e) &#123;<br>                e.printStackTrace();<br>            &#125;<br><br>        &#125;<br>    &#125;<br>&#125;<br><br></code></pre></div></td></tr></table></figure>
+
+<p>服务端管理<strong>连接线程</strong>的集合</p>
+<figure class="highlight java"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.hspedu.server.service;<br><br><span class="hljs-keyword">import</span> java.util.HashMap;<br><br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@author</span> 谢飞</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@version</span> 1.0</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@date</span> 2022</span><br><span class="hljs-comment"> *</span><br><span class="hljs-comment"> *</span><br><span class="hljs-comment"> * 该类用于管理和客户端通讯的线程        一个集合，里面存放了多个连接线程</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">ManageClientThreads</span>&#123;<br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> HashMap&lt;String,ServerConnectClientThread&gt; hm = <span class="hljs-keyword">new</span> <span class="hljs-title class_">HashMap</span>&lt;&gt;();<br><br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 将客户端与服务端的连接线程 放入集合</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> userId</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> serverConnectClientThread</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">addServerConnectClientThread</span><span class="hljs-params">(String userId,ServerConnectClientThread serverConnectClientThread)</span>&#123;<br>        hm.put(userId,serverConnectClientThread);<br><br>    &#125;<br><br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> ServerConnectClientThread <span class="hljs-title function_">getServereConnectClientThread</span><span class="hljs-params">(String userId)</span>&#123;<br>        <span class="hljs-keyword">return</span> hm.get(userId);<br>    &#125;<br>&#125;<br><br></code></pre></div></td></tr></table></figure>
+
+<p>服务端主框架</p>
+<figure class="highlight java"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.hspedu.frame;<br><br><span class="hljs-keyword">import</span> com.hspedu.server.service.Server;<br><br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@author</span> 谢飞</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@version</span> 1.0</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@date</span> 2022</span><br><span class="hljs-comment"> *</span><br><span class="hljs-comment"> * 该类创建Server， 启动后台服务</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Frame</span> &#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> &#123;<br>        <span class="hljs-keyword">new</span> <span class="hljs-title class_">Server</span>();<br>    &#125;<br>&#125;<br><br></code></pre></div></td></tr></table></figure>
+
+<h1 id="四、实际效果"><a href="#四、实际效果" class="headerlink" title="四、实际效果"></a>四、实际效果</h1><p>登录时的客户端与服务端</p>
+<p><img src="/2022/03/04/%E5%A4%9A%E7%94%A8%E6%88%B7%E9%80%9A%E8%AE%AF%E7%B3%BB%E7%BB%9F(%E7%94%A8%E6%88%B7%E7%99%BB%E5%BD%95)/image-20220402111543608.png" srcset="/img/loading.gif" lazyload alt="image-20220402111543608"></p>
+<p><img src="/2022/03/04/%E5%A4%9A%E7%94%A8%E6%88%B7%E9%80%9A%E8%AE%AF%E7%B3%BB%E7%BB%9F(%E7%94%A8%E6%88%B7%E7%99%BB%E5%BD%95)/image-20220402113224922.png" srcset="/img/loading.gif" lazyload alt="image-20220402113224922"></p>
+<h1 id="五、完善"><a href="#五、完善" class="headerlink" title="五、完善"></a>五、完善</h1><h2 id="5-1-第一次完善"><a href="#5-1-第一次完善" class="headerlink" title="5.1 第一次完善"></a>5.1 第一次完善</h2><p>将服务端的用户信息放入一个集合，当作后端数据库</p>
+<figure class="highlight java"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs java"><span class="hljs-comment">//创建一个集合，存放多个用户</span><br><br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> ConcurrentHashMap&lt;String,User&gt; validUsers = <span class="hljs-keyword">new</span> <span class="hljs-title class_">ConcurrentHashMap</span>&lt;&gt;();<br>    <span class="hljs-keyword">static</span> &#123;<span class="hljs-comment">//静态代码块，初始化validUser</span><br>        validUsers.put(<span class="hljs-string">&quot;100&quot;</span>,<span class="hljs-keyword">new</span> <span class="hljs-title class_">User</span>(<span class="hljs-string">&quot;100&quot;</span>, <span class="hljs-string">&quot;123456&quot;</span>));<br>        validUsers.put(<span class="hljs-string">&quot;200&quot;</span>,<span class="hljs-keyword">new</span> <span class="hljs-title class_">User</span>(<span class="hljs-string">&quot;200&quot;</span>, <span class="hljs-string">&quot;123456&quot;</span>));<br>        validUsers.put(<span class="hljs-string">&quot;300&quot;</span>,<span class="hljs-keyword">new</span> <span class="hljs-title class_">User</span>(<span class="hljs-string">&quot;300&quot;</span>, <span class="hljs-string">&quot;123456&quot;</span>));<br>        validUsers.put(<span class="hljs-string">&quot;至尊宝&quot;</span>,<span class="hljs-keyword">new</span> <span class="hljs-title class_">User</span>(<span class="hljs-string">&quot;至尊宝&quot;</span>, <span class="hljs-string">&quot;123456&quot;</span>));<br>        validUsers.put(<span class="hljs-string">&quot;紫霞仙子&quot;</span>,<span class="hljs-keyword">new</span> <span class="hljs-title class_">User</span>(<span class="hljs-string">&quot;紫霞仙子&quot;</span>, <span class="hljs-string">&quot;123456&quot;</span>));<br>        validUsers.put(<span class="hljs-string">&quot;菩提老祖&quot;</span>,<span class="hljs-keyword">new</span> <span class="hljs-title class_">User</span>(<span class="hljs-string">&quot;菩提老祖&quot;</span>, <span class="hljs-string">&quot;123456&quot;</span>));<br>    &#125;<br></code></pre></div></td></tr></table></figure>
+
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/Java%E9%A1%B9%E7%9B%AE/">Java项目</a>
+                    
+                      <a class="hover-with-bg" href="/categories/Java%E9%A1%B9%E7%9B%AE/%E5%A4%9A%E7%94%A8%E6%88%B7%E9%80%9A%E8%AE%AF%E7%B3%BB%E7%BB%9F/">多用户通讯系统</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/Java%E9%A1%B9%E7%9B%AE/">Java项目</a>
+                    
+                      <a class="hover-with-bg" href="/tags/%E5%A4%9A%E7%94%A8%E6%88%B7%E9%80%9A%E8%AE%AF%E7%B3%BB%E7%BB%9F/">多用户通讯系统</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/03/04/%E6%96%B0%E7%89%88%E6%95%B0%E6%8D%AE%E8%BF%9E%E6%8E%A5%E6%93%8D%E4%BD%9C%E5%87%BA%E7%8E%B0%E7%9A%84bug/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">新版数据连接操作出现的bug</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/03/04/%E5%A4%9A%E7%94%A8%E6%88%B7%E9%80%9A%E8%AE%AF%E7%B3%BB%E7%BB%9F(%E9%9C%80%E6%B1%82%E5%88%86%E6%9E%90)/">
+                        <span class="hidden-mobile">需求分析</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div class="disqus" style="width:100%">
+    <div id="disqus_thread"></div>
+    
+      <script type="text/javascript">
+        var disqus_config = function() {
+          this.page.url = 'https://xielearncode.github.io/2022/03/04/%E5%A4%9A%E7%94%A8%E6%88%B7%E9%80%9A%E8%AE%AF%E7%B3%BB%E7%BB%9F(%E7%94%A8%E6%88%B7%E7%99%BB%E5%BD%95)/';
+          this.page.identifier = '/2022/03/04/%E5%A4%9A%E7%94%A8%E6%88%B7%E9%80%9A%E8%AE%AF%E7%B3%BB%E7%BB%9F(%E7%94%A8%E6%88%B7%E7%99%BB%E5%BD%95)/';
+        };
+        Fluid.utils.loadComments('#disqus_thread', function() {
+          var d = document, s = d.createElement('script');
+          s.src = '//' + 'fluid' + '.disqus.com/embed.js';
+          s.setAttribute('data-timestamp', new Date());
+          (d.head || d.body).appendChild(s);
+        });
+      </script>
+    
+    <noscript>Please enable JavaScript to view the comments</noscript>
+  </div>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="" target="_blank" rel="nofollow noopener"><span>个人博客</span></a> <i class="iconfont icon-love"></i> <a href="" target="_blank" rel="nofollow noopener"><span>蓝鸟x</span></a> 
+	<!--《添加网站运行时间 -->
+<br/>
+
+<span id="timeDate">载入天数...</span><span id="times">载入时分秒...</span>
+<script>
+var now = new Date(); 
+
+function createtime() {
+    //此处修改你的建站时间或者网站上线时间
+    var grt = new Date('01/01/2022 8:00:00');
+    now.setTime(now.getTime() + 250);
+    days = (now - grt) / 1000 / 60 / 60 / 24;
+
+    dnum = Math.floor(days);
+    hours = (now - grt) / 1000 / 60 / 60 - (24 * dnum);
+    hnum = Math.floor(hours);
+    if (String(hnum).length == 1) {
+        hnum = "0" + hnum;
+    }
+    minutes = (now - grt) / 1000 / 60 - (24 * 60 * dnum) - (60 * hnum);
+    mnum = Math.floor(minutes);
+    if (String(mnum).length == 1) {
+        mnum = "0" + mnum;
+    }
+    seconds = (now - grt) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+    snum = Math.round(seconds);
+    if (String(snum).length == 1) {
+        snum = "0" + snum;
+    }
+    document.getElementById("timeDate").innerHTML = " 本站已安全运行 " + dnum + " 天 ";
+    document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒";
+}
+setInterval("createtime()", 250);
+</script>
+
+<!-- 添加网站运行时间》-->
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+        typing(title);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+<script src="/js/bubble.js"></script>
+<script src="//cdn.jsdelivr.net/gh/bynotes/texiao/source/js/qipao.js"></script>
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"jsonPath":"/live2dw/assets/shizuku.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/love.js"></script>
+<!-- 页面上方泡泡 -->
+<script type="text/javascript" src="/js/bubble.js"></script>
+<script type="text/javascript" src="/js/snow.js"></script>

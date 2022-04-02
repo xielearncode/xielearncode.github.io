@@ -1,0 +1,666 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="蓝鸟x">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="[toc] 一 Vi 和Vim编辑器Vi : Linux的内置文本编辑器, 相当于是Windows的记事本 Vim : Vi 的增强版本 1.1 常用的三种模式 正常模式: 直接进入时,   插入模式: 按下i, I, o, O , a, A, r, R 进入插入模式 命令行模式:  案例: 用vim 编辑一个Java文件  建立文件, 直接进入了正常模式    按下 i 进入插入模式    按下">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux">
+<meta property="og:url" content="https://xielearncode.github.io/2022/03/13/Linux/index.html">
+<meta property="og:site_name" content="蓝鸟x">
+<meta property="og:description" content="[toc] 一 Vi 和Vim编辑器Vi : Linux的内置文本编辑器, 相当于是Windows的记事本 Vim : Vi 的增强版本 1.1 常用的三种模式 正常模式: 直接进入时,   插入模式: 按下i, I, o, O , a, A, r, R 进入插入模式 命令行模式:  案例: 用vim 编辑一个Java文件  建立文件, 直接进入了正常模式    按下 i 进入插入模式    按下">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cn.bing.com/images/search?view=detailV2&ccid=wFeMi4St&id=6B8CF2FFF8A36BFD6C73A81742A5AD97C57C2DBB&thid=OIP.wFeMi4StKqL_wrSo6YZgbQHaDt&mediaurl=https%3a%2f%2fstatic1.makeuseofimages.com%2fwordpress%2fwp-content%2fuploads%2f2014%2f12%2fbest-linux-soft.jpg&exph=840&expw=1680&q=Linux&simid=608027327669625445&FORM=IRPRST&ck=295ACE9D9E6664B1C56607BEBD0B89CE&selectedIndex=11">
+<meta property="article:published_time" content="2022-03-13T14:29:00.000Z">
+<meta property="article:modified_time" content="2022-04-02T14:08:52.667Z">
+<meta property="article:author" content="蓝鸟x">
+<meta property="article:tag" content="Linux">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://cn.bing.com/images/search?view=detailV2&ccid=wFeMi4St&id=6B8CF2FFF8A36BFD6C73A81742A5AD97C57C2DBB&thid=OIP.wFeMi4StKqL_wrSo6YZgbQHaDt&mediaurl=https%3a%2f%2fstatic1.makeuseofimages.com%2fwordpress%2fwp-content%2fuploads%2f2014%2f12%2fbest-linux-soft.jpg&exph=840&expw=1680&q=Linux&simid=608027327669625445&FORM=IRPRST&ck=295ACE9D9E6664B1C56607BEBD0B89CE&selectedIndex=11">
+  
+  
+  <title>Linux - 蓝鸟x</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hint.css@2/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+  
+<link rel="stylesheet" href="/css/indeximg-hover.css">
+<link rel="stylesheet" href="/css/mac.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"xielearncode.github.io","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":60,"cursorChar":"","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":6},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>蓝鸟x</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('https://w.wallhaven.cc/full/72/wallhaven-72rd8e.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="Linux">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2022-03-13 22:29" pubdate>
+        2022年3月13日 晚上
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      1k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      9 分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">Linux</h1>
+            
+            <div class="markdown-body">
+              <p>[toc]</p>
+<h1 id="一-Vi-和Vim编辑器"><a href="#一-Vi-和Vim编辑器" class="headerlink" title="一 Vi 和Vim编辑器"></a>一 Vi 和Vim编辑器</h1><p>Vi : Linux的内置文本编辑器, 相当于是Windows的记事本</p>
+<p>Vim : Vi 的增强版本</p>
+<h2 id="1-1-常用的三种模式"><a href="#1-1-常用的三种模式" class="headerlink" title="1.1 常用的三种模式"></a>1.1 常用的三种模式</h2><ul>
+<li>正常模式: 直接进入时,  </li>
+<li>插入模式: 按下i, I, o, O , a, A, r, R 进入插入模式</li>
+<li>命令行模式:</li>
+</ul>
+<p>案例: 用vim 编辑一个Java文件</p>
+<ol>
+<li>建立文件, 直接进入了正常模式</li>
+</ol>
+<p><img src="/2022/03/13/Linux/image-20220313222410561.png" srcset="/img/loading.gif" lazyload alt="image-20220313222410561"></p>
+<ol start="2">
+<li>按下 i 进入插入模式</li>
+</ol>
+<p><img src="/2022/03/13/Linux/image-20220313222730426.png" srcset="/img/loading.gif" lazyload alt="image-20220313222730426"></p>
+<ol start="3">
+<li>按下<code>ESC </code>后输入  <code> :</code> 进入命令行模式 <code>wq</code>表示写入并退出</li>
+</ol>
+<p><img src="/2022/03/13/Linux/image-20220313223133660.png" srcset="/img/loading.gif" lazyload alt="image-20220313223133660"></p>
+<h2 id="1-2-vi-和-vim-快捷键"><a href="#1-2-vi-和-vim-快捷键" class="headerlink" title="1.2 vi 和 vim 快捷键"></a>1.2 vi 和 vim 快捷键</h2><ol>
+<li>拷贝当前行: yy    拷贝当前行向下五行: 5yy                           &lt;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;正常模式</li>
+<li>删除当前行: dd   删除当前行向下五行 5dd                          &lt;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;正常模式</li>
+<li>查找:  &#x2F;关键字     n—&gt;下一个                                                      &lt;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;正常模式—–在进入—-&gt;命令行模式</li>
+<li>设置文件行号: set nu   取消行号: set nonu                           &lt;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;命令行模式</li>
+<li>命令行  : wq, :q,  :q!                                                                  &lt;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;命令行模式</li>
+<li>大写G末尾行, 小写gg首行                                                        &lt;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;一般模式</li>
+<li>撤销 :           输入u                                                                       &lt;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;一般模式</li>
+<li>定位某一行:          数字(行号) + shift  + g                                    &lt;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;一般模式</li>
+</ol>
+<p><img src="/2022/03/13/Linux/image-20220317131715632.png" srcset="/img/loading.gif" lazyload alt="image-20220317131715632"></p>
+<h2 id="快速截图笔记"><a href="#快速截图笔记" class="headerlink" title="快速截图笔记"></a>快速截图笔记</h2><p><img src="/2022/03/13/Linux/image-20220317131853749.png" srcset="/img/loading.gif" lazyload alt="image-20220317131853749"></p>
+<p><img src="/2022/03/13/Linux/image-20220317131931827.png" srcset="/img/loading.gif" lazyload alt="image-20220317131931827"></p>
+<h1 id="Linux-实操篇-—-开机-重启-用户登录注销"><a href="#Linux-实操篇-—-开机-重启-用户登录注销" class="headerlink" title="Linux 实操篇 —-   开机 重启  用户登录注销"></a>Linux 实操篇 —-   开机 重启  用户登录注销</h1><p><img src="/2022/03/13/Linux/image-20220317132127588.png" srcset="/img/loading.gif" lazyload alt="image-20220317132127588"></p>
+<p><img src="/2022/03/13/Linux/image-20220317132834324.png" srcset="/img/loading.gif" lazyload alt="image-20220317132834324"></p>
+<p><img src="/2022/03/13/Linux/image-20220317133949173.png" srcset="/img/loading.gif" lazyload alt="image-20220317133949173"></p>
+<p><img src="/2022/03/13/Linux/image-20220317134145997.png" srcset="/img/loading.gif" lazyload alt="image-20220317134145997"></p>
+<p><img src="/2022/03/13/Linux/image-20220317134220832.png" srcset="/img/loading.gif" lazyload alt="image-20220317134220832"></p>
+<p><img src="/2022/03/13/Linux/image-20220317134629182.png" srcset="/img/loading.gif" lazyload alt="image-20220317134629182"></p>
+<p>创建文件夹test, 用户名为king</p>
+<p><img src="/2022/03/13/Linux/image-20220317134856887.png" srcset="/img/loading.gif" lazyload alt="image-20220317134856887"></p>
+<p><img src="/2022/03/13/Linux/image-20220317135115760.png" srcset="/img/loading.gif" lazyload alt="image-20220317135115760"></p>
+<p><img src="/2022/03/13/Linux/image-20220317135141339.png" srcset="/img/loading.gif" lazyload alt="image-20220317135141339"></p>
+<p><img src="/2022/03/13/Linux/image-20220317141702389.png" srcset="/img/loading.gif" lazyload alt="image-20220317141702389"></p>
+<p><img src="/2022/03/13/Linux/image-20220317141923585.png" srcset="/img/loading.gif" lazyload alt="image-20220317141923585"></p>
+<p><img src="/2022/03/13/Linux/image-20220317142221605.png" srcset="/img/loading.gif" lazyload alt="image-20220317142221605"></p>
+<p><img src="/2022/03/13/Linux/image-20220317142733840.png" srcset="/img/loading.gif" lazyload alt="image-20220317142733840"></p>
+<p><img src="/2022/03/13/Linux/image-20220317142924962.png" srcset="/img/loading.gif" lazyload alt="image-20220317142924962"></p>
+<h1 id="Linux实操篇-—-实用指令"><a href="#Linux实操篇-—-实用指令" class="headerlink" title="Linux实操篇 —- 实用指令"></a>Linux实操篇 —- 实用指令</h1><p><img src="/2022/03/13/Linux/image-20220317144742243.png" srcset="/img/loading.gif" lazyload alt="image-20220317144742243"></p>
+<p><img src="/2022/03/13/Linux/image-20220317144936865.png" srcset="/img/loading.gif" lazyload alt="image-20220317144936865"></p>
+<p><img src="/2022/03/13/Linux/image-20220317145023377.png" srcset="/img/loading.gif" lazyload alt="image-20220317145023377"></p>
+<p><img src="/2022/03/13/Linux/image-20220317145401450.png" srcset="/img/loading.gif" lazyload alt="image-20220317145401450"></p>
+<p><img src="/2022/03/13/Linux/image-20220317145552623.png" srcset="/img/loading.gif" lazyload alt="image-20220317145552623"></p>
+<p><img src="/2022/03/13/Linux/image-20220317150802379.png" srcset="/img/loading.gif" lazyload alt="image-20220317150802379"></p>
+<p><img src="/2022/03/13/Linux/image-20220317151002156.png" srcset="/img/loading.gif" lazyload alt="image-20220317151002156"></p>
+<p>输入完毕后, 按下CTRL + X</p>
+<p><img src="/2022/03/13/Linux/image-20220317151143122.png" srcset="/img/loading.gif" lazyload alt="image-20220317151143122"></p>
+<p><img src="/2022/03/13/Linux/image-20220317151451651.png" srcset="/img/loading.gif" lazyload alt="image-20220317151451651"></p>
+<p><img src="/2022/03/13/Linux/image-20220317155528118.png" srcset="/img/loading.gif" lazyload alt="image-20220317155528118"></p>
+<p><img src="/2022/03/13/Linux/image-20220317155616751.png" srcset="/img/loading.gif" lazyload alt="image-20220317155616751"></p>
+<p><img src="/2022/03/13/Linux/image-20220317155756444.png" srcset="/img/loading.gif" lazyload alt="image-20220317155756444"></p>
+<p><img src="/2022/03/13/Linux/image-20220317160527283.png" srcset="/img/loading.gif" lazyload alt="image-20220317160527283"><img src="/2022/03/13/Linux/image-20220317160641841.png" srcset="/img/loading.gif" lazyload alt="image-20220317160641841"></p>
+<p><img src="/2022/03/13/Linux/image-20220317161141723.png" srcset="/img/loading.gif" lazyload alt="image-20220317161141723"></p>
+<p><img src="/2022/03/13/Linux/image-20220317161642490.png" srcset="/img/loading.gif" lazyload alt="image-20220317161642490"></p>
+<p><img src="/2022/03/13/Linux/image-20220317165055749.png" srcset="/img/loading.gif" lazyload alt="image-20220317165055749"></p>
+<p><img src="/2022/03/13/Linux/image-20220317165232901.png" srcset="/img/loading.gif" lazyload alt="image-20220317165232901"></p>
+<p><img src="/2022/03/13/Linux/image-20220317170214213.png" srcset="/img/loading.gif" lazyload alt="image-20220317170214213"></p>
+<p><img src="/2022/03/13/Linux/image-20220317170255873.png" srcset="/img/loading.gif" lazyload alt="image-20220317170255873"></p>
+<p><img src="/2022/03/13/Linux/image-20220317170630976.png" srcset="/img/loading.gif" lazyload alt="image-20220317170630976"><img src="/2022/03/13/Linux/image-20220317172409464.png" srcset="/img/loading.gif" lazyload alt="image-20220317172409464"></p>
+<p><img src="/2022/03/13/Linux/image-20220317174029144.png" srcset="/img/loading.gif" lazyload alt="image-20220317174029144"></p>
+<p><img src="/2022/03/13/Linux/image-20220317174101098.png" srcset="/img/loading.gif" lazyload alt="image-20220317174101098"></p>
+<p><img src="/2022/03/13/Linux/image-20220317175001673.png" srcset="/img/loading.gif" lazyload alt="111111111">\</p>
+<p><img src="/2022/03/13/Linux/image-20220317175902000.png" srcset="/img/loading.gif" lazyload alt="image-20220317175902000"></p>
+<p><img src="/2022/03/13/Linux/image-20220317181315267.png" srcset="/img/loading.gif" lazyload alt="image-20220317181315267"></p>
+<p>cal: 显示日历</p>
+<p><img src="/2022/03/13/Linux/image-20220317183501898.png" srcset="/img/loading.gif" lazyload alt="image-20220317183501898"></p>
+<p><img src="/2022/03/13/Linux/image-20220317184340472.png" srcset="/img/loading.gif" lazyload alt="image-20220317184340472"></p>
+<h1 id="日期"><a href="#日期" class="headerlink" title="日期"></a>日期</h1><p><img src="/2022/03/13/Linux/image-20220318160206754.png" srcset="/img/loading.gif" lazyload alt="image-20220318160206754"></p>
+<p><img src="/2022/03/13/Linux/image-20220318160440700.png" srcset="/img/loading.gif" lazyload alt="image-20220318160440700"></p>
+<p>cal 2020: 显示2020年所有月份的日历 </p>
+<h1 id="搜索查找"><a href="#搜索查找" class="headerlink" title="搜索查找"></a>搜索查找</h1><p><img src="/2022/03/13/Linux/image-20220318160852574.png" srcset="/img/loading.gif" lazyload alt="image-20220318160852574"></p>
+<p><img src="/2022/03/13/Linux/image-20220318163817992.png" srcset="/img/loading.gif" lazyload alt="image-20220318163817992"></p>
+<p><img src="/2022/03/13/Linux/image-20220318164439618.png" srcset="/img/loading.gif" lazyload alt="image-20220318164439618"></p>
+<p><img src="/2022/03/13/Linux/image-20220318164817688.png" srcset="/img/loading.gif" lazyload alt="image-20220318164817688"></p>
+<p><img src="/2022/03/13/Linux/image-20220318165028365.png" srcset="/img/loading.gif" lazyload alt="image-20220318165028365"><img src="/2022/03/13/Linux/image-20220318165438695.png" srcset="/img/loading.gif" lazyload alt="image-20220318165438695"></p>
+<h1 id="压缩和解压"><a href="#压缩和解压" class="headerlink" title="压缩和解压"></a>压缩和解压</h1><div class="hljs code-wrapper"><pre><code class="hljs"> ![image-20220318165522090](Linux/image-20220318165522090.png)
+</code></pre></div>
+<p><img src="/2022/03/13/Linux/image-20220318165918622.png" srcset="/img/loading.gif" lazyload alt="image-20220318165918622"></p>
+<p><img src="/2022/03/13/Linux/image-20220318171645516.png" srcset="/img/loading.gif" lazyload alt="image-20220318171645516"></p>
+<p><img src="/2022/03/13/Linux/image-20220318180842927.png" srcset="/img/loading.gif" lazyload alt="image-20220318180842927"></p>
+<h1 id="Linux-组"><a href="#Linux-组" class="headerlink" title="Linux 组"></a>Linux 组</h1><p><img src="/2022/03/13/Linux/image-20220318204730884.png" srcset="/img/loading.gif" lazyload alt="image-20220318204730884"></p>
+<p><img src="/2022/03/13/Linux/image-20220318205523879.png" srcset="/img/loading.gif" lazyload alt="image-20220318205523879"></p>
+<p><img src="/2022/03/13/Linux/image-20220318205921248.png" srcset="/img/loading.gif" lazyload alt="image-20220318205921248"></p>
+<p><img src="/2022/03/13/Linux/image-20220318211225035.png" srcset="/img/loading.gif" lazyload alt="image-20220318211225035"></p>
+<p><img src="/2022/03/13/Linux/image-20220318211323190.png" srcset="/img/loading.gif" lazyload alt="image-20220318211323190"></p>
+<p><img src="/2022/03/13/Linux/image-20220318211824205.png" srcset="/img/loading.gif" lazyload alt="image-20220318211824205"></p>
+<h1 id="权限"><a href="#权限" class="headerlink" title="权限"></a>权限</h1><p><img src="/2022/03/13/Linux/image-20220318212437972.png" srcset="/img/loading.gif" lazyload alt="image-20220318212437972"></p>
+<p><img src="/2022/03/13/Linux/image-20220318212458998.png" srcset="/img/loading.gif" lazyload alt="image-20220318212458998"></p>
+<p><img src="/2022/03/13/Linux/image-20220318213417314.png" srcset="/img/loading.gif" lazyload alt="image-20220318213417314"> </p>
+<p><img src="/2022/03/13/Linux/image-20220319075455742.png" srcset="/img/loading.gif" lazyload alt="image-20220319075455742"></p>
+<p><img src="/2022/03/13/Linux/image-20220319080031798.png" srcset="/img/loading.gif" lazyload alt="image-20220319080031798"></p>
+<p><img src="/2022/03/13/Linux/image-20220319080930361.png" srcset="/img/loading.gif" lazyload alt="image-20220319080930361"></p>
+<h1 id="任务调度"><a href="#任务调度" class="headerlink" title="任务调度"></a>任务调度</h1><p><img src="/2022/03/13/Linux/image-20220319100755619.png" srcset="/img/loading.gif" lazyload alt="image-20220319100755619">v<img src="/2022/03/13/Linux/image-20220319101541655.png" srcset="/img/loading.gif" lazyload alt="image-20220319101541655"> </p>
+<p><img src="/2022/03/13/Linux/image-20220319104705653.png" srcset="/img/loading.gif" lazyload alt="image-20220319104705653"></p>
+<p><img src="/2022/03/13/Linux/image-20220319105320745.png" srcset="/img/loading.gif" lazyload alt="image-20220319105320745"></p>
+<p>​    vim shname.sh    创建shell脚本文件</p>
+<p>.&#x2F;shname.sh     执行shell脚本软件</p>
+<p><img src="/2022/03/13/Linux/image-20220319111653945.png" srcset="/img/loading.gif" lazyload alt="image-20220319111653945"></p>
+<p><img src="/2022/03/13/Linux/image-20220319111927047.png" srcset="/img/loading.gif" lazyload alt="image-20220319111927047"></p>
+<p><img src="/2022/03/13/Linux/image-20220319112307934.png" srcset="/img/loading.gif" lazyload alt="image-20220319112307934"></p>
+<p><img src="/2022/03/13/Linux/image-20220319112349134.png" srcset="/img/loading.gif" lazyload alt="image-20220319112349134"></p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/Java%E5%9F%BA%E7%A1%80/">Java基础</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/Linux/">Linux</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/03/21/Spring/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Spring</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/03/10/IO%E6%B5%81/">
+                        <span class="hidden-mobile">IO流</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div class="disqus" style="width:100%">
+    <div id="disqus_thread"></div>
+    
+      <script type="text/javascript">
+        var disqus_config = function() {
+          this.page.url = 'https://xielearncode.github.io/2022/03/13/Linux/';
+          this.page.identifier = '/2022/03/13/Linux/';
+        };
+        Fluid.utils.loadComments('#disqus_thread', function() {
+          var d = document, s = d.createElement('script');
+          s.src = '//' + 'fluid' + '.disqus.com/embed.js';
+          s.setAttribute('data-timestamp', new Date());
+          (d.head || d.body).appendChild(s);
+        });
+      </script>
+    
+    <noscript>Please enable JavaScript to view the comments</noscript>
+  </div>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="" target="_blank" rel="nofollow noopener"><span>个人博客</span></a> <i class="iconfont icon-love"></i> <a href="" target="_blank" rel="nofollow noopener"><span>蓝鸟x</span></a> 
+	<!--《添加网站运行时间 -->
+<br/>
+
+<span id="timeDate">载入天数...</span><span id="times">载入时分秒...</span>
+<script>
+var now = new Date(); 
+
+function createtime() {
+    //此处修改你的建站时间或者网站上线时间
+    var grt = new Date('01/01/2022 8:00:00');
+    now.setTime(now.getTime() + 250);
+    days = (now - grt) / 1000 / 60 / 60 / 24;
+
+    dnum = Math.floor(days);
+    hours = (now - grt) / 1000 / 60 / 60 - (24 * dnum);
+    hnum = Math.floor(hours);
+    if (String(hnum).length == 1) {
+        hnum = "0" + hnum;
+    }
+    minutes = (now - grt) / 1000 / 60 - (24 * 60 * dnum) - (60 * hnum);
+    mnum = Math.floor(minutes);
+    if (String(mnum).length == 1) {
+        mnum = "0" + mnum;
+    }
+    seconds = (now - grt) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+    snum = Math.round(seconds);
+    if (String(snum).length == 1) {
+        snum = "0" + snum;
+    }
+    document.getElementById("timeDate").innerHTML = " 本站已安全运行 " + dnum + " 天 ";
+    document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒";
+}
+setInterval("createtime()", 250);
+</script>
+
+<!-- 添加网站运行时间》-->
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+        typing(title);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+<script src="/js/bubble.js"></script>
+<script src="//cdn.jsdelivr.net/gh/bynotes/texiao/source/js/qipao.js"></script>
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"jsonPath":"/live2dw/assets/shizuku.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/love.js"></script>
+<!-- 页面上方泡泡 -->
+<script type="text/javascript" src="/js/bubble.js"></script>
+<script type="text/javascript" src="/js/snow.js"></script>
