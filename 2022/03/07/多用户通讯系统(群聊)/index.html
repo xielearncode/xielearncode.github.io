@@ -16,16 +16,16 @@
   <meta name="author" content="蓝鸟x">
   <meta name="keywords" content="">
   
-    <meta name="description" content="[toc]  一、功能说明用户与用户之间能够实现私聊的功能。如用户100给用户200发送消息，用户200可以收到消息，用户200也可以给用户100发送信息。 二、思路分析 &amp; 程序框架图 三、代码实现客户端的view 12345678case &quot;3&quot;:    System.out.println(&quot;请输入想聊天的在线用户id：&quot;);    Stri">
+    <meta name="description" content="[toc] 一、功能说明当一个用户选择使用群发消息功能的时候，它可以将要发送的内容发送到当前在线的每一个用户，当接收方收到群发消息，会在控制台显示收到的消息。 二、思路分析此功能的思路和私聊的很类似，也是发送方先向服务端发送消息，服务端接收到后判断是群聊消息，然后遍历目前在线的线程，将消息发送出去 三、代码实现客户端View 12345case &quot;2&quot;:    System.o">
 <meta property="og:type" content="article">
-<meta property="og:title" content="私聊">
-<meta property="og:url" content="https://xielearncode.github.io/2022/03/06/%E5%A4%9A%E7%94%A8%E6%88%B7%E9%80%9A%E8%AE%AF%E7%B3%BB%E7%BB%9F(%E7%A7%81%E8%81%8A)/index.html">
+<meta property="og:title" content="群聊">
+<meta property="og:url" content="https://xielearncode.github.io/2022/03/07/%E5%A4%9A%E7%94%A8%E6%88%B7%E9%80%9A%E8%AE%AF%E7%B3%BB%E7%BB%9F(%E7%BE%A4%E8%81%8A)/index.html">
 <meta property="og:site_name" content="蓝鸟x">
-<meta property="og:description" content="[toc]  一、功能说明用户与用户之间能够实现私聊的功能。如用户100给用户200发送消息，用户200可以收到消息，用户200也可以给用户100发送信息。 二、思路分析 &amp; 程序框架图 三、代码实现客户端的view 12345678case &quot;3&quot;:    System.out.println(&quot;请输入想聊天的在线用户id：&quot;);    Stri">
+<meta property="og:description" content="[toc] 一、功能说明当一个用户选择使用群发消息功能的时候，它可以将要发送的内容发送到当前在线的每一个用户，当接收方收到群发消息，会在控制台显示收到的消息。 二、思路分析此功能的思路和私聊的很类似，也是发送方先向服务端发送消息，服务端接收到后判断是群聊消息，然后遍历目前在线的线程，将消息发送出去 三、代码实现客户端View 12345case &quot;2&quot;:    System.o">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20201124204536103.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl8zOTI3NDY1OQ==,size_16,color_FFFFFF,t_70#pic_center">
-<meta property="article:published_time" content="2022-03-06T14:03:15.000Z">
-<meta property="article:modified_time" content="2022-04-03T02:53:26.451Z">
+<meta property="article:published_time" content="2022-03-06T23:05:21.000Z">
+<meta property="article:modified_time" content="2022-04-03T07:37:20.140Z">
 <meta property="article:author" content="蓝鸟x">
 <meta property="article:tag" content="Java项目">
 <meta property="article:tag" content="多用户通讯系统">
@@ -33,7 +33,7 @@
 <meta name="twitter:image" content="https://img-blog.csdnimg.cn/20201124204536103.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl8zOTI3NDY1OQ==,size_16,color_FFFFFF,t_70#pic_center">
   
   
-  <title>私聊 - 蓝鸟x</title>
+  <title>群聊 - 蓝鸟x</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
 
@@ -184,7 +184,7 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="私聊">
+            <span class="h2" id="subtitle" title="群聊">
               
             </span>
 
@@ -194,8 +194,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2022-03-06 22:03" pubdate>
-        2022年3月6日 晚上
+      <time datetime="2022-03-07 07:05" pubdate>
+        2022年3月7日 早上
       </time>
     </span>
   
@@ -243,30 +243,25 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">私聊</h1>
+            <h1 style="display: none">群聊</h1>
             
             <div class="markdown-body">
-              <blockquote>
-<p>[toc]</p>
-</blockquote>
-<h1 id="一、功能说明"><a href="#一、功能说明" class="headerlink" title="一、功能说明"></a>一、功能说明</h1><p>用户与用户之间能够实现私聊的功能。如用户100给用户200发送消息，用户200可以收到消息，用户200也可以给用户100发送信息。</p>
-<h1 id="二、思路分析-amp-程序框架图"><a href="#二、思路分析-amp-程序框架图" class="headerlink" title="二、思路分析 &amp; 程序框架图"></a>二、思路分析 &amp; 程序框架图</h1><p><img src="/2022/03/06/%E5%A4%9A%E7%94%A8%E6%88%B7%E9%80%9A%E8%AE%AF%E7%B3%BB%E7%BB%9F(%E7%A7%81%E8%81%8A)/image-20220403093252210.png" srcset="/img/loading.gif" lazyload alt="image-20220403093252210"></p>
-<h1 id="三、代码实现"><a href="#三、代码实现" class="headerlink" title="三、代码实现"></a>三、代码实现</h1><p>客户端的view</p>
-<figure class="highlight java"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs java"><span class="hljs-keyword">case</span> <span class="hljs-string">&quot;3&quot;</span>:<br>    System.out.println(<span class="hljs-string">&quot;请输入想聊天的在线用户id：&quot;</span>);<br>    <span class="hljs-type">String</span> <span class="hljs-variable">getterId</span> <span class="hljs-operator">=</span> Utility.readString(<span class="hljs-number">50</span>);<br>    System.out.println(<span class="hljs-string">&quot;请输入聊天内容&quot;</span>);<br>    <span class="hljs-type">String</span> <span class="hljs-variable">content</span> <span class="hljs-operator">=</span> Utility.readString(<span class="hljs-number">100</span>);<br>    <span class="hljs-comment">//编写一个私聊方法, 将信息发送到服务端</span><br>    MessageClientService.sendMessageToOne(content,userId,getterId);<br>    <span class="hljs-keyword">break</span>;<br></code></pre></div></td></tr></table></figure>
+              <p>[toc]</p>
+<h1 id="一、功能说明"><a href="#一、功能说明" class="headerlink" title="一、功能说明"></a>一、功能说明</h1><p>当一个用户选择使用群发消息功能的时候，它可以将要发送的内容发送到当前在线的每一个用户，当接收方收到群发消息，会在控制台显示收到的消息。</p>
+<h1 id="二、思路分析"><a href="#二、思路分析" class="headerlink" title="二、思路分析"></a>二、思路分析</h1><p>此功能的思路和私聊的很类似，也是发送方先向服务端发送消息，服务端接收到后判断是群聊消息，然后遍历目前在线的线程，将消息发送出去</p>
+<h1 id="三、代码实现"><a href="#三、代码实现" class="headerlink" title="三、代码实现"></a>三、代码实现</h1><p>客户端View</p>
+<figure class="highlight java"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs java"><span class="hljs-keyword">case</span> <span class="hljs-string">&quot;2&quot;</span>:<br>    System.out.print(<span class="hljs-string">&quot;群发消息：&quot;</span>);<br>    <span class="hljs-type">String</span> <span class="hljs-variable">contentToAll</span> <span class="hljs-operator">=</span> Utility.readString(<span class="hljs-number">100</span>);<br>    <span class="hljs-comment">//调用一个方法，将消息封装成message对象，发送给服务端</span><br>	<span class="hljs-keyword">break</span>;<br></code></pre></div></td></tr></table></figure>
 
+<p>客户端消息管理类</p>
+<figure class="highlight java"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs java"><span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 群发消息方法</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> contentToAll 内容</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> senderId 发送者</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">sendMessageToAll</span><span class="hljs-params">(String contentToAll, String senderId)</span>&#123;<br>        <span class="hljs-type">Message</span> <span class="hljs-variable">message</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Message</span>();<br>        message.setContent(contentToAll);<br>        message.setSender(senderId);<br>        <span class="hljs-type">DateTimeFormatter</span> <span class="hljs-variable">dateTimeFormatter</span> <span class="hljs-operator">=</span> DateTimeFormatter.ofPattern(<span class="hljs-string">&quot;yyyy年MM月dd日 HH:mm:ss&quot;</span>);<br>        message.setSendTime(dateTimeFormatter.format(LocalDateTime.now()));<br>        System.out.println(senderId + <span class="hljs-string">&quot; : &quot;</span> + contentToAll );<br>        <span class="hljs-keyword">try</span> &#123;<br>            <span class="hljs-type">ObjectOutputStream</span> <span class="hljs-variable">oos</span> <span class="hljs-operator">=</span><br>                    <span class="hljs-keyword">new</span> <span class="hljs-title class_">ObjectOutputStream</span>(ManageClientConnectionServerThread.getClientConnectServerThread(senderId).getSocket().getOutputStream());<br>            oos.writeObject(message);<br>        &#125; <span class="hljs-keyword">catch</span> (IOException e) &#123;<br>            e.printStackTrace();<br>        &#125;<br><br><br>    &#125;<br></code></pre></div></td></tr></table></figure>
 
+<p>服务端遍历群发</p>
+<figure class="highlight java"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs java"><span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(message.getMesType().equals(MessageType.MESSAGE_TO_ALL_MES))&#123;<br>    <span class="hljs-comment">//群发消息，遍历hm，取出所有线程，打入其数据通道</span><br>    HashMap&lt;String, ServerConnectClientThread&gt; hm = ManageClientThreads.getHm();<br>    Iterator&lt;String&gt; iterator = hm.keySet().iterator();<br>    <span class="hljs-keyword">while</span>(iterator.hasNext())&#123;<br>        <span class="hljs-type">String</span> <span class="hljs-variable">userId</span> <span class="hljs-operator">=</span> iterator.next();<br>        <span class="hljs-type">ObjectOutputStream</span> <span class="hljs-variable">oos</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ObjectOutputStream</span>(ManageClientThreads.getServereConnectClientThread(userId).getSocket().getOutputStream());<br>        oos.writeObject(message);<br><br>    &#125;<br>&#125;<br></code></pre></div></td></tr></table></figure>
 
-<p>在客户端编写一个消息处理的类，里面设置一个发送消息的静态方法</p>
-<figure class="highlight java"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.hspedu.client.service;<br><span class="hljs-keyword">import</span> java.io.IOException;<br><span class="hljs-keyword">import</span> java.io.ObjectOutputStream;<br><span class="hljs-keyword">import</span> java.time.LocalDate;<br><span class="hljs-keyword">import</span> java.time.LocalDateTime;<br><span class="hljs-keyword">import</span> java.time.format.DateTimeFormatter;<br><span class="hljs-keyword">import</span> java.util.Date;<br><br><span class="hljs-keyword">import</span> com.hspedu.common.Message;<br><span class="hljs-keyword">import</span> com.hspedu.common.MessageType;<br><br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@author</span> 谢飞</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@version</span> 1.0</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@date</span> 2022</span><br><span class="hljs-comment"> * 该类/对象， 提供和消息服务相关的服务方法</span><br><span class="hljs-comment"> */</span><br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">MessageClientService</span> &#123;<br><br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     *</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> content 内容</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> senderId 发送信息者</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> getterId 接收信息者</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">sendMessageToOne</span><span class="hljs-params">(String content,String senderId,String getterId)</span>&#123;<br>        <span class="hljs-comment">//构建message对象</span><br>        <span class="hljs-type">Message</span> <span class="hljs-variable">message</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Message</span>();<br>        message.setMesType(MessageType.MESSAFE_COMM_MES);<br>        message.setSender(senderId);<br>        message.setGetter(getterId);<br>        message.setContent(content);<br>        <span class="hljs-type">DateTimeFormatter</span> <span class="hljs-variable">dateTimeFormatter</span> <span class="hljs-operator">=</span> DateTimeFormatter.ofPattern(<span class="hljs-string">&quot;yyyy年MM月dd日 HH:mm:ss&quot;</span>);<br>        message.setSendTime(dateTimeFormatter.format(LocalDateTime.now()));<span class="hljs-comment">//发送时间</span><br><br><br>        System.out.println(senderId + <span class="hljs-string">&quot; 发送给 &quot;</span> + getterId +<span class="hljs-string">&quot; : &quot;</span> + content);<br>        <span class="hljs-comment">//发送给服务端</span><br>        <span class="hljs-keyword">try</span> &#123;<br>            <span class="hljs-type">ObjectOutputStream</span> <span class="hljs-variable">oos</span> <span class="hljs-operator">=</span><br>                    <span class="hljs-keyword">new</span> <span class="hljs-title class_">ObjectOutputStream</span>(ManageClientConnectionServerThread.getClientConnectServerThread(senderId).getSocket().getOutputStream());<br>            oos.writeObject(message);<br>        &#125; <span class="hljs-keyword">catch</span> (IOException e) &#123;<br>            e.printStackTrace();<br>        &#125;<br><br><br>    &#125;<br>&#125;<br><br></code></pre></div></td></tr></table></figure>
+<p>客户端方接收群发消息</p>
+<figure class="highlight java"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs java"><span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(message.getMesType().equals(MessageType.MESSAGE_TO_ALL_MES))&#123;<br>    System.out.println(message.getSender() + <span class="hljs-string">&quot;:&quot;</span> +message.getContent() +<span class="hljs-string">&quot;\t&quot;</span> + message.getSendTime());<br>&#125;<br></code></pre></div></td></tr></table></figure>
 
-
-
-
-
-
-
-<h1 id="四、实现效果"><a href="#四、实现效果" class="headerlink" title="四、实现效果"></a>四、实现效果</h1><p><img src="/2022/03/06/%E5%A4%9A%E7%94%A8%E6%88%B7%E9%80%9A%E8%AE%AF%E7%B3%BB%E7%BB%9F(%E7%A7%81%E8%81%8A)/image-20220403105304066.png" srcset="/img/loading.gif" lazyload alt="image-20220403105304066"></p>
-<p><img src="/2022/03/06/%E5%A4%9A%E7%94%A8%E6%88%B7%E9%80%9A%E8%AE%AF%E7%B3%BB%E7%BB%9F(%E7%A7%81%E8%81%8A)/image-20220403105323957.png" srcset="/img/loading.gif" lazyload alt="image-20220403105323957"></p>
+<h1 id="四、实际效果"><a href="#四、实际效果" class="headerlink" title="四、实际效果"></a>四、实际效果</h1><p><img src="/2022/03/07/%E5%A4%9A%E7%94%A8%E6%88%B7%E9%80%9A%E8%AE%AF%E7%B3%BB%E7%BB%9F(%E7%BE%A4%E8%81%8A)/image-20220403153720057.png" srcset="/img/loading.gif" lazyload alt="image-20220403153720057"></p>
 
             </div>
             <hr>
@@ -305,9 +300,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/03/07/%E5%A4%9A%E7%94%A8%E6%88%B7%E9%80%9A%E8%AE%AF%E7%B3%BB%E7%BB%9F(%E7%BE%A4%E8%81%8A)/">
+                      <a href="/2022/03/07/%E5%A4%9A%E7%94%A8%E6%88%B7%E9%80%9A%E8%AE%AF%E7%B3%BB%E7%BB%9F(%E7%A6%BB%E7%BA%BF%E5%8F%91%E9%80%81)/">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">群聊</span>
+                        <span class="hidden-mobile">离线发送</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -315,8 +310,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/03/06/%E5%A4%9A%E7%94%A8%E6%88%B7%E9%80%9A%E8%AE%AF%E7%B3%BB%E7%BB%9F(%E6%97%A0%E5%BC%82%E5%B8%B8%E9%80%80%E5%87%BA)/">
-                        <span class="hidden-mobile">无异常退出</span>
+                      <a href="/2022/03/06/%E5%A4%9A%E7%94%A8%E6%88%B7%E9%80%9A%E8%AE%AF%E7%B3%BB%E7%BB%9F(%E7%A7%81%E8%81%8A)/">
+                        <span class="hidden-mobile">私聊</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -338,8 +333,8 @@
     
       <script type="text/javascript">
         var disqus_config = function() {
-          this.page.url = 'https://xielearncode.github.io/2022/03/06/%E5%A4%9A%E7%94%A8%E6%88%B7%E9%80%9A%E8%AE%AF%E7%B3%BB%E7%BB%9F(%E7%A7%81%E8%81%8A)/';
-          this.page.identifier = '/2022/03/06/%E5%A4%9A%E7%94%A8%E6%88%B7%E9%80%9A%E8%AE%AF%E7%B3%BB%E7%BB%9F(%E7%A7%81%E8%81%8A)/';
+          this.page.url = 'https://xielearncode.github.io/2022/03/07/%E5%A4%9A%E7%94%A8%E6%88%B7%E9%80%9A%E8%AE%AF%E7%B3%BB%E7%BB%9F(%E7%BE%A4%E8%81%8A)/';
+          this.page.identifier = '/2022/03/07/%E5%A4%9A%E7%94%A8%E6%88%B7%E9%80%9A%E8%AE%AF%E7%B3%BB%E7%BB%9F(%E7%BE%A4%E8%81%8A)/';
         };
         Fluid.utils.loadComments('#disqus_thread', function() {
           var d = document, s = d.createElement('script');
