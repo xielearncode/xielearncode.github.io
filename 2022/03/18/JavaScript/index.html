@@ -1,0 +1,782 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="蓝鸟x">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="一、简介JavaScript是一门跨平台语言，面向对象的脚本语言，而Java语言也是跨平台的、面向对象的语言，只不过Java是编译语言，是需要编译成字节码文件才能运行的。javaScript是脚本语言，不需要编译，由浏览器直接解析并执行 JavaScript是用来控制网页行为的，它能使网页可交互。 二、JavaScript的引入方式 内部脚本：将JS代码定义在HTML页面中  12345&lt;b">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaScript">
+<meta property="og:url" content="https://xielearncode.github.io/2022/03/18/JavaScript/index.html">
+<meta property="og:site_name" content="蓝鸟x">
+<meta property="og:description" content="一、简介JavaScript是一门跨平台语言，面向对象的脚本语言，而Java语言也是跨平台的、面向对象的语言，只不过Java是编译语言，是需要编译成字节码文件才能运行的。javaScript是脚本语言，不需要编译，由浏览器直接解析并执行 JavaScript是用来控制网页行为的，它能使网页可交互。 二、JavaScript的引入方式 内部脚本：将JS代码定义在HTML页面中  12345&lt;b">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-03-18T13:07:00.000Z">
+<meta property="article:modified_time" content="2022-04-10T09:05:41.968Z">
+<meta property="article:author" content="蓝鸟x">
+<meta property="article:tag" content="JavaScript">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  <title>JavaScript - 蓝鸟x</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hint.css@2/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+  
+<link rel="stylesheet" href="/css/indeximg-hover.css">
+<link rel="stylesheet" href="/css/mac.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"xielearncode.github.io","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":60,"cursorChar":"","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":6},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>蓝鸟x</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('https://w.wallhaven.cc/full/72/wallhaven-72rd8e.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="JavaScript">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2022-03-18 21:07" pubdate>
+        2022年3月18日 晚上
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      4.3k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      36 分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">JavaScript</h1>
+            
+            <div class="markdown-body">
+              <h1 id="一、简介"><a href="#一、简介" class="headerlink" title="一、简介"></a>一、简介</h1><p><strong>JavaScript是一门跨平台语言，面向对象的脚本语言</strong>，而Java语言也是跨平台的、面向对象的语言，只不过Java是编译语言，是需要编译成字节码文件才能运行的。javaScript是脚本语言，不需要编译，由浏览器直接解析并执行</p>
+<p>JavaScript是用来控制网页行为的，它能使网页可交互。</p>
+<h1 id="二、JavaScript的引入方式"><a href="#二、JavaScript的引入方式" class="headerlink" title="二、JavaScript的引入方式"></a>二、JavaScript的引入方式</h1><ul>
+<li>内部脚本：将JS代码定义在HTML页面中</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="language-javascript"></span><br><span class="language-javascript">    	<span class="hljs-title function_">alert</span>(<span class="hljs-string">&quot;hello javaScript&quot;</span>)</span><br><span class="language-javascript">    </span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span><br></code></pre></div></td></tr></table></figure>
+
+<ul>
+<li>外部脚本：将JS代码定义在外部的JS文件中，然后引入到HTML页面中</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;../js/demo.js&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span><br></code></pre></div></td></tr></table></figure>
+
+<h1 id="三、JavaScript基础语法"><a href="#三、JavaScript基础语法" class="headerlink" title="三、JavaScript基础语法"></a>三、JavaScript基础语法</h1><h2 id="3-1书写语法"><a href="#3-1书写语法" class="headerlink" title="3.1书写语法"></a>3.1书写语法</h2><ul>
+<li>区分大小写</li>
+<li>每行结尾分号可有可无</li>
+<li>注释<ul>
+<li>单行&#x2F;&#x2F;</li>
+<li>多行&#x2F;*    *&#x2F;</li>
+</ul>
+</li>
+<li>大括号代表代码块</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">if</span>(count == <span class="hljs-number">3</span>)&#123;<br>    <span class="hljs-title function_">alert</span>(count)<br>&#125;<br></code></pre></div></td></tr></table></figure>
+
+<h2 id="3-2-输出语句"><a href="#3-2-输出语句" class="headerlink" title="3.2 输出语句"></a>3.2 输出语句</h2><ul>
+<li>window.alert(): 警告框</li>
+<li>document。write(): 写入HTML输出</li>
+<li>console.log(): 写入浏览器控制台</li>
+</ul>
+<h2 id="3-3-变量"><a href="#3-3-变量" class="headerlink" title="3.3 变量"></a>3.3 变量</h2><ul>
+<li>任何字母，数字，下划线，美元符</li>
+<li>数字不能开头</li>
+<li>建议驼峰命名</li>
+</ul>
+<p>var全局变量， let 局部变量</p>
+<p>const定义常量，一旦声明就不可更改</p>
+<h2 id="3-4-数据类型"><a href="#3-4-数据类型" class="headerlink" title="3.4 数据类型"></a>3.4 数据类型</h2><ul>
+<li>number：数字（整数，小数，NaN）</li>
+<li>string：字符，字符串（单双引号都可以）</li>
+<li>boolean：布尔值</li>
+<li>null：对象为空</li>
+<li>undefined：当声明变量没有初始化时，默认是undefined</li>
+</ul>
+<h2 id="3-5-运算符"><a href="#3-5-运算符" class="headerlink" title="3.5 运算符"></a>3.5 运算符</h2><ul>
+<li>&#x3D;&#x3D;：判断类型是否一样，不一样则进行类型转换，然后进行值的比较</li>
+<li>&#x3D;&#x3D;&#x3D;：判断类型是否一样，不一样直接返回false，一样才进行值的比较</li>
+</ul>
+<blockquote>
+<p>可以用parseInt() 函数进行类型转换</p>
+</blockquote>
+<h2 id="3-6-流程控制语句"><a href="#3-6-流程控制语句" class="headerlink" title="3.6 流程控制语句"></a>3.6 流程控制语句</h2><p>if，switch，for，while，dowhile…</p>
+<h2 id="3-7-函数"><a href="#3-7-函数" class="headerlink" title="3.7 函数"></a>3.7 函数</h2><ul>
+<li>定义</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">function</span> 函数名(参数<span class="hljs-number">1</span>，参数<span class="hljs-number">2</span>，...)&#123;<br>    要执行的代码<br>&#125;<br></code></pre></div></td></tr></table></figure>
+
+<figure class="highlight javascript"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">var</span> 函数名 = <span class="hljs-keyword">function</span> (<span class="hljs-params">参数<span class="hljs-number">1</span>，参数<span class="hljs-number">2</span> ...</span>)&#123;<br>    要执行的代码<br>&#125;<br></code></pre></div></td></tr></table></figure>
+
+
+
+<h1 id="四、JavaScript常用对象"><a href="#四、JavaScript常用对象" class="headerlink" title="四、JavaScript常用对象"></a>四、JavaScript常用对象</h1><ul>
+<li>基本对象<ul>
+<li>Array</li>
+<li>Boolean</li>
+<li>Date</li>
+<li>Math</li>
+<li>Number</li>
+<li>String</li>
+<li>RegExp</li>
+<li>Global</li>
+</ul>
+</li>
+<li>BOM对象（browser）<ul>
+<li>Window</li>
+<li>Navigator</li>
+<li>Screen</li>
+<li>History</li>
+<li>Location</li>
+</ul>
+</li>
+<li>DOM对象<ul>
+<li>Document</li>
+<li>Anchor</li>
+<li>Area</li>
+<li>…</li>
+</ul>
+</li>
+</ul>
+<h2 id="4-1-Array对象"><a href="#4-1-Array对象" class="headerlink" title="4.1 Array对象"></a>4.1 Array对象</h2><p>用于定义数组</p>
+<figure class="highlight javascript"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs javaScript"><span class="hljs-comment">//方式1</span><br><span class="hljs-keyword">var</span> arr = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Array</span>(<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3.</span>..);<br><br><span class="hljs-comment">//方式2</span><br><span class="hljs-keyword">var</span> arr = [<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3.</span>..]<br></code></pre></div></td></tr></table></figure>
+
+<p>访问数组中元素和Java语言一样</p>
+<p>arr[i] ;</p>
+<p><strong>特点：</strong></p>
+<p>JavaScript中的数组相当于Java中的集合，数组的长度是可以变化的，而JavaScript是弱类型，所以可以存储任意的类型数据</p>
+<h2 id="4-2-String对象"><a href="#4-2-String对象" class="headerlink" title="4.2 String对象"></a>4.2 String对象</h2><p><strong>创建：</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-comment">//方式1</span><br><span class="hljs-keyword">var</span> 变量名 = <span class="hljs-keyword">new</span> <span class="hljs-title class_">String</span>(s)<br><br><span class="hljs-comment">//方式2</span><br><span class="hljs-keyword">var</span> 变量名 = <span class="hljs-string">&quot;数组&quot;</span><br></code></pre></div></td></tr></table></figure>
+
+<h2 id="4-3-自定义对象"><a href="#4-3-自定义对象" class="headerlink" title="4.3 自定义对象"></a>4.3 自定义对象</h2><figure class="highlight javascript"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">var</span> 对象名称 = &#123;<br>    属性名称<span class="hljs-number">1</span>：属性值，<br>    ....<br>    函数名称：<span class="hljs-keyword">function</span>(<span class="hljs-params">..</span>)&#123;<br>        <br>    &#125;<br>&#125;<br></code></pre></div></td></tr></table></figure>
+
+<p>调用属性：对象名.属性</p>
+<p>调用函数：对象名.函数名(…)</p>
+<h1 id="五、BOM"><a href="#五、BOM" class="headerlink" title="五、BOM"></a>五、BOM</h1><p>BOM：Browser Object Model 浏览器对象模型。也就是JavaScript将浏览器的各个组成部分封装为对象</p>
+<p>BOM中包含以下对象：</p>
+<ul>
+<li>Window：浏览器窗口对象</li>
+<li>Navigator: 浏览器对象</li>
+<li>Screen：屏幕对象</li>
+<li>History：历史记录对象</li>
+<li>Location：地址栏对象</li>
+</ul>
+<h2 id="5-1-Window对象"><a href="#5-1-Window对象" class="headerlink" title="5.1 Window对象"></a>5.1 Window对象</h2><p>window对象是JavaScript对浏览器的窗口进行封装的对象</p>
+<ul>
+<li><p>Window对象函数</p>
+<ul>
+<li>alert（）</li>
+<li>confirm（）</li>
+<li>setInterver（）：以指定周期来调用函数或计算表达式</li>
+</ul>
+<p>setInterver(function, 毫秒数)</p>
+<ul>
+<li>setTimeout（）：在指定的毫秒数后调用函数或计算表达式</li>
+</ul>
+</li>
+</ul>
+<h2 id="5-2-History对象"><a href="#5-2-History对象" class="headerlink" title="5.2 History对象"></a>5.2 History对象</h2><p><strong>获取</strong></p>
+<p>使用window.history获取，其中window.可以省略</p>
+<p>History对象的函数</p>
+<ul>
+<li>back（）：加载history列表中的前一个URL</li>
+<li>forward（）：加载history列表中的后一个URL</li>
+</ul>
+<h2 id="5-3-Location对象"><a href="#5-3-Location对象" class="headerlink" title="5.3 Location对象"></a>5.3 Location对象</h2><p>Locatioin对象是JavaScript对地址栏封装的对象，可以通过操作该对象，跳转到任意页面</p>
+<p>获取：window.location，其中window.可以省略</p>
+<figure class="highlight javascript"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-title function_">alert</span>(<span class="hljs-string">&quot;即将跳转&quot;</span>)<br>location.<span class="hljs-property">href</span> = <span class="hljs-string">&quot;https://www.baidu.com&quot;</span>;<br></code></pre></div></td></tr></table></figure>
+
+<figure class="highlight javascript"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-built_in">setTimeout</span>(<span class="hljs-keyword">function</span> (<span class="hljs-params"></span>)&#123;<br>    location.<span class="hljs-property">href</span> = <span class="hljs-string">&quot;https://www.baidu.com&quot;</span>;<br>&#125;,<span class="hljs-number">3000</span>)<br></code></pre></div></td></tr></table></figure>
+
+<h1 id="六、DOM"><a href="#六、DOM" class="headerlink" title="六、DOM"></a>六、DOM</h1><h2 id="6-1-概述"><a href="#6-1-概述" class="headerlink" title="6.1 概述"></a>6.1 概述</h2><p>DOM：Document Object Model 文档对象模型。也就是JavaScript将html文档的各个组成部分封装为对象</p>
+<ul>
+<li>Document：整个文档对象</li>
+<li>Element：元素对象</li>
+<li>Attribute：属性对象</li>
+<li>Text：文本对象</li>
+<li>Comment：注释对象</li>
+</ul>
+<h2 id="6-2-获取Element对象"><a href="#6-2-获取Element对象" class="headerlink" title="6.2 获取Element对象"></a>6.2 获取Element对象</h2><ul>
+<li>getElementById（）：根据Id属性值获取，返回单个Element对象</li>
+<li>getElementByTagName(): 根据标签名称获取，返回Element对象数组</li>
+<li>getElemtntByName():根据name属性值获取，返回Element对象数组</li>
+<li>getElementByClassName：根据class属性值获取，返沪Element对象数组</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">var</span> img = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&quot;light&quot;</span>);<br><span class="hljs-keyword">var</span> divs = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementByTagName</span>(<span class="hljs-string">&quot;div&quot;</span>);<br></code></pre></div></td></tr></table></figure>
+
+<h2 id="6-3-HTML-Element对象使用"><a href="#6-3-HTML-Element对象使用" class="headerlink" title="6.3 HTML Element对象使用"></a>6.3 HTML Element对象使用</h2><ol>
+<li>点亮灯泡</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">var</span> img = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&quot;light&quot;</span>);<br>img.<span class="hljs-property">src</span> = <span class="hljs-string">&quot;../imgs/on.gif&quot;</span>;<br></code></pre></div></td></tr></table></figure>
+
+<ol start="2">
+<li>将所有的div标签的标签体内容替换为呵呵</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">var</span> divs = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementsByTagName</span>(<span class="hljs-string">&quot;div&quot;</span>);<br><span class="hljs-keyword">for</span>(<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>;i &lt; divs.<span class="hljs-property">length</span>;i++)&#123;<br>    divs[i].<span class="hljs-property">innerHTML</span> = <span class="hljs-string">&quot;呵呵&quot;</span>;<br>&#125;<br></code></pre></div></td></tr></table></figure>
+
+<ol start="3">
+<li>使用所有的复选框呈现被选中的状态</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">var</span> hobbys = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementsByName</span>(<span class="hljs-string">&quot;hobby&quot;</span>);<br><span class="hljs-keyword">for</span>(<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; hobbys.<span class="hljs-property">length</span>;i++)&#123;<br>    hobby[i].<span class="hljs-property">checked</span> = <span class="hljs-literal">true</span>;<br>&#125;<br></code></pre></div></td></tr></table></figure>
+
+<h1 id="七、事件监听"><a href="#七、事件监听" class="headerlink" title="七、事件监听"></a>七、事件监听</h1><p>HTML事件是发生在HTML元素上的“事情”，比如：页面上的按钮被点击、鼠标移动到元素之上、按下键盘按键等都是事件。</p>
+<p>事件监听是JavaScript可以在事件被侦听到时执行一段逻辑代码。</p>
+<h2 id="7-1-事件绑定"><a href="#7-1-事件绑定" class="headerlink" title="7.1 事件绑定"></a>7.1 事件绑定</h2><ul>
+<li>方式一：通过HTML标签中的事件属性进行绑定</li>
+</ul>
+<p>如下面代码，有一个按钮元素，我们是在该标签上定义事件属性，在事件属性中绑定函数。onclick就是单击事件的事件属性。onclick&#x3D;”on()”, 表示该点击事件绑定了一个名为on（） 的函数</p>
+<figure class="highlight html"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;button&quot;</span> <span class="hljs-attr">onclick</span>=<span class="hljs-string">&quot;on()&quot;</span>&gt;</span><br></code></pre></div></td></tr></table></figure>
+
+<figure class="highlight javascript"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">on</span>(<span class="hljs-params"></span>)&#123;<br>    <span class="hljs-title function_">alert</span>(<span class="hljs-string">&quot;被点击了&quot;</span>)<br>&#125;<br></code></pre></div></td></tr></table></figure>
+
+<ul>
+<li>方式二：通过DOM元素属性绑定</li>
+</ul>
+<p>如下面代码是按钮标签，在该标签上我们并没有使用事件属性，绑定事件的操作需要在js代码中实现。</p>
+<figure class="highlight html"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;button&quot;</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;btn&quot;</span>&gt;</span><br></code></pre></div></td></tr></table></figure>
+
+<p>下面js代码是获取了id&#x3D;‘btn’ 的元素对象，然后将onclick作为该对象的属性，并且绑定匿名函数。该函数是在事件触发之后自动执行的。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs javascript"><span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&quot;btn&quot;</span>).<span class="hljs-property">onclick</span> = <span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)&#123;<br>    <span class="hljs-title function_">alert</span>(<span class="hljs-string">&quot;被点击&quot;</span>)<br>&#125;<br></code></pre></div></td></tr></table></figure>
+
+
+
+<h2 id="7-2-常见事件"><a href="#7-2-常见事件" class="headerlink" title="7.2 常见事件"></a>7.2 常见事件</h2><table>
+<thead>
+<tr>
+<th>事件属性名</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>onclick</td>
+<td>鼠标单击事件</td>
+</tr>
+<tr>
+<td>onblur</td>
+<td>元素失去焦点</td>
+</tr>
+<tr>
+<td>onfocus</td>
+<td>元素获得焦点</td>
+</tr>
+<tr>
+<td>onload</td>
+<td>某个页面或图像完成加载</td>
+</tr>
+<tr>
+<td>onsubmit</td>
+<td>当表单提交时触发该事件</td>
+</tr>
+<tr>
+<td>onmouseover</td>
+<td>鼠标移动到某个元素上</td>
+</tr>
+<tr>
+<td>onmouseout</td>
+<td>鼠标从某个元素上移开</td>
+</tr>
+</tbody></table>
+<figure class="highlight html"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs html">//bug<br><span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;text&quot;</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;num1&quot;</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;submit&quot;</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;sub&quot;</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="language-javascript"></span><br><span class="language-javascript">  <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&quot;num1&quot;</span>).<span class="hljs-property">onfocus</span> = fun;</span><br><span class="language-javascript">  <span class="hljs-keyword">var</span> fun = <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>)&#123;</span><br><span class="language-javascript">      <span class="hljs-title function_">alert</span>(<span class="hljs-string">&quot;safetied&quot;</span>);</span><br><span class="language-javascript">  &#125;</span><br><span class="language-javascript"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span><br></code></pre></div></td></tr></table></figure>
+
+<figure class="highlight html"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs html">//修改<br><span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;text&quot;</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;num1&quot;</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;submit&quot;</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;sub&quot;</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="language-javascript"></span><br><span class="language-javascript">  <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&quot;num1&quot;</span>).<span class="hljs-property">onfocus</span>=col;</span><br><span class="language-javascript">  <span class="hljs-keyword">function</span> <span class="hljs-title function_">col</span>(<span class="hljs-params"></span>)&#123;</span><br><span class="language-javascript">      <span class="hljs-title function_">alert</span>(<span class="hljs-string">&quot;点击&quot;</span>)</span><br><span class="language-javascript">  &#125;</span><br><span class="language-javascript"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span><br></code></pre></div></td></tr></table></figure>
+
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/JavaWeb/">JavaWeb</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/JavaScript/">JavaScript</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/03/21/Spring/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Spring</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/03/18/CSS%E5%85%A5%E9%97%A8/">
+                        <span class="hidden-mobile">CSS入门</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div class="disqus" style="width:100%">
+    <div id="disqus_thread"></div>
+    
+      <script type="text/javascript">
+        var disqus_config = function() {
+          this.page.url = 'https://xielearncode.github.io/2022/03/18/JavaScript/';
+          this.page.identifier = '/2022/03/18/JavaScript/';
+        };
+        Fluid.utils.loadComments('#disqus_thread', function() {
+          var d = document, s = d.createElement('script');
+          s.src = '//' + 'fluid' + '.disqus.com/embed.js';
+          s.setAttribute('data-timestamp', new Date());
+          (d.head || d.body).appendChild(s);
+        });
+      </script>
+    
+    <noscript>Please enable JavaScript to view the comments</noscript>
+  </div>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="" target="_blank" rel="nofollow noopener"><span>个人博客</span></a> <i class="iconfont icon-love"></i> <a href="" target="_blank" rel="nofollow noopener"><span>蓝鸟x</span></a> 
+	<!--《添加网站运行时间 -->
+<br/>
+
+<span id="timeDate">载入天数...</span><span id="times">载入时分秒...</span>
+<script>
+var now = new Date(); 
+
+function createtime() {
+    //此处修改你的建站时间或者网站上线时间
+    var grt = new Date('01/01/2022 8:00:00');
+    now.setTime(now.getTime() + 250);
+    days = (now - grt) / 1000 / 60 / 60 / 24;
+
+    dnum = Math.floor(days);
+    hours = (now - grt) / 1000 / 60 / 60 - (24 * dnum);
+    hnum = Math.floor(hours);
+    if (String(hnum).length == 1) {
+        hnum = "0" + hnum;
+    }
+    minutes = (now - grt) / 1000 / 60 - (24 * 60 * dnum) - (60 * hnum);
+    mnum = Math.floor(minutes);
+    if (String(mnum).length == 1) {
+        mnum = "0" + mnum;
+    }
+    seconds = (now - grt) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+    snum = Math.round(seconds);
+    if (String(snum).length == 1) {
+        snum = "0" + snum;
+    }
+    document.getElementById("timeDate").innerHTML = " 本站已安全运行 " + dnum + " 天 ";
+    document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒";
+}
+setInterval("createtime()", 250);
+</script>
+
+<!-- 添加网站运行时间》-->
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+        typing(title);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+<script src="/js/bubble.js"></script>
+<script src="//cdn.jsdelivr.net/gh/bynotes/texiao/source/js/qipao.js"></script>
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"jsonPath":"/live2dw/assets/shizuku.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/love.js"></script>
+<!-- 页面上方泡泡 -->
+<script type="text/javascript" src="/js/bubble.js"></script>
+<script type="text/javascript" src="/js/snow.js"></script>

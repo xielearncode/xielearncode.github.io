@@ -16,24 +16,21 @@
   <meta name="author" content="蓝鸟x">
   <meta name="keywords" content="">
   
-    <meta name="description" content="[toc]   编写此项目的目的主要用于巩固过去的两个月所学的知识，包括面向对象，多线程，IO流，网络编程等，因此在整个项目的完成中，将前端的一些操作进行了弱化， 但这个项目核心的功能都可以实现。  一、用户登录 二、 拉取在线用户列表 三、无异常退出（客户端、服务器）四、私聊 五、群聊 六、发文件 七、服务器推送新闻  项目地址：Java_Project: 使用Java语言实现的简单通讯系统">
+    <meta name="description" content="[toc]  一、快速入门1.1 结构123456789&lt;html&gt;	&lt;head&gt;		&lt;title&gt;标签&lt;&#x2F;title&gt;	&lt;head&gt;		&lt;body&gt;		&lt;&#x2F;body&gt;&lt;&#x2F;html&gt;  注：标签的定义不区分大小写 二、基础标签   标签 描述     ~ &lt; h6&gt; 定义标题，h1最大，h">
 <meta property="og:type" content="article">
-<meta property="og:title" content="需求分析">
-<meta property="og:url" content="https://xielearncode.github.io/2022/03/04/%E5%A4%9A%E7%94%A8%E6%88%B7%E9%80%9A%E8%AE%AF%E7%B3%BB%E7%BB%9F(%E9%9C%80%E6%B1%82%E5%88%86%E6%9E%90)/index.html">
+<meta property="og:title" content="HTML标签的使用">
+<meta property="og:url" content="https://xielearncode.github.io/2022/03/18/HTML%E6%A0%87%E7%AD%BE%E7%9A%84%E4%BD%BF%E7%94%A8/index.html">
 <meta property="og:site_name" content="蓝鸟x">
-<meta property="og:description" content="[toc]   编写此项目的目的主要用于巩固过去的两个月所学的知识，包括面向对象，多线程，IO流，网络编程等，因此在整个项目的完成中，将前端的一些操作进行了弱化， 但这个项目核心的功能都可以实现。  一、用户登录 二、 拉取在线用户列表 三、无异常退出（客户端、服务器）四、私聊 五、群聊 六、发文件 七、服务器推送新闻  项目地址：Java_Project: 使用Java语言实现的简单通讯系统">
+<meta property="og:description" content="[toc]  一、快速入门1.1 结构123456789&lt;html&gt;	&lt;head&gt;		&lt;title&gt;标签&lt;&#x2F;title&gt;	&lt;head&gt;		&lt;body&gt;		&lt;&#x2F;body&gt;&lt;&#x2F;html&gt;  注：标签的定义不区分大小写 二、基础标签   标签 描述     ~ &lt; h6&gt; 定义标题，h1最大，h">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20201124204536103.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl8zOTI3NDY1OQ==,size_16,color_FFFFFF,t_70#pic_center">
-<meta property="article:published_time" content="2022-03-03T23:28:48.000Z">
-<meta property="article:modified_time" content="2022-04-16T05:42:36.136Z">
+<meta property="article:published_time" content="2022-03-18T05:54:00.000Z">
+<meta property="article:modified_time" content="2022-04-10T06:10:24.678Z">
 <meta property="article:author" content="蓝鸟x">
-<meta property="article:tag" content="Java项目">
-<meta property="article:tag" content="多用户通讯系统">
+<meta property="article:tag" content="HTML">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20201124204536103.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl8zOTI3NDY1OQ==,size_16,color_FFFFFF,t_70#pic_center">
   
   
-  <title>需求分析 - 蓝鸟x</title>
+  <title>HTML标签的使用 - 蓝鸟x</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
 
@@ -184,7 +181,7 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="需求分析">
+            <span class="h2" id="subtitle" title="HTML标签的使用">
               
             </span>
 
@@ -194,8 +191,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2022-03-04 07:28" pubdate>
-        2022年3月4日 早上
+      <time datetime="2022-03-18 13:54" pubdate>
+        2022年3月18日 下午
       </time>
     </span>
   
@@ -205,7 +202,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      194 字
+      1.1k 字
     </span>
   
 
@@ -214,7 +211,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      2 分钟
+      10 分钟
     </span>
   
 
@@ -243,25 +240,259 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">需求分析</h1>
+            <h1 style="display: none">HTML标签的使用</h1>
             
             <div class="markdown-body">
               <blockquote>
 <p>[toc]</p>
 </blockquote>
-<blockquote>
-<p>编写此项目的目的主要用于巩固过去的两个月所学的知识，包括面向对象，多线程，IO流，网络编程等，因此在整个项目的完成中，将前端的一些操作进行了弱化， 但这个项目核心的功能都可以实现。</p>
-</blockquote>
-<h1 id="一、用户登录"><a href="#一、用户登录" class="headerlink" title="一、用户登录"></a>一、用户登录</h1><p><img src="/2022/03/04/%E5%A4%9A%E7%94%A8%E6%88%B7%E9%80%9A%E8%AE%AF%E7%B3%BB%E7%BB%9F(%E9%9C%80%E6%B1%82%E5%88%86%E6%9E%90)/image-20220330215901537.png" srcset="/img/loading.gif" lazyload alt="image-20220330215901537"></p>
-<h1 id="二、-拉取在线用户列表"><a href="#二、-拉取在线用户列表" class="headerlink" title="二、 拉取在线用户列表"></a>二、 拉取在线用户列表</h1><p><img src="/2022/03/04/%E5%A4%9A%E7%94%A8%E6%88%B7%E9%80%9A%E8%AE%AF%E7%B3%BB%E7%BB%9F(%E9%9C%80%E6%B1%82%E5%88%86%E6%9E%90)/image-20220330215919315.png" srcset="/img/loading.gif" lazyload alt="image-20220330215919315"></p>
-<h1 id="三、无异常退出（客户端、服务器）"><a href="#三、无异常退出（客户端、服务器）" class="headerlink" title="三、无异常退出（客户端、服务器）"></a>三、无异常退出（客户端、服务器）</h1><h1 id="四、私聊"><a href="#四、私聊" class="headerlink" title="四、私聊"></a>四、私聊</h1><p><img src="/2022/03/04/%E5%A4%9A%E7%94%A8%E6%88%B7%E9%80%9A%E8%AE%AF%E7%B3%BB%E7%BB%9F(%E9%9C%80%E6%B1%82%E5%88%86%E6%9E%90)/image-20220330215946644.png" srcset="/img/loading.gif" lazyload alt="image-20220330215946644"></p>
-<h1 id="五、群聊"><a href="#五、群聊" class="headerlink" title="五、群聊"></a>五、群聊</h1><p><img src="/2022/03/04/%E5%A4%9A%E7%94%A8%E6%88%B7%E9%80%9A%E8%AE%AF%E7%B3%BB%E7%BB%9F(%E9%9C%80%E6%B1%82%E5%88%86%E6%9E%90)/image-20220330220006041.png" srcset="/img/loading.gif" lazyload alt="image-20220330220006041"></p>
-<h1 id="六、发文件"><a href="#六、发文件" class="headerlink" title="六、发文件"></a>六、发文件</h1><p><img src="/2022/03/04/%E5%A4%9A%E7%94%A8%E6%88%B7%E9%80%9A%E8%AE%AF%E7%B3%BB%E7%BB%9F(%E9%9C%80%E6%B1%82%E5%88%86%E6%9E%90)/image-20220330220030102.png" srcset="/img/loading.gif" lazyload alt="image-20220330220030102"></p>
-<h1 id="七、服务器推送新闻"><a href="#七、服务器推送新闻" class="headerlink" title="七、服务器推送新闻"></a>七、服务器推送新闻</h1><p><img src="/2022/03/04/%E5%A4%9A%E7%94%A8%E6%88%B7%E9%80%9A%E8%AE%AF%E7%B3%BB%E7%BB%9F(%E9%9C%80%E6%B1%82%E5%88%86%E6%9E%90)/image-20220330220056285.png" srcset="/img/loading.gif" lazyload alt="image-20220330220056285"></p>
-<blockquote>
-<p>项目地址：<a target="_blank" rel="noopener" href="https://gitee.com/bluebirdlearncode/communicate-system">Java_Project: 使用Java语言实现的简单通讯系统 (gitee.com)</a></p>
-</blockquote>
+<h1 id="一、快速入门"><a href="#一、快速入门" class="headerlink" title="一、快速入门"></a>一、快速入门</h1><h2 id="1-1-结构"><a href="#1-1-结构" class="headerlink" title="1.1 结构"></a>1.1 结构</h2><figure class="highlight plaintext"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs htm">&lt;html&gt;<br>	&lt;head&gt;<br>		&lt;title&gt;标签&lt;/title&gt;<br>	&lt;head&gt;<br>	<br>	&lt;body&gt;<br>	<br>	&lt;/body&gt;<br>&lt;/html&gt;<br></code></pre></div></td></tr></table></figure>
 
+<p>注：标签的定义不区分大小写</p>
+<h1 id="二、基础标签"><a href="#二、基础标签" class="headerlink" title="二、基础标签"></a>二、基础标签</h1><table>
+<thead>
+<tr>
+<th align="center">标签</th>
+<th align="center">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><h1> ~ &lt; h6&gt;</h1></td>
+<td align="center">定义标题，h1最大，h6最小</td>
+</tr>
+<tr>
+<td align="center"><font></font></td>
+<td align="center">定义文本字体、尺寸、颜色</td>
+</tr>
+<tr>
+<td align="center"><b></b></td>
+<td align="center">粗体</td>
+</tr>
+<tr>
+<td align="center"><i></i></td>
+<td align="center">斜体</td>
+</tr>
+<tr>
+<td align="center"><u></u></td>
+<td align="center">下划线</td>
+</tr>
+<tr>
+<td align="center"><center></center></td>
+<td align="center">文本居中</td>
+</tr>
+<tr>
+<td align="center"><p></p></td>
+<td align="center">定义段落</td>
+</tr>
+<tr>
+<td align="center"><br></td>
+<td align="center">定义换行</td>
+</tr>
+<tr>
+<td align="center"><hr></td>
+<td align="center">定义水平线</td>
+</tr>
+</tbody></table>
+<center>
+    居中
+</center>
+
+<h1 id="三、图片、音频、视频标签"><a href="#三、图片、音频、视频标签" class="headerlink" title="三、图片、音频、视频标签"></a>三、图片、音频、视频标签</h1><table>
+<thead>
+<tr>
+<th align="center">标签</th>
+<th align="center">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><img></td>
+<td align="center">定义图片</td>
+</tr>
+<tr>
+<td align="center"><audio></audio></td>
+<td align="center">定义音频</td>
+</tr>
+<tr>
+<td align="center"><video></video></td>
+<td align="center">定义视频</td>
+</tr>
+</tbody></table>
+<h1 id="四、超链接标签"><a href="#四、超链接标签" class="headerlink" title="四、超链接标签"></a>四、超链接标签</h1><p><a> 定义超链接，用于链接到另一个资源</a></p>
+<p>href: 资源url</p>
+<p>target：打开方式</p>
+<p>​        _self: 默认值，当前页面打开</p>
+<p>​        _blank: 在新的空白页面中打开</p>
+<p><a href="www.baidu.com" target="_self">百度</a></p>
+<h1 id="五、列表标签"><a href="#五、列表标签" class="headerlink" title="五、列表标签"></a>五、列表标签</h1><table>
+<thead>
+<tr>
+<th>标签</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><ol></ol></td>
+<td>定义有序列表</td>
+</tr>
+<tr>
+<td><ul></ul></td>
+<td>定义无序列表</td>
+</tr>
+<tr>
+<td><li></li></td>
+<td>定义列表项</td>
+</tr>
+</tbody></table>
+<ol>
+    <li>你好</li>
+    <li>中国</li>
+</ol>
+
+<ul>
+    <li>你好</li>
+    <li>中国</li>
+</ul>
+
+<h1 id="六、表格标签"><a href="#六、表格标签" class="headerlink" title="六、表格标签"></a>六、表格标签</h1><ul>
+<li>table：定义表格<ul>
+<li>border：边框宽度</li>
+<li>width：规定表格的宽度</li>
+<li>cellspaceing：单元格之间的空白距离</li>
+</ul>
+</li>
+<li>tr：定义行<ul>
+<li>align：定义表格行的内容对其方式</li>
+</ul>
+</li>
+<li>td：定义单元格</li>
+<li>th：定义表头单元格</li>
+</ul>
+<h1 id="七、布局标签"><a href="#七、布局标签" class="headerlink" title="七、布局标签"></a>七、布局标签</h1><table>
+<thead>
+<tr>
+<th>标签</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><div></div></td>
+<td>定义HTML文档中一个区域部分，常与css一起使用，用于布局网页</td>
+</tr>
+<tr>
+<td><span></span></td>
+<td>用组合行内元素（即没有换行效果）</td>
+</tr>
+</tbody></table>
+<h1 id="八、表单标签"><a href="#八、表单标签" class="headerlink" title="八、表单标签"></a>八、表单标签</h1><table>
+<thead>
+<tr>
+<th>标签</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><form></form></td>
+<td>定义表单</td>
+</tr>
+<tr>
+<td><input></td>
+<td>定义表单项，通过type属性控制输入属性</td>
+</tr>
+<tr>
+<td><lable></lable></td>
+<td>为表单定义标注</td>
+</tr>
+<tr>
+<td><select></select></td>
+<td>定义下拉列表</td>
+</tr>
+<tr>
+<td><option></option></td>
+<td>定义下拉列表的列表项</td>
+</tr>
+<tr>
+<td><textare></textare></td>
+<td>定义文本域</td>
+</tr>
+</tbody></table>
+<h2 id="8-1-form-标签属性"><a href="#8-1-form-标签属性" class="headerlink" title="8.1 form 标签属性"></a>8.1 form 标签属性</h2><ul>
+<li>action：规定提交表单时向何处发送表单数据，该属性值就是URL</li>
+<li>method：规定用于发送表单数据的方式    get（默认，参数加到url后边）和post（参数放到http请求消息体中）</li>
+</ul>
+<form>
+    <input type="text">
+    <input type="submit">
+</form>
+
+<figure class="highlight html"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">form</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;text&quot;</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;submit&quot;</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">form</span>&gt;</span><br></code></pre></div></td></tr></table></figure>
+
+<h2 id="8-2-表单项标签"><a href="#8-2-表单项标签" class="headerlink" title="8.2 表单项标签"></a>8.2 表单项标签</h2><ul>
+<li><input>: 表单项，通过type属性控制输入方式</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th align="center">type 取值</th>
+<th align="center">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">text</td>
+<td align="center">默认值。定义单行的输入字段 <form><input type="text"></form></td>
+</tr>
+<tr>
+<td align="center">password</td>
+<td align="center">定义密码字段</td>
+</tr>
+<tr>
+<td align="center">radio</td>
+<td align="center">定义单选按钮（男女）</td>
+</tr>
+<tr>
+<td align="center">checkbox</td>
+<td align="center">定义复选框</td>
+</tr>
+<tr>
+<td align="center">file</td>
+<td align="center">定义文件上传按钮</td>
+</tr>
+<tr>
+<td align="center">hidden</td>
+<td align="center">定义隐藏字段</td>
+</tr>
+<tr>
+<td align="center">submit</td>
+<td align="center">定义提交按钮</td>
+</tr>
+<tr>
+<td align="center">reset</td>
+<td align="center">定义重置按钮</td>
+</tr>
+<tr>
+<td align="center">button</td>
+<td align="center">定义可点击按钮</td>
+</tr>
+</tbody></table>
+<ul>
+<li>select：定义下拉列表，<option>定义列表项</option></li>
+</ul>
+<select>
+    <option>成都</option>
+    <option>北京</option>
+    <option>重庆</option>
+</select>
+
+ <figure class="highlight html"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">select</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">option</span>&gt;</span>成都<span class="hljs-tag">&lt;/<span class="hljs-name">option</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">option</span>&gt;</span>北京<span class="hljs-tag">&lt;/<span class="hljs-name">option</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">option</span>&gt;</span>重庆<span class="hljs-tag">&lt;/<span class="hljs-name">option</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">select</span>&gt;</span><br></code></pre></div></td></tr></table></figure>
+
+<ul>
+<li>textarea: 文本域</li>
+</ul>
+<textarea>
+这是一片文本域
+
+<figure class="highlight html"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">textarea</span>&gt;</span><br>这是一片文本域<br></code></pre></div></td></tr></table></figure>
+
+</textarea>
             </div>
             <hr>
             <div>
@@ -270,9 +501,7 @@
                   <div class="post-meta mr-3">
                     <i class="iconfont icon-category"></i>
                     
-                      <a class="hover-with-bg" href="/categories/Java%E9%A1%B9%E7%9B%AE/">Java项目</a>
-                    
-                      <a class="hover-with-bg" href="/categories/Java%E9%A1%B9%E7%9B%AE/%E5%A4%9A%E7%94%A8%E6%88%B7%E9%80%9A%E8%AE%AF%E7%B3%BB%E7%BB%9F/">多用户通讯系统</a>
+                      <a class="hover-with-bg" href="/categories/JavaWeb/">JavaWeb</a>
                     
                   </div>
                 
@@ -280,9 +509,7 @@
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/Java%E9%A1%B9%E7%9B%AE/">Java项目</a>
-                    
-                      <a class="hover-with-bg" href="/tags/%E5%A4%9A%E7%94%A8%E6%88%B7%E9%80%9A%E8%AE%AF%E7%B3%BB%E7%BB%9F/">多用户通讯系统</a>
+                      <a class="hover-with-bg" href="/tags/HTML/">HTML</a>
                     
                   </div>
                 
@@ -299,9 +526,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/03/04/%E5%A4%9A%E7%94%A8%E6%88%B7%E9%80%9A%E8%AE%AF%E7%B3%BB%E7%BB%9F(%E7%94%A8%E6%88%B7%E7%99%BB%E5%BD%95)/">
+                      <a href="/2022/03/18/CSS%E5%85%A5%E9%97%A8/">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">用户登录</span>
+                        <span class="hidden-mobile">CSS入门</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -309,8 +536,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/03/01/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/">
-                        <span class="hidden-mobile">网络编程</span>
+                      <a href="/2022/03/13/Linux/">
+                        <span class="hidden-mobile">Linux</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -332,8 +559,8 @@
     
       <script type="text/javascript">
         var disqus_config = function() {
-          this.page.url = 'https://xielearncode.github.io/2022/03/04/%E5%A4%9A%E7%94%A8%E6%88%B7%E9%80%9A%E8%AE%AF%E7%B3%BB%E7%BB%9F(%E9%9C%80%E6%B1%82%E5%88%86%E6%9E%90)/';
-          this.page.identifier = '/2022/03/04/%E5%A4%9A%E7%94%A8%E6%88%B7%E9%80%9A%E8%AE%AF%E7%B3%BB%E7%BB%9F(%E9%9C%80%E6%B1%82%E5%88%86%E6%9E%90)/';
+          this.page.url = 'https://xielearncode.github.io/2022/03/18/HTML%E6%A0%87%E7%AD%BE%E7%9A%84%E4%BD%BF%E7%94%A8/';
+          this.page.identifier = '/2022/03/18/HTML%E6%A0%87%E7%AD%BE%E7%9A%84%E4%BD%BF%E7%94%A8/';
         };
         Fluid.utils.loadComments('#disqus_thread', function() {
           var d = document, s = d.createElement('script');
