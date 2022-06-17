@@ -1,0 +1,634 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="蓝鸟x">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="[toc]  一、功能说明完成餐饮管理系统的登录，订座，点餐和结账，查看订单等功能 二、界面设计2.1 用户登录 2.2 显示餐桌状态 2.3 预定 这里需要注意：预定是还要判断餐桌是否被预定以及是否正在被使用。 2.3 显示菜品 2.4 点餐 2.5 查看账单 2.6 结账 三、项目设计3.1 程序框架图四、功能实现4.1 设计Utils类准备工具类Utils，提高开发效率。同时搭建项目整体结">
+<meta property="og:type" content="article">
+<meta property="og:title" content="需求说明">
+<meta property="og:url" content="https://xielearncode.github.io/2022/04/06/%E9%A4%90%E9%A5%AE%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F/index.html">
+<meta property="og:site_name" content="蓝鸟x">
+<meta property="og:description" content="[toc]  一、功能说明完成餐饮管理系统的登录，订座，点餐和结账，查看订单等功能 二、界面设计2.1 用户登录 2.2 显示餐桌状态 2.3 预定 这里需要注意：预定是还要判断餐桌是否被预定以及是否正在被使用。 2.3 显示菜品 2.4 点餐 2.5 查看账单 2.6 结账 三、项目设计3.1 程序框架图四、功能实现4.1 设计Utils类准备工具类Utils，提高开发效率。同时搭建项目整体结">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://media.apecoding.com/apc_59be1b74abfff.png">
+<meta property="article:published_time" content="2022-04-06T05:28:48.000Z">
+<meta property="article:modified_time" content="2022-04-25T05:06:47.172Z">
+<meta property="article:author" content="蓝鸟x">
+<meta property="article:tag" content="Java项目">
+<meta property="article:tag" content="餐饮管理系统系统">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://media.apecoding.com/apc_59be1b74abfff.png">
+  
+  
+  <title>需求说明 - 蓝鸟x</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hint.css@2/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+  
+<link rel="stylesheet" href="/css/indeximg-hover.css">
+<link rel="stylesheet" href="/css/mac.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"xielearncode.github.io","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":60,"cursorChar":"","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":6},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>蓝鸟x</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('https://w.wallhaven.cc/full/72/wallhaven-72rd8e.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="需求说明">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2022-04-06 13:28" pubdate>
+        2022年4月6日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      17k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      143 分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">需求说明</h1>
+            
+            <div class="markdown-body">
+              <blockquote>
+<p>[toc]</p>
+</blockquote>
+<h1 id="一、功能说明"><a href="#一、功能说明" class="headerlink" title="一、功能说明"></a>一、功能说明</h1><p>完成餐饮管理系统的<strong>登录</strong>，<strong>订座</strong>，<strong>点餐</strong>和<strong>结账</strong>，<strong>查看订单</strong>等功能</p>
+<h1 id="二、界面设计"><a href="#二、界面设计" class="headerlink" title="二、界面设计"></a>二、界面设计</h1><h2 id="2-1-用户登录"><a href="#2-1-用户登录" class="headerlink" title="2.1 用户登录"></a>2.1 用户登录</h2><p><img src="/2022/04/06/%E9%A4%90%E9%A5%AE%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F/image-20220416181905120.png" srcset="/img/loading.gif" lazyload alt="image-20220416181905120"></p>
+<h2 id="2-2-显示餐桌状态"><a href="#2-2-显示餐桌状态" class="headerlink" title="2.2 显示餐桌状态"></a>2.2 显示餐桌状态</h2><p><img src="/2022/04/06/%E9%A4%90%E9%A5%AE%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F/image-20220416181807143.png" srcset="/img/loading.gif" lazyload alt="image-20220416181807143"></p>
+<h2 id="2-3-预定"><a href="#2-3-预定" class="headerlink" title="2.3 预定"></a>2.3 预定</h2><p><img src="/2022/04/06/%E9%A4%90%E9%A5%AE%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F/image-20220416181926204.png" srcset="/img/loading.gif" lazyload alt="image-20220416181926204"></p>
+<p>这里需要注意：预定是还要判断餐桌是否被预定以及是否正在被使用。</p>
+<h2 id="2-3-显示菜品"><a href="#2-3-显示菜品" class="headerlink" title="2.3 显示菜品"></a>2.3 显示菜品</h2><p><img src="/2022/04/06/%E9%A4%90%E9%A5%AE%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F/image-20220416182117790.png" srcset="/img/loading.gif" lazyload alt="image-20220416182117790"></p>
+<h2 id="2-4-点餐"><a href="#2-4-点餐" class="headerlink" title="2.4 点餐"></a>2.4 点餐</h2><p><img src="/2022/04/06/%E9%A4%90%E9%A5%AE%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F/image-20220416182145425.png" srcset="/img/loading.gif" lazyload alt="image-20220416182145425"></p>
+<h2 id="2-5-查看账单"><a href="#2-5-查看账单" class="headerlink" title="2.5 查看账单"></a>2.5 查看账单</h2><p><img src="/2022/04/06/%E9%A4%90%E9%A5%AE%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F/image-20220416182247340.png" srcset="/img/loading.gif" lazyload alt="image-20220416182247340"></p>
+<h2 id="2-6-结账"><a href="#2-6-结账" class="headerlink" title="2.6 结账"></a>2.6 结账</h2><p><img src="/2022/04/06/%E9%A4%90%E9%A5%AE%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F/image-20220416182337616.png" srcset="/img/loading.gif" lazyload alt="image-20220416182337616"></p>
+<h1 id="三、项目设计"><a href="#三、项目设计" class="headerlink" title="三、项目设计"></a>三、项目设计</h1><h2 id="3-1-程序框架图"><a href="#3-1-程序框架图" class="headerlink" title="3.1 程序框架图"></a>3.1 程序框架图</h2><h1 id="四、功能实现"><a href="#四、功能实现" class="headerlink" title="四、功能实现"></a>四、功能实现</h1><h2 id="4-1-设计Utils类"><a href="#4-1-设计Utils类" class="headerlink" title="4.1 设计Utils类"></a>4.1 设计Utils类</h2><p>准备工具类Utils，提高开发效率。同时搭建项目整体结构</p>
+<figure class="highlight java"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs java"><span class="hljs-comment">//Utility类</span><br><br><span class="hljs-keyword">package</span> com.bluebird.foodservice.utils;<br><br><br><span class="hljs-comment">/**</span><br><span class="hljs-comment">	工具类的作用:</span><br><span class="hljs-comment">	处理各种情况的用户输入，并且能够按照程序员的需求，得到用户的控制台输入。</span><br><span class="hljs-comment">*/</span><br><br><span class="hljs-keyword">import</span> java.util.*;<br><span class="hljs-comment">/**</span><br><span class="hljs-comment"></span><br><span class="hljs-comment">	</span><br><span class="hljs-comment">*/</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Utility</span> &#123;<br>	<span class="hljs-comment">//静态属性。。。</span><br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-type">Scanner</span> <span class="hljs-variable">scanner</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Scanner</span>(System.in);<br><br>    <br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 功能：读取键盘输入的一个菜单选项，值：1——5的范围</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@return</span> 1——5</span><br><span class="hljs-comment">     */</span><br>	<span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-type">char</span> <span class="hljs-title function_">readMenuSelection</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-type">char</span> c;<br>        <span class="hljs-keyword">for</span> (; ; ) &#123;<br>            <span class="hljs-type">String</span> <span class="hljs-variable">str</span> <span class="hljs-operator">=</span> readKeyBoard(<span class="hljs-number">1</span>, <span class="hljs-literal">false</span>);<span class="hljs-comment">//包含一个字符的字符串</span><br>            c = str.charAt(<span class="hljs-number">0</span>);<span class="hljs-comment">//将字符串转换成字符char类型</span><br>            <span class="hljs-keyword">if</span> (c != <span class="hljs-string">&#x27;1&#x27;</span> &amp;&amp; c != <span class="hljs-string">&#x27;2&#x27;</span> &amp;&amp; <br>                c != <span class="hljs-string">&#x27;3&#x27;</span> &amp;&amp; c != <span class="hljs-string">&#x27;4&#x27;</span> &amp;&amp; c != <span class="hljs-string">&#x27;5&#x27;</span>) &#123;<br>                System.out.print(<span class="hljs-string">&quot;选择错误，请重新输入：&quot;</span>);<br>            &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">break</span>;<br>        &#125;<br>        <span class="hljs-keyword">return</span> c;<br>    &#125;<br><br>	<span class="hljs-comment">/**</span><br><span class="hljs-comment">	 * 功能：读取键盘输入的一个字符</span><br><span class="hljs-comment">	 * <span class="hljs-doctag">@return</span> 一个字符</span><br><span class="hljs-comment">	 */</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-type">char</span> <span class="hljs-title function_">readChar</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-type">String</span> <span class="hljs-variable">str</span> <span class="hljs-operator">=</span> readKeyBoard(<span class="hljs-number">1</span>, <span class="hljs-literal">false</span>);<span class="hljs-comment">//就是一个字符</span><br>        <span class="hljs-keyword">return</span> str.charAt(<span class="hljs-number">0</span>);<br>    &#125;<br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 功能：读取键盘输入的一个字符，如果直接按回车，则返回指定的默认值；否则返回输入的那个字符</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> defaultValue 指定的默认值</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@return</span> 默认值或输入的字符</span><br><span class="hljs-comment">     */</span><br>    <br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-type">char</span> <span class="hljs-title function_">readChar</span><span class="hljs-params">(<span class="hljs-type">char</span> defaultValue)</span> &#123;<br>        <span class="hljs-type">String</span> <span class="hljs-variable">str</span> <span class="hljs-operator">=</span> readKeyBoard(<span class="hljs-number">1</span>, <span class="hljs-literal">true</span>);<span class="hljs-comment">//要么是空字符串，要么是一个字符</span><br>        <span class="hljs-keyword">return</span> (str.length() == <span class="hljs-number">0</span>) ? defaultValue : str.charAt(<span class="hljs-number">0</span>);<br>    &#125;<br>	<br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 功能：读取键盘输入的整型，长度小于2位</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@return</span> 整数</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-type">int</span> <span class="hljs-title function_">readInt</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-type">int</span> n;<br>        <span class="hljs-keyword">for</span> (; ; ) &#123;<br>            <span class="hljs-type">String</span> <span class="hljs-variable">str</span> <span class="hljs-operator">=</span> readKeyBoard(<span class="hljs-number">2</span>, <span class="hljs-literal">false</span>);<span class="hljs-comment">//一个整数，长度&lt;=2位</span><br>            <span class="hljs-keyword">try</span> &#123;<br>                n = Integer.parseInt(str);<span class="hljs-comment">//将字符串转换成整数</span><br>                <span class="hljs-keyword">break</span>;<br>            &#125; <span class="hljs-keyword">catch</span> (NumberFormatException e) &#123;<br>                System.out.print(<span class="hljs-string">&quot;数字输入错误，请重新输入：&quot;</span>);<br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">return</span> n;<br>    &#125;<br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 功能：读取键盘输入的 整数或默认值，如果直接回车，则返回默认值，否则返回输入的整数</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> defaultValue 指定的默认值</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@return</span> 整数或默认值</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-type">int</span> <span class="hljs-title function_">readInt</span><span class="hljs-params">(<span class="hljs-type">int</span> defaultValue)</span> &#123;<br>        <span class="hljs-type">int</span> n;<br>        <span class="hljs-keyword">for</span> (; ; ) &#123;<br>            <span class="hljs-type">String</span> <span class="hljs-variable">str</span> <span class="hljs-operator">=</span> readKeyBoard(<span class="hljs-number">10</span>, <span class="hljs-literal">true</span>);<br>            <span class="hljs-keyword">if</span> (str.equals(<span class="hljs-string">&quot;&quot;</span>)) &#123;<br>                <span class="hljs-keyword">return</span> defaultValue;<br>            &#125;<br>			<br>			<span class="hljs-comment">//异常处理...</span><br>            <span class="hljs-keyword">try</span> &#123;<br>                n = Integer.parseInt(str);<br>                <span class="hljs-keyword">break</span>;<br>            &#125; <span class="hljs-keyword">catch</span> (NumberFormatException e) &#123;<br>                System.out.print(<span class="hljs-string">&quot;数字输入错误，请重新输入：&quot;</span>);<br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">return</span> n;<br>    &#125;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 功能：读取键盘输入的指定长度的字符串</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> limit 限制的长度</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@return</span> 指定长度的字符串</span><br><span class="hljs-comment">     */</span><br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> String <span class="hljs-title function_">readString</span><span class="hljs-params">(<span class="hljs-type">int</span> limit)</span> &#123;<br>        <span class="hljs-keyword">return</span> readKeyBoard(limit, <span class="hljs-literal">false</span>);<br>    &#125;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 功能：读取键盘输入的指定长度的字符串或默认值，如果直接回车，返回默认值，否则返回字符串</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> limit 限制的长度</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> defaultValue 指定的默认值</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@return</span> 指定长度的字符串</span><br><span class="hljs-comment">     */</span><br>	<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> String <span class="hljs-title function_">readString</span><span class="hljs-params">(<span class="hljs-type">int</span> limit, String defaultValue)</span> &#123;<br>        <span class="hljs-type">String</span> <span class="hljs-variable">str</span> <span class="hljs-operator">=</span> readKeyBoard(limit, <span class="hljs-literal">true</span>);<br>        <span class="hljs-keyword">return</span> str.equals(<span class="hljs-string">&quot;&quot;</span>)? defaultValue : str;<br>    &#125;<br><br><br>	<span class="hljs-comment">/**</span><br><span class="hljs-comment">	 * 功能：读取键盘输入的确认选项，Y或N</span><br><span class="hljs-comment">	 * 将小的功能，封装到一个方法中.</span><br><span class="hljs-comment">	 * <span class="hljs-doctag">@return</span> Y或N</span><br><span class="hljs-comment">	 */</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-type">char</span> <span class="hljs-title function_">readConfirmSelection</span><span class="hljs-params">()</span> &#123;<br>        System.out.println(<span class="hljs-string">&quot;请输入你的选择(Y/N)&quot;</span>);<br>        <span class="hljs-type">char</span> c;<br>        <span class="hljs-keyword">for</span> (; ; ) &#123;<span class="hljs-comment">//无限循环</span><br>        	<span class="hljs-comment">//在这里，将接受到字符，转成了大写字母</span><br>        	<span class="hljs-comment">//y =&gt; Y n=&gt;N</span><br>            <span class="hljs-type">String</span> <span class="hljs-variable">str</span> <span class="hljs-operator">=</span> readKeyBoard(<span class="hljs-number">1</span>, <span class="hljs-literal">false</span>).toUpperCase();<br>            c = str.charAt(<span class="hljs-number">0</span>);<br>            <span class="hljs-keyword">if</span> (c == <span class="hljs-string">&#x27;Y&#x27;</span> || c == <span class="hljs-string">&#x27;N&#x27;</span>) &#123;<br>                <span class="hljs-keyword">break</span>;<br>            &#125; <span class="hljs-keyword">else</span> &#123;<br>                System.out.print(<span class="hljs-string">&quot;选择错误，请重新输入：&quot;</span>);<br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">return</span> c;<br>    &#125;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 功能： 读取一个字符串</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> limit 读取的长度</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> blankReturn 如果为true ,表示 可以读空字符串。 </span><br><span class="hljs-comment">     * 					  如果为false表示 不能读空字符串。</span><br><span class="hljs-comment">     * 			</span><br><span class="hljs-comment">	 *	如果输入为空，或者输入大于limit的长度，就会提示重新输入。</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@return</span></span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> String <span class="hljs-title function_">readKeyBoard</span><span class="hljs-params">(<span class="hljs-type">int</span> limit, <span class="hljs-type">boolean</span> blankReturn)</span> &#123;<br>        <br>		<span class="hljs-comment">//定义了字符串</span><br>		<span class="hljs-type">String</span> <span class="hljs-variable">line</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;&quot;</span>;<br><br>		<span class="hljs-comment">//scanner.hasNextLine() 判断有没有下一行</span><br>        <span class="hljs-keyword">while</span> (scanner.hasNextLine()) &#123;<br>            line = scanner.nextLine();<span class="hljs-comment">//读取这一行</span><br>           <br>			<span class="hljs-comment">//如果line.length=0, 即用户没有输入任何内容，直接回车</span><br>			<span class="hljs-keyword">if</span> (line.length() == <span class="hljs-number">0</span>) &#123;<br>                <span class="hljs-keyword">if</span> (blankReturn) <span class="hljs-keyword">return</span> line;<span class="hljs-comment">//如果blankReturn=true,可以返回空串</span><br>                <span class="hljs-keyword">else</span> <span class="hljs-keyword">continue</span>; <span class="hljs-comment">//如果blankReturn=false,不接受空串，必须输入内容</span><br>            &#125;<br><br>			<span class="hljs-comment">//如果用户输入的内容大于了 limit，就提示重写输入  </span><br>			<span class="hljs-comment">//如果用户如的内容 &gt;0 &lt;= limit ,我就接受</span><br>            <span class="hljs-keyword">if</span> (line.length() &lt; <span class="hljs-number">1</span> || line.length() &gt; limit) &#123;<br>                System.out.print(<span class="hljs-string">&quot;输入长度（不能大于&quot;</span> + limit + <span class="hljs-string">&quot;）错误，请重新输入：&quot;</span>);<br>                <span class="hljs-keyword">continue</span>;<br>            &#125;<br>            <span class="hljs-keyword">break</span>;<br>        &#125;<br><br>        <span class="hljs-keyword">return</span> line;<br>    &#125;<br>&#125;<br><br></code></pre></div></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs java"><span class="hljs-comment">//JDBCUtilsByDruid类</span><br><br><span class="hljs-keyword">package</span> com.bluebird.foodservice.utils;<br><br><span class="hljs-keyword">import</span> com.alibaba.druid.pool.DruidDataSourceFactory;<br><br><span class="hljs-keyword">import</span> javax.sql.DataSource;<br><span class="hljs-keyword">import</span> java.io.FileInputStream;<br><span class="hljs-keyword">import</span> java.sql.Connection;<br><span class="hljs-keyword">import</span> java.sql.ResultSet;<br><span class="hljs-keyword">import</span> java.sql.SQLException;<br><span class="hljs-keyword">import</span> java.sql.Statement;<br><span class="hljs-keyword">import</span> java.util.Properties;<br><br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@author</span> 韩顺平</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@version</span> 1.0</span><br><span class="hljs-comment"> * 基于druid数据库连接池的工具类</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">JDBCUtilsByDruid</span> &#123;<br><br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> DataSource ds;<br><br>    <span class="hljs-comment">//在静态代码块完成 ds初始化</span><br>    <span class="hljs-keyword">static</span> &#123;<br>        <span class="hljs-type">Properties</span> <span class="hljs-variable">properties</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Properties</span>();<br>        <span class="hljs-keyword">try</span> &#123;<br>            properties.load(<span class="hljs-keyword">new</span> <span class="hljs-title class_">FileInputStream</span>(<span class="hljs-string">&quot;src\\druid.properties&quot;</span>));<br>            ds = DruidDataSourceFactory.createDataSource(properties);<br>        &#125; <span class="hljs-keyword">catch</span> (Exception e) &#123;<br>            e.printStackTrace();<br>        &#125;<br><br>    &#125;<br><br>    <span class="hljs-comment">//编写getConnection方法</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> Connection <span class="hljs-title function_">getConnection</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> SQLException &#123;<br>        <span class="hljs-keyword">return</span> ds.getConnection();<br>    &#125;<br><br>    <span class="hljs-comment">//关闭连接, 老师再次强调： 在数据库连接池技术中，close 不是真的断掉连接</span><br>    <span class="hljs-comment">//而是把使用的Connection对象放回连接池</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">close</span><span class="hljs-params">(ResultSet resultSet, Statement statement, Connection connection)</span> &#123;<br><br>        <span class="hljs-keyword">try</span> &#123;<br>            <span class="hljs-keyword">if</span> (resultSet != <span class="hljs-literal">null</span>) &#123;<br>                resultSet.close();<br>            &#125;<br>            <span class="hljs-keyword">if</span> (statement != <span class="hljs-literal">null</span>) &#123;<br>                statement.close();<br>            &#125;<br>            <span class="hljs-keyword">if</span> (connection != <span class="hljs-literal">null</span>) &#123;<br>                connection.close();<br>            &#125;<br>        &#125; <span class="hljs-keyword">catch</span> (SQLException e) &#123;<br>            <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">RuntimeException</span>(e);<br>        &#125;<br>    &#125;<br>&#125;<br><br></code></pre></div></td></tr></table></figure>
+
+
+
+<h2 id="4-2-菜单"><a href="#4-2-菜单" class="headerlink" title="4.2 菜单"></a>4.2 菜单</h2><h3 id="4-2-1-登录界面"><a href="#4-2-1-登录界面" class="headerlink" title="4.2.1 登录界面"></a>4.2.1 登录界面</h3><p>显示主菜单、二级菜单以及退出系统的功能, 先实现初级效果，后续再进行添加</p>
+<figure class="highlight java"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.bluebird.foodservice.view;<br><br><span class="hljs-keyword">import</span> com.bluebird.foodservice.dao.EmployeeDAO;<br><span class="hljs-keyword">import</span> com.bluebird.foodservice.domain.Employee;<br><span class="hljs-keyword">import</span> com.bluebird.foodservice.service.EmployeeService;<br><span class="hljs-keyword">import</span> com.bluebird.foodservice.utils.Utility;<br><br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@Author</span> 谢飞</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@Date</span> 2022/4/23 12:26</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">ServiceView</span> &#123;<br>    <span class="hljs-keyword">private</span> <span class="hljs-type">boolean</span> <span class="hljs-variable">loop</span> <span class="hljs-operator">=</span> <span class="hljs-literal">true</span>;<span class="hljs-comment">//控制是否退出菜单</span><br>    <span class="hljs-keyword">private</span> <span class="hljs-type">String</span> <span class="hljs-variable">key</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;&quot;</span>; <span class="hljs-comment">//用于接收用户选择</span><br>    <span class="hljs-keyword">private</span> <span class="hljs-type">EmployeeService</span> <span class="hljs-variable">employeeService</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">EmployeeService</span>();<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> &#123;<br>        <span class="hljs-keyword">new</span> <span class="hljs-title class_">ServiceView</span>().mainMenu();<br>    &#125;<br><br>    <span class="hljs-comment">//显示主菜单</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">mainMenu</span><span class="hljs-params">()</span>&#123;<br>        <span class="hljs-keyword">while</span>(loop)&#123;<br>            System.out.println(<span class="hljs-string">&quot;==========餐饮管理系统===========&quot;</span>);<br>            System.out.println(<span class="hljs-string">&quot;\t\t 1 登录满汉楼&quot;</span>);<br>            System.out.println(<span class="hljs-string">&quot;\t\t 2 退出满汉楼&quot;</span>);<br>            System.out.print(<span class="hljs-string">&quot;请输入你的选择：&quot;</span>);<br>            key = Utility.readString(<span class="hljs-number">1</span>);<br>            <span class="hljs-keyword">switch</span> (key)&#123;<br>                <span class="hljs-keyword">case</span> <span class="hljs-string">&quot;1&quot;</span>:<br>                    System.out.print(<span class="hljs-string">&quot;输入员工号:&quot;</span>);<br>                    <span class="hljs-type">String</span> <span class="hljs-variable">empId</span> <span class="hljs-operator">=</span> Utility.readString(<span class="hljs-number">50</span>);<br>                    System.out.print(<span class="hljs-string">&quot;输入密  码:&quot;</span>);<br>                    <span class="hljs-type">String</span> <span class="hljs-variable">empPwd</span> <span class="hljs-operator">=</span> Utility.readString(<span class="hljs-number">50</span>);<br>                    <span class="hljs-comment">//到数据库去判断</span><br>                    <span class="hljs-type">Employee</span> <span class="hljs-variable">employee</span> <span class="hljs-operator">=</span> employeeService.getEmployeeByIdAndPwd(empId, empPwd);<br><br>                    <span class="hljs-keyword">if</span>(employee != <span class="hljs-literal">null</span>)&#123;<br>                        System.out.println(<span class="hljs-string">&quot;=============[&quot;</span> + employee.getName() + <span class="hljs-string">&quot;]登录成功===========\n&quot;</span>);<br>                        <span class="hljs-comment">//显示二级菜单</span><br>                        <span class="hljs-keyword">while</span>(loop)&#123;<br>                            System.out.println(<span class="hljs-string">&quot;\n\n=============餐饮管理系统===========&quot;</span>);<br>                            System.out.println(<span class="hljs-string">&quot;\t\t 1 显示餐桌状态&quot;</span>);<br>                            System.out.println(<span class="hljs-string">&quot;\t\t 2 预 定 餐 桌&quot;</span>);<br>                            System.out.println(<span class="hljs-string">&quot;\t\t 3 显示所有菜品&quot;</span>);<br>                            System.out.println(<span class="hljs-string">&quot;\t\t 4 点 餐 服 务&quot;</span>);<br>                            System.out.println(<span class="hljs-string">&quot;\t\t 5 查 看 账 单&quot;</span>);<br>                            System.out.println(<span class="hljs-string">&quot;\t\t 6 结       账&quot;</span>);<br>                            System.out.println(<span class="hljs-string">&quot;\t\t 9 退       出&quot;</span>);<br>                            System.out.print(<span class="hljs-string">&quot;\n请输入你的选择:&quot;</span>);<br>                            key = Utility.readString(<span class="hljs-number">1</span>);<br>                            <span class="hljs-keyword">switch</span>(key)&#123;<br>                                <span class="hljs-keyword">case</span> <span class="hljs-string">&quot;1&quot;</span>:<br>                                    System.out.println(<span class="hljs-string">&quot;\t\t 1 显示餐桌状态&quot;</span>);<br>                                    <span class="hljs-keyword">break</span>;<br>                                <span class="hljs-keyword">case</span> <span class="hljs-string">&quot;2&quot;</span>:<br>                                    System.out.println(<span class="hljs-string">&quot;\t\t 2 预 定 餐 桌&quot;</span>);<br>                                    <span class="hljs-keyword">break</span>;<br>                                <span class="hljs-keyword">case</span> <span class="hljs-string">&quot;3&quot;</span>:<br>                                    System.out.println(<span class="hljs-string">&quot;\t\t 3 显示所有菜品&quot;</span>);<br>                                    <span class="hljs-keyword">break</span>;<br>                                <span class="hljs-keyword">case</span> <span class="hljs-string">&quot;4&quot;</span>:<br>                                    System.out.println(<span class="hljs-string">&quot;\t\t 4 点 餐 服 务&quot;</span>);<br>                                    <span class="hljs-keyword">break</span>;<br>                                <span class="hljs-keyword">case</span> <span class="hljs-string">&quot;5&quot;</span>:<br>                                    System.out.println(<span class="hljs-string">&quot;\t\t 5 查 看 账 单&quot;</span>);<br>                                    <span class="hljs-keyword">break</span>;<br>                                <span class="hljs-keyword">case</span> <span class="hljs-string">&quot;6&quot;</span>:<br>                                    System.out.println(<span class="hljs-string">&quot;\t\t 6 结       账&quot;</span>);<br>                                    <span class="hljs-keyword">break</span>;<br>                                <span class="hljs-keyword">case</span> <span class="hljs-string">&quot;9&quot;</span>:<br>                                    System.out.println(<span class="hljs-string">&quot;\t\t 6 退       出&quot;</span>);<br>                                    loop = <span class="hljs-literal">false</span>;<br>                                    <span class="hljs-keyword">break</span>;<br>                                <span class="hljs-keyword">default</span>:<br>                                    System.out.println(<span class="hljs-string">&quot;输入有误&quot;</span>);<br>                            &#125;<br>                        &#125;<br>                    &#125;<span class="hljs-keyword">else</span> &#123;<br>                        System.out.println(<span class="hljs-string">&quot;=====账户或密码错误=====&quot;</span>);<br>                    &#125;<br>                    <span class="hljs-keyword">break</span>;<br>                <span class="hljs-keyword">case</span> <span class="hljs-string">&quot;2&quot;</span>:<br>                    loop = <span class="hljs-literal">false</span>;<br>                    System.out.println(<span class="hljs-string">&quot;退出&quot;</span>);<br>                    <span class="hljs-keyword">break</span>;<br>                <span class="hljs-keyword">default</span>:<br>                    System.out.println(<span class="hljs-string">&quot;输入有误！&quot;</span>);<br>            &#125;<br>        &#125;<br>    &#125;<br>&#125;<br><br><br><br></code></pre></div></td></tr></table></figure>
+
+<p>数据库中employee表</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs mysql">create table employee(<br>	id int primary key auto_increment,<br>	empId varchar(50) not null default &#x27;&#x27;,<br>	pwd   char(32) not null default &#x27;&#x27;,<br>	`name` varchar(50) not null default &#x27;&#x27;,<br>	job varchar(32) not null default &#x27;&#x27;)charset=utf8;<br><br>insert into employee values(null, &#x27;100&#x27;, md5(&#x27;1234&#x27;),&#x27;张三&#x27;,&#x27;经理&#x27;);<br>insert into employee values(null, &#x27;200&#x27;, md5(&#x27;1234&#x27;),&#x27;李四&#x27;,&#x27;服务员&#x27;);<br>insert into employee values(null, &#x27;300&#x27;, md5(&#x27;1234&#x27;),&#x27;王五&#x27;,&#x27;收银员&#x27;);<br>insert into employee values(null, &#x27;400&#x27;, md5(&#x27;1234&#x27;),&#x27;赵六&#x27;,&#x27;保安&#x27;);<br><br></code></pre></div></td></tr></table></figure>
+
+<p>其中，数据库查询方式  界面层&#x3D;&#x3D;&gt; 业务层 &#x3D;&#x3D;&gt; ClassDAO &#x3D;&#x3D;&gt; 数据库</p>
+<figure class="highlight java"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs java"><span class="hljs-keyword">public</span> Employee <span class="hljs-title function_">getEmployeeByIdAndPwd</span><span class="hljs-params">(String empId,String empPwd)</span>&#123;<br>        <span class="hljs-keyword">return</span> employeeDAO.querySingle(<span class="hljs-string">&quot;select * from employee where empId = ? and pwd = md5(?)&quot;</span>,Employee.class,empId,empPwd);<br>&#125;<br></code></pre></div></td></tr></table></figure>
+
+<h3 id="4-2-2-显示餐桌状态"><a href="#4-2-2-显示餐桌状态" class="headerlink" title="4.2.2 显示餐桌状态"></a>4.2.2 显示餐桌状态</h3><p>显示目前各个餐桌的编号，状态等信息</p>
+<p>首先创建diningTable表，用于记录餐桌状态。并创建与之对应的DiningTable（domain），DiningTableDAO（DAO），DinningTableService（业务层）。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs mysql">create table diningTable(<br>	id int primary key auto_increment,<br>	state varchar(20) not null default &#x27;&#x27;,<br>	orderName varchar(50) not null default &#x27;&#x27;,<br>	orserTel varchar(20) not null default &#x27;&#x27;)charset=utf8;<br>	<br>	insert into diningTable values(null,&#x27;空&#x27;,&#x27;&#x27;,&#x27;&#x27;);<br>		insert into diningTable values(null,&#x27;空&#x27;,&#x27;&#x27;,&#x27;&#x27;);<br>			insert into diningTable values(null,&#x27;空&#x27;,&#x27;&#x27;,&#x27;&#x27;);<br>				insert into diningTable values(null,&#x27;空&#x27;,&#x27;&#x27;,&#x27;&#x27;);<br>				<br>select * from diningtable;<br></code></pre></div></td></tr></table></figure>
+
+<p>创建DiningTable类</p>
+<figure class="highlight java"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.bluebird.foodservice.domain;<br><br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@Author</span> 谢飞</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@Date</span> 2022/4/23 15:06</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">DiningTable</span> &#123;<br>    <span class="hljs-keyword">private</span> Integer id;<br>    <span class="hljs-keyword">private</span> String state;<br>    <span class="hljs-keyword">private</span> String orderName;<br>    <span class="hljs-keyword">private</span> String orderTel;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-title function_">DiningTable</span><span class="hljs-params">()</span> &#123;<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> Integer <span class="hljs-title function_">getId</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-keyword">return</span> id;<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">setId</span><span class="hljs-params">(Integer id)</span> &#123;<br>        <span class="hljs-built_in">this</span>.id = id;<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> String <span class="hljs-title function_">getState</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-keyword">return</span> state;<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">setState</span><span class="hljs-params">(String state)</span> &#123;<br>        <span class="hljs-built_in">this</span>.state = state;<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> String <span class="hljs-title function_">getOrderName</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-keyword">return</span> orderName;<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">setOrderName</span><span class="hljs-params">(String orderName)</span> &#123;<br>        <span class="hljs-built_in">this</span>.orderName = orderName;<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> String <span class="hljs-title function_">getOrderTel</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-keyword">return</span> orderTel;<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">setOrderTel</span><span class="hljs-params">(String orderTel)</span> &#123;<br>        <span class="hljs-built_in">this</span>.orderTel = orderTel;<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-title function_">DiningTable</span><span class="hljs-params">(Integer id, String state, String orderName, String orderTel)</span> &#123;<br>        <span class="hljs-built_in">this</span>.id = id;<br>        <span class="hljs-built_in">this</span>.state = state;<br>        <span class="hljs-built_in">this</span>.orderName = orderName;<br>        <span class="hljs-built_in">this</span>.orderTel = orderTel;<br>    &#125;<br><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">public</span> String <span class="hljs-title function_">toString</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-keyword">return</span> id + <span class="hljs-string">&quot;\t\t&quot;</span> + state;<br>    &#125;<br>&#125;<br><br></code></pre></div></td></tr></table></figure>
+
+<p>创建DiningtableService类</p>
+<figure class="highlight java"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">DiningTableService</span> &#123;<br>    <span class="hljs-keyword">private</span> <span class="hljs-type">DiningTableDAO</span> <span class="hljs-variable">diningTableDAO</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">DiningTableDAO</span>();<br><br>    <span class="hljs-keyword">public</span> List&lt;DiningTable&gt; <span class="hljs-title function_">list</span><span class="hljs-params">()</span>&#123;<br>        <span class="hljs-keyword">return</span> diningTableDAO.queryMulti(<span class="hljs-string">&quot;select id,state from diningtable&quot;</span>,DiningTable.class);<br><br>    &#125;<br>&#125;<br></code></pre></div></td></tr></table></figure>
+
+<p>构建显示餐桌状态方法</p>
+<figure class="highlight java"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">listDiningTable</span><span class="hljs-params">()</span>&#123;<br>        List&lt;DiningTable&gt; diningTables = diningTableService.list();<br>        System.out.println(<span class="hljs-string">&quot;餐桌编号\t\t餐桌状态&quot;</span>);<br>        <span class="hljs-keyword">for</span> (DiningTable diningTable : diningTables) &#123;<br>            System.out.println(diningTable);<br>        &#125;<br>        System.out.println(<span class="hljs-string">&quot;===========显示完毕===========&quot;</span>);<br>    &#125;<br></code></pre></div></td></tr></table></figure>
+
+
+
+<h3 id="4-2-3-预定餐桌"><a href="#4-2-3-预定餐桌" class="headerlink" title="4.2.3 预定餐桌"></a>4.2.3 预定餐桌</h3><ol>
+<li>先检测餐桌是否存在</li>
+<li>检查餐桌的状态</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs java"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * 完成订座</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">orderDiningTable</span><span class="hljs-params">()</span>&#123;<br>    System.out.println(<span class="hljs-string">&quot;===========预定餐桌===========&quot;</span>);<br>    System.out.print(<span class="hljs-string">&quot;请选择要预定餐桌的编号(-1退出)：&quot;</span>);<br>    <span class="hljs-type">int</span> <span class="hljs-variable">orderId</span> <span class="hljs-operator">=</span> Utility.readInt();<br>    <span class="hljs-keyword">if</span>(orderId == -<span class="hljs-number">1</span>)&#123;<br>        System.out.println(<span class="hljs-string">&quot;===========取消预定===========&quot;</span>);<br>        <span class="hljs-keyword">return</span>;<br>    &#125;<br>    <span class="hljs-type">char</span> <span class="hljs-variable">c</span> <span class="hljs-operator">=</span> Utility.readConfirmSelection();<br>    <span class="hljs-keyword">if</span>(c == <span class="hljs-string">&#x27;Y&#x27;</span>)&#123;<br>        <span class="hljs-type">DiningTable</span> <span class="hljs-variable">diningTable</span> <span class="hljs-operator">=</span> diningTableService.getDiningTableById(orderId);<br>        <span class="hljs-keyword">if</span>(diningTable == <span class="hljs-literal">null</span>)&#123;<br>            System.out.println(<span class="hljs-string">&quot;===========餐桌不存在===========&quot;</span>);<br>            <span class="hljs-keyword">return</span>;<br>        &#125;<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(!diningTable.getState().equals(<span class="hljs-string">&quot;空&quot;</span>))&#123;<br>            System.out.println(<span class="hljs-string">&quot;===========餐桌已预定或在就餐中===========&quot;</span>);<br>            <span class="hljs-keyword">return</span>;<br>        &#125; <br>        System.out.print(<span class="hljs-string">&quot;预定人姓名：&quot;</span>);<br>        <span class="hljs-type">String</span> <span class="hljs-variable">orderName</span> <span class="hljs-operator">=</span> Utility.readString(<span class="hljs-number">50</span>);<br>        System.out.print(<span class="hljs-string">&quot;预定人电话：&quot;</span>);<br>        <span class="hljs-type">String</span> <span class="hljs-variable">orderTel</span> <span class="hljs-operator">=</span> Utility.readString(<span class="hljs-number">50</span>);<br>        <span class="hljs-keyword">if</span>(diningTableService.orderDiningTable(orderId,orderName,orderTel))&#123;<br>            System.out.println(<span class="hljs-string">&quot;===========预定成功===========&quot;</span>);<br>        &#125;<span class="hljs-keyword">else</span> &#123;<br>            System.out.println(<span class="hljs-string">&quot;===========预定失败===========&quot;</span>);<br>        &#125;<br>    &#125;<span class="hljs-keyword">else</span> &#123;<br>        System.out.println(<span class="hljs-string">&quot;===========取消预定===========&quot;</span>);<br>    &#125;<br>&#125;<br></code></pre></div></td></tr></table></figure>
+
+<h3 id="4-2-4-显示菜品"><a href="#4-2-4-显示菜品" class="headerlink" title="4.2.4 显示菜品"></a>4.2.4 显示菜品</h3><p>首先创建menu表</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs mysql">CREATE TABLE menu(<br>	id INT PRIMARY KEY AUTO_INCREMENT,<br>	NAME VARCHAR(50) NOT NULL DEFAULT &#x27;&#x27;,<br>	TYPE VARCHAR(50) NOT NULL DEFAULT &#x27;&#x27;,<br>	price DOUBLE NOT NULL DEFAULT 0)CHARSET=utf8;<br>	<br>INSERT INTO menu VALUES(NULL,&#x27;八宝饭&#x27;,&#x27;主食&#x27;,13);<br>INSERT INTO menu VALUES(NULL,&#x27;叉烧包&#x27;,&#x27;主食&#x27;,8);<br>INSERT INTO menu VALUES(NULL,&#x27;宫保鸡丁&#x27;,&#x27;热菜&#x27;,10);<br>INSERT INTO menu VALUES(NULL,&#x27;尖椒肉丝&#x27;,&#x27;热菜&#x27;,11);<br>INSERT INTO menu VALUES(NULL,&#x27;水煮鱼&#x27;,&#x27;汤类&#x27;,19);<br>INSERT INTO menu VALUES(NULL,&#x27;红烧狮子头&#x27;,&#x27;热菜&#x27;,16);<br>INSERT INTO menu VALUES(NULL,&#x27;万州烤鱼&#x27;,&#x27;汤类&#x27;,15);<br><br>SELECT * FROM menu;<br><br></code></pre></div></td></tr></table></figure>
+
+<p>依次创建Menu类，MenuDAO类，MenuService类</p>
+<p>编写方法</p>
+<figure class="highlight java"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">listMenu</span><span class="hljs-params">()</span>&#123;<br>    List&lt;Menu&gt; menus = menuService.list();<br>    System.out.println(<span class="hljs-string">&quot;=====================菜    单====================&quot;</span>);<br>    System.out.println(<span class="hljs-string">&quot;菜品编号&quot;</span> + <span class="hljs-string">&quot;\t\t&quot;</span>+ <span class="hljs-string">&quot;菜品名&quot;</span>+ <span class="hljs-string">&quot;\t\t&quot;</span>+ <span class="hljs-string">&quot;类别&quot;</span>+<span class="hljs-string">&quot;\t\t&quot;</span>+<span class="hljs-string">&quot;价格&quot;</span>);<br>    <span class="hljs-keyword">for</span> (Menu menu : menus) &#123;<br>        System.out.println(menu);<br>    &#125;<br>    System.out.println(<span class="hljs-string">&quot;=====================显示完毕====================&quot;</span>);<br><br>&#125;<br></code></pre></div></td></tr></table></figure>
+
+<h3 id="4-2-5-点餐服务"><a href="#4-2-5-点餐服务" class="headerlink" title="4.2.5 点餐服务"></a>4.2.5 点餐服务</h3><p>先对餐桌号，菜品进行合理性校验，如果点餐成功修改餐桌状态并生成账单</p>
+<p>创建账单表bill</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs mysql">CREATE TABLE bill(<br>	id INT PRIMARY KEY AUTO_INCREMENT,<br>	billId VARCHAR(50) NOT NULL DEFAULT &#x27;&#x27;,<br>	menuName VARCHAR(50) NOT NULL DEFAULT &#x27;&#x27;,<br>	nums INT NOT NULL DEFAULT 0,<br>	money DOUBLE NOT NULL DEFAULT 0,<br>	diningTableId INT NOT NOT DEFAULT &#x27;&#x27;,<br>	billDate DATETIME NOT NULL,<br>	state VARCHAR(50) NOT NULL DEFAULT &#x27;&#x27;)CHARSET=utf-8;<br><br></code></pre></div></td></tr></table></figure>
+
+
+
+<p>编写点餐方法</p>
+<figure class="highlight java"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">orderMenu</span><span class="hljs-params">()</span>&#123;<br>        System.out.println(<span class="hljs-string">&quot;=====================点餐服务====================&quot;</span>);<br>        System.out.print(<span class="hljs-string">&quot;请选择点餐的桌号(-1退出):&quot;</span>);<br>        <span class="hljs-type">int</span> <span class="hljs-variable">orderDiningTableId</span> <span class="hljs-operator">=</span> Utility.readInt();<br>        <span class="hljs-keyword">if</span>(orderDiningTableId == -<span class="hljs-number">1</span>)&#123;<br>            System.out.println(<span class="hljs-string">&quot;=====================取消点餐====================&quot;</span>);<br>            <span class="hljs-keyword">return</span>;<br>        &#125;<br>        System.out.print(<span class="hljs-string">&quot;请选择菜品编号(-1退出):&quot;</span>);<br>        <span class="hljs-type">int</span> <span class="hljs-variable">orderMenuId</span> <span class="hljs-operator">=</span> Utility.readInt();<br>        <span class="hljs-keyword">if</span>(orderMenuId == -<span class="hljs-number">1</span>)&#123;<br>            System.out.println(<span class="hljs-string">&quot;=====================取消点餐====================&quot;</span>);<br>            <span class="hljs-keyword">return</span>;<br>        &#125;<br>        System.out.print(<span class="hljs-string">&quot;请选择菜品数量(-1退出):&quot;</span>);<br>        <span class="hljs-type">int</span> <span class="hljs-variable">orderNums</span> <span class="hljs-operator">=</span> Utility.readInt();<br>        <span class="hljs-keyword">if</span>(orderNums == -<span class="hljs-number">1</span>)&#123;<br>            System.out.println(<span class="hljs-string">&quot;=====================取消点餐====================&quot;</span>);<br>            <span class="hljs-keyword">return</span>;<br>        &#125;<br><br>        <span class="hljs-type">DiningTable</span> <span class="hljs-variable">diningTable</span> <span class="hljs-operator">=</span> diningTableService.getDiningTableById(orderDiningTableId);<br>        <span class="hljs-keyword">if</span>(diningTable == <span class="hljs-literal">null</span>)&#123;<br>            System.out.println(<span class="hljs-string">&quot;餐桌号不存在！！！&quot;</span>);<br>            <span class="hljs-keyword">return</span>;<br>        &#125;<br>        <span class="hljs-type">Menu</span> <span class="hljs-variable">menuId</span> <span class="hljs-operator">=</span> menuService.getMenuById(orderMenuId);<br>        <span class="hljs-keyword">if</span>(menuId == <span class="hljs-literal">null</span>)&#123;<br>            System.out.println(<span class="hljs-string">&quot;菜品不存在！！！&quot;</span>);<br>            <span class="hljs-keyword">return</span>;<br>        &#125;<br>        <span class="hljs-keyword">if</span>(billService.orderMenu(orderMenuId,orderNums,orderDiningTableId))&#123;<br>            System.out.println(<span class="hljs-string">&quot;=====================点餐成功====================&quot;</span>);<br>        &#125;<span class="hljs-keyword">else</span> &#123;<br>            System.out.println(<span class="hljs-string">&quot;=====================点餐失败====================&quot;</span>);<br>        &#125;<br><br>    &#125;<br></code></pre></div></td></tr></table></figure>
+
+<h3 id="4-2-6-显示账单"><a href="#4-2-6-显示账单" class="headerlink" title="4.2.6  显示账单"></a>4.2.6  显示账单</h3><p>不用创建新的表和相关类</p>
+<figure class="highlight java"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">listMenu</span><span class="hljs-params">()</span>&#123;<br>    List&lt;Menu&gt; menus = menuService.list();<br>    System.out.println(<span class="hljs-string">&quot;=====================菜    单====================&quot;</span>);<br>    System.out.println(<span class="hljs-string">&quot;菜品编号&quot;</span> + <span class="hljs-string">&quot;\t\t&quot;</span>+ <span class="hljs-string">&quot;菜品名&quot;</span>+ <span class="hljs-string">&quot;\t\t&quot;</span>+ <span class="hljs-string">&quot;类别&quot;</span>+<span class="hljs-string">&quot;\t\t&quot;</span>+<span class="hljs-string">&quot;价格&quot;</span>);<br>    <span class="hljs-keyword">for</span> (Menu menu : menus) &#123;<br>        System.out.println(menu);<br>    &#125;<br>    System.out.println(<span class="hljs-string">&quot;=====================显示完毕====================&quot;</span>);<br><br>&#125;<br></code></pre></div></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs java"><span class="hljs-keyword">public</span> List&lt;Menu&gt; <span class="hljs-title function_">list</span><span class="hljs-params">()</span>&#123;<br>        <span class="hljs-keyword">return</span> menuDAO.queryMulti(<span class="hljs-string">&quot;select * from menu&quot;</span>, Menu.class);<br>    &#125;<br></code></pre></div></td></tr></table></figure>
+
+<h3 id="4-2-7-结账"><a href="#4-2-7-结账" class="headerlink" title="4.2.7 结账"></a>4.2.7 结账</h3><p>首先对结账编号进行校验，并且将bill表中结账项的状态，结完账后餐桌状态需要修改。不需要添加新的表和新类，只需增加一些业务方法。</p>
+ <figure class="highlight java"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">payBill</span><span class="hljs-params">()</span>&#123;<br>        System.out.println(<span class="hljs-string">&quot;=====================结账服务====================&quot;</span>);<br>        System.out.print(<span class="hljs-string">&quot;请选择要结账的餐桌编号(-1表示退出):&quot;</span>);<br>        <span class="hljs-type">int</span> <span class="hljs-variable">diningTableId</span> <span class="hljs-operator">=</span> Utility.readInt();<br>        <span class="hljs-keyword">if</span>(diningTableId == -<span class="hljs-number">1</span>)&#123;<br>            System.out.println(<span class="hljs-string">&quot;已取消结账&quot;</span>);<br>            <span class="hljs-keyword">return</span>;<br>        &#125;<br>        <span class="hljs-type">DiningTable</span> <span class="hljs-variable">diningTableById</span> <span class="hljs-operator">=</span> diningTableService.getDiningTableById(diningTableId);<br>        <span class="hljs-keyword">if</span>(diningTableById == <span class="hljs-literal">null</span> ) &#123;<br>            System.out.println(<span class="hljs-string">&quot;餐桌号不存在&quot;</span>);<br>            <span class="hljs-keyword">return</span>;<br>        &#125;<br>        <span class="hljs-keyword">if</span>(!billService.hasPayBillByDiningTableId(diningTableId))&#123;<br>            System.out.println(<span class="hljs-string">&quot;餐桌号已结账&quot;</span>);<br>            <span class="hljs-keyword">return</span>;<br>        &#125;<br>        System.out.print(<span class="hljs-string">&quot;请选择结账方式(现金/支付宝/微信):&quot;</span>);<br>        <span class="hljs-type">String</span> <span class="hljs-variable">payMode</span> <span class="hljs-operator">=</span> Utility.readString(<span class="hljs-number">50</span>,<span class="hljs-string">&quot;&quot;</span>);<br>        <span class="hljs-keyword">if</span>(<span class="hljs-string">&quot;&quot;</span>.equals(payMode))&#123;<br>            System.out.println(<span class="hljs-string">&quot;已取消结账&quot;</span>);<br>            <span class="hljs-keyword">return</span>;<br>        &#125;<br>        System.out.print(<span class="hljs-string">&quot;确认是否结账(Y/N):&quot;</span>);<br>        <span class="hljs-type">char</span> <span class="hljs-variable">confirm</span> <span class="hljs-operator">=</span> Utility.readConfirmSelection();<br>        <span class="hljs-keyword">if</span>(confirm == <span class="hljs-string">&#x27;Y&#x27;</span>)&#123;<br>            <span class="hljs-keyword">if</span>(billService.payBill(diningTableId,payMode))&#123;<br>                System.out.println(<span class="hljs-string">&quot;=====================完成结账====================&quot;</span>);<br>            &#125;<br>        &#125;<span class="hljs-keyword">else</span> &#123;<br>            System.out.println(<span class="hljs-string">&quot;=====================结账失败====================&quot;</span>);<br>        &#125;<br><br><br><br>    &#125;<br></code></pre></div></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-type">boolean</span> <span class="hljs-title function_">hasPayBillByDiningTableId</span><span class="hljs-params">(<span class="hljs-type">int</span> diningTableId)</span>&#123;<br>    <span class="hljs-type">Bill</span> <span class="hljs-variable">bill</span> <span class="hljs-operator">=</span> billDAO.querySingle(<span class="hljs-string">&quot;select * from bill where diningTableId = ? and !(state = &#x27;现金&#x27; or state = &#x27;微信&#x27; or state = &#x27;支付宝&#x27; ) limit 0,1&quot;</span>, Bill.class, diningTableId);<br>    <span class="hljs-keyword">return</span> bill != <span class="hljs-literal">null</span>;<br>&#125;<br><span class="hljs-keyword">public</span> <span class="hljs-type">boolean</span> <span class="hljs-title function_">payBill</span><span class="hljs-params">(<span class="hljs-type">int</span> diningTableId, String payMode)</span>&#123;<br>    <span class="hljs-type">int</span> <span class="hljs-variable">update</span> <span class="hljs-operator">=</span> billDAO.update(<span class="hljs-string">&quot;update bill set state = ? where diningTableId = ?&quot;</span>,payMode, diningTableId);<br>    <span class="hljs-keyword">if</span>(update &lt;= <span class="hljs-number">0</span> ) <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>    <span class="hljs-comment">//修改DiningTable表</span><br>    <span class="hljs-keyword">return</span> diningTableService.updateDiningTableToFree(diningTableId);<br>&#125;<br></code></pre></div></td></tr></table></figure>
+
+
+
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/Java%E9%A1%B9%E7%9B%AE/">Java项目</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/Java%E9%A1%B9%E7%9B%AE/">Java项目</a>
+                    
+                      <a class="hover-with-bg" href="/tags/%E9%A4%90%E9%A5%AE%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F%E7%B3%BB%E7%BB%9F/">餐饮管理系统系统</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/06/16/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">正则表达式</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/03/21/Spring/">
+                        <span class="hidden-mobile">Spring</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div class="disqus" style="width:100%">
+    <div id="disqus_thread"></div>
+    
+      <script type="text/javascript">
+        var disqus_config = function() {
+          this.page.url = 'https://xielearncode.github.io/2022/04/06/%E9%A4%90%E9%A5%AE%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F/';
+          this.page.identifier = '/2022/04/06/%E9%A4%90%E9%A5%AE%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F/';
+        };
+        Fluid.utils.loadComments('#disqus_thread', function() {
+          var d = document, s = d.createElement('script');
+          s.src = '//' + 'fluid' + '.disqus.com/embed.js';
+          s.setAttribute('data-timestamp', new Date());
+          (d.head || d.body).appendChild(s);
+        });
+      </script>
+    
+    <noscript>Please enable JavaScript to view the comments</noscript>
+  </div>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="" target="_blank" rel="nofollow noopener"><span>个人博客</span></a> <i class="iconfont icon-love"></i> <a href="" target="_blank" rel="nofollow noopener"><span>蓝鸟x</span></a> 
+	<!--《添加网站运行时间 -->
+<br/>
+
+<span id="timeDate">载入天数...</span><span id="times">载入时分秒...</span>
+<script>
+var now = new Date(); 
+
+function createtime() {
+    //此处修改你的建站时间或者网站上线时间
+    var grt = new Date('01/01/2022 8:00:00');
+    now.setTime(now.getTime() + 250);
+    days = (now - grt) / 1000 / 60 / 60 / 24;
+
+    dnum = Math.floor(days);
+    hours = (now - grt) / 1000 / 60 / 60 - (24 * dnum);
+    hnum = Math.floor(hours);
+    if (String(hnum).length == 1) {
+        hnum = "0" + hnum;
+    }
+    minutes = (now - grt) / 1000 / 60 - (24 * 60 * dnum) - (60 * hnum);
+    mnum = Math.floor(minutes);
+    if (String(mnum).length == 1) {
+        mnum = "0" + mnum;
+    }
+    seconds = (now - grt) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+    snum = Math.round(seconds);
+    if (String(snum).length == 1) {
+        snum = "0" + snum;
+    }
+    document.getElementById("timeDate").innerHTML = " 本站已安全运行 " + dnum + " 天 ";
+    document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒";
+}
+setInterval("createtime()", 250);
+</script>
+
+<!-- 添加网站运行时间》-->
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+        typing(title);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+<script src="/js/bubble.js"></script>
+<script src="//cdn.jsdelivr.net/gh/bynotes/texiao/source/js/qipao.js"></script>
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"jsonPath":"/live2dw/assets/shizuku.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/love.js"></script>
+<!-- 页面上方泡泡 -->
+<script type="text/javascript" src="/js/bubble.js"></script>
+<script type="text/javascript" src="/js/snow.js"></script>
