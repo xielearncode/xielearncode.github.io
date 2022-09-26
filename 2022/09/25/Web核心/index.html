@@ -1,0 +1,722 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="蓝天白云">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="Web核心介绍 Web: 全球广域网，也称万维网(www), 能通过浏览器访问网站 JavaWeb：用Java技术解决web互联网相关领域的技术栈   B&#x2F;S 架构： Browser&#x2F;Server  静态资源： HTML， CSS，JavaScript，图片等。负责页面展示 动态资源：Servlet，JSP等。负责逻辑处理 数据库：负责存储数据  一、Http1.1 Http">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Web核心">
+<meta property="og:url" content="https://xielearncode.github.io/2022/09/25/Web%E6%A0%B8%E5%BF%83/index.html">
+<meta property="og:site_name" content="蓝天白云">
+<meta property="og:description" content="Web核心介绍 Web: 全球广域网，也称万维网(www), 能通过浏览器访问网站 JavaWeb：用Java技术解决web互联网相关领域的技术栈   B&#x2F;S 架构： Browser&#x2F;Server  静态资源： HTML， CSS，JavaScript，图片等。负责页面展示 动态资源：Servlet，JSP等。负责逻辑处理 数据库：负责存储数据  一、Http1.1 Http">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-09-25T07:44:00.000Z">
+<meta property="article:modified_time" content="2022-09-25T11:01:43.106Z">
+<meta property="article:author" content="蓝天白云">
+<meta property="article:tag" content="JavaWeb">
+<meta property="article:tag" content="Http">
+<meta property="article:tag" content="Tomcat">
+<meta property="article:tag" content="Servlet">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  <title>Web核心 - 蓝天白云</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hint.css@2/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+  
+<link rel="stylesheet" href="/css/indeximg-hover.css">
+<link rel="stylesheet" href="/css/mac.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"xielearncode.github.io","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":60,"cursorChar":"","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":6},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>蓝天白云</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('https://w.wallhaven.cc/full/72/wallhaven-72rd8e.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="Web核心">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2022-09-25 15:44" pubdate>
+        2022年9月25日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      3.4k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      29 分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">Web核心</h1>
+            
+            <div class="markdown-body">
+              <blockquote>
+<p><strong>Web核心介绍</strong></p>
+<p>Web: 全球广域网，也称万维网(www), 能通过浏览器访问网站</p>
+<p>JavaWeb：用Java技术解决web互联网相关领域的技术栈</p>
+</blockquote>
+<ul>
+<li>B&#x2F;S 架构： Browser&#x2F;Server </li>
+<li>静态资源： HTML， CSS，JavaScript，图片等。负责页面展示</li>
+<li>动态资源：Servlet，JSP等。负责逻辑处理</li>
+<li>数据库：负责存储数据</li>
+</ul>
+<h1 id="一、Http"><a href="#一、Http" class="headerlink" title="一、Http"></a>一、Http</h1><h2 id="1-1-Http-简介"><a href="#1-1-Http-简介" class="headerlink" title="1.1 Http 简介"></a>1.1 Http 简介</h2><ul>
+<li>概念：超文本传输协议</li>
+<li>HTTP协议特点：<ul>
+<li>基于TCP协议：面向连接，安全</li>
+<li>基于请求-响应模型：一次请求对应一次响应</li>
+<li>HTTP是无状态的协议：对于事务处理没有记忆能力。每次请求响应都是独立的<ul>
+<li>缺点：多次请求间不能共享数据. Java中使用会话技术（Cookie，Session）来解决这个问题</li>
+<li>优点：速度快</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="1-2-HTTP-请求数据格式"><a href="#1-2-HTTP-请求数据格式" class="headerlink" title="1.2 HTTP-请求数据格式"></a>1.2 HTTP-请求数据格式</h2><figure class="highlight http"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs http"><span class="hljs-keyword">GET</span> <span class="hljs-string">/</span> <span class="hljs-meta">HTTP/1.1</span><br><span class="hljs-attribute">Accept</span><span class="hljs-punctuation">: </span>text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9<br><span class="hljs-attribute">Accept-Encoding</span><span class="hljs-punctuation">: </span>gzip, deflate, br<br><span class="hljs-attribute">Accept-Language</span><span class="hljs-punctuation">: </span>zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6<br><span class="hljs-attribute">Cache-Control</span><span class="hljs-punctuation">: </span>max-age=0<br><span class="hljs-attribute">Connection</span><span class="hljs-punctuation">: </span>keep-alive<br><span class="hljs-attribute">Cookie</span><span class="hljs-punctuation">: </span>__yjs_duid=1_f7c19da05d66f7b64e053ab64b7c5ab21644911682427; <br><span class="hljs-attribute">Host</span><span class="hljs-punctuation">: </span>www.baidu.com<br><span class="hljs-attribute">Sec-Fetch-Dest</span><span class="hljs-punctuation">: </span>document<br><span class="hljs-attribute">Sec-Fetch-Mode</span><span class="hljs-punctuation">: </span>navigate<br><span class="hljs-attribute">Sec-Fetch-Site</span><span class="hljs-punctuation">: </span>none<br><span class="hljs-attribute">Sec-Fetch-User</span><span class="hljs-punctuation">: </span>?1<br><span class="hljs-attribute">Upgrade-Insecure-Requests</span><span class="hljs-punctuation">: </span>1<br><span class="hljs-attribute">User-Agent</span><span class="hljs-punctuation">: </span>Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36 Edg/105.0.1343.42<br><span class="hljs-attribute">sec-ch-ua</span><span class="hljs-punctuation">: </span>&quot;Microsoft Edge&quot;;v=&quot;105&quot;, &quot; Not;A Brand&quot;;v=&quot;99&quot;, &quot;Chromium&quot;;v=&quot;105&quot;<br><span class="hljs-attribute">sec-ch-ua-mobile</span><span class="hljs-punctuation">: </span>?0<br><span class="hljs-attribute">sec-ch-ua-platform</span><span class="hljs-punctuation">: </span>&quot;Windows&quot;<br></code></pre></div></td></tr></table></figure>
+
+
+
+<ul>
+<li>请求数据分为3部分<ul>
+<li>请求行：请求数据的第一行。其中<code>GET</code>表示请求方式，<code>/</code>表示请求资源路径，<code>HTTP/1.1</code>表示协议版本</li>
+<li>请求头：第二行开始，格式为<code>key : value</code></li>
+<li>请求体：POST请求的最后一部分，存放请求参数</li>
+</ul>
+</li>
+<li>GET 和POST 请求的区别<ul>
+<li>GET请求放在请求行中，没有请求体。 POST请求参数放在请求体中</li>
+<li>GET请求有大小限制，POST没有限制</li>
+</ul>
+</li>
+</ul>
+<h2 id="1-3-HTTP-响应数据格式"><a href="#1-3-HTTP-响应数据格式" class="headerlink" title="1.3 HTTP-响应数据格式"></a>1.3 HTTP-响应数据格式</h2><figure class="highlight http"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs http"><span class="hljs-meta">HTTP/1.1</span> <span class="hljs-number">200</span> OK<br><span class="hljs-attribute">Bdpagetype</span><span class="hljs-punctuation">: </span>2<br><span class="hljs-attribute">Bdqid</span><span class="hljs-punctuation">: </span>0xc069b79400009aaa<br><span class="hljs-attribute">Cache-Control</span><span class="hljs-punctuation">: </span>private<br><span class="hljs-attribute">Connection</span><span class="hljs-punctuation">: </span>keep-alive<br><span class="hljs-attribute">Content-Encoding</span><span class="hljs-punctuation">: </span>gzip<br><span class="hljs-attribute">Content-Type</span><span class="hljs-punctuation">: </span>text/html;charset=utf-8<br><span class="hljs-attribute">Date</span><span class="hljs-punctuation">: </span>Sun, 25 Sep 2022 09:46:52 GMT<br><span class="hljs-attribute">Expires</span><span class="hljs-punctuation">: </span>Sun, 25 Sep 2022 09:46:52 GMT<br><span class="hljs-attribute">Isprivate</span><span class="hljs-punctuation">: </span>1<br><span class="hljs-attribute">Server</span><span class="hljs-punctuation">: </span>BWS/1.1<br><span class="hljs-attribute">Set-Cookie</span><span class="hljs-punctuation">: </span>BDSVRTM=114; path=/<br><span class="hljs-attribute">Set-Cookie</span><span class="hljs-punctuation">: </span>BD_HOME=1; path=/<br><span class="hljs-attribute">Set-Cookie</span><span class="hljs-punctuation">: </span>H_PS_PSSID=37149_36558_37114_37491_36885_34813_37486_37397_36786_37259_26350_37284_37364; path=/; domain=.baidu.com<br><span class="hljs-attribute">Strict-Transport-Security</span><span class="hljs-punctuation">: </span>max-age=172800<br><span class="hljs-attribute">Traceid</span><span class="hljs-punctuation">: </span>1664099212058903015413864814774119865002<br><span class="hljs-attribute">X-Frame-Options</span><span class="hljs-punctuation">: </span>sameorigin<br><span class="hljs-attribute">X-Ua-Compatible</span><span class="hljs-punctuation">: </span>IE=Edge,chrome=1<br><span class="hljs-attribute">Transfer-Encoding</span><span class="hljs-punctuation">: </span>chunked<br></code></pre></div></td></tr></table></figure>
+
+
+
+<ul>
+<li>响应数据分为３部分<ul>
+<li>响应行：响应数据的第一行。其中<code>HTTP/1.1</code>表示协议版本, <code>200</code>表示响应状态码，<code>OK</code>表示状态码描述</li>
+<li>响应头：第二行开始，格式为<code>key : value</code></li>
+<li>响应体：最后一部分。存放响应数据</li>
+</ul>
+</li>
+</ul>
+<h2 id="1-4-常见的响应状态码"><a href="#1-4-常见的响应状态码" class="headerlink" title="1.4 常见的响应状态码"></a>1.4 常见的响应状态码</h2><table>
+<thead>
+<tr>
+<th>状态码</th>
+<th>英文描述</th>
+<th>解释</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>200</td>
+<td><strong><code>OK</code></strong></td>
+<td>客户端请求成功，即<strong>处理成功</strong>，这是我们最想看到的状态码</td>
+</tr>
+<tr>
+<td>302</td>
+<td><strong><code>Found</code></strong></td>
+<td>指示所请求的资源已移动到由<code>Location</code>响应头给定的 URL，浏览器会自动重新访问到这个页面</td>
+</tr>
+<tr>
+<td>304</td>
+<td><strong><code>Not Modified</code></strong></td>
+<td>告诉客户端，你请求的资源至上次取得后，服务端并未更改，你直接用你本地缓存吧。隐式重定向</td>
+</tr>
+<tr>
+<td>400</td>
+<td><strong><code>Bad Request</code></strong></td>
+<td>客户端请求有<strong>语法错误</strong>，不能被服务器所理解</td>
+</tr>
+<tr>
+<td>403</td>
+<td><strong><code>Forbidden</code></strong></td>
+<td>服务器收到请求，但是<strong>拒绝提供服务</strong>，比如：没有权限访问相关资源</td>
+</tr>
+<tr>
+<td>404</td>
+<td><strong><code>Not Found</code></strong></td>
+<td><strong>请求资源不存在</strong>，一般是URL输入有误，或者网站资源被删除了</td>
+</tr>
+<tr>
+<td>428</td>
+<td><strong><code>Precondition Required</code></strong></td>
+<td><strong>服务器要求有条件的请求</strong>，告诉客户端要想访问该资源，必须携带特定的请求头</td>
+</tr>
+<tr>
+<td>429</td>
+<td><strong><code>Too Many Requests</code></strong></td>
+<td><strong>太多请求</strong>，可以限制客户端请求某个资源的数量，配合 Retry-After(多长时间后可以请求)响应头一起使用</td>
+</tr>
+<tr>
+<td>431</td>
+<td><strong><code> Request Header Fields Too Large</code></strong></td>
+<td><strong>请求头太大</strong>，服务器不愿意处理请求，因为它的头部字段太大。请求可以在减少请求头域的大小后重新提交。</td>
+</tr>
+<tr>
+<td>405</td>
+<td><strong><code>Method Not Allowed</code></strong></td>
+<td>请求方式有误，比如应该用GET请求方式的资源，用了POST</td>
+</tr>
+<tr>
+<td>500</td>
+<td><strong><code>Internal Server Error</code></strong></td>
+<td><strong>服务器发生不可预期的错误</strong>。服务器出异常了，赶紧看日志去吧</td>
+</tr>
+<tr>
+<td>503</td>
+<td><strong><code>Service Unavailable</code></strong></td>
+<td><strong>服务器尚未准备好处理请求</strong>，服务器刚刚启动，还未初始化好</td>
+</tr>
+<tr>
+<td>511</td>
+<td><strong><code>Network Authentication Required</code></strong></td>
+<td><strong>客户端需要进行身份验证才能获得网络访问权限</strong></td>
+</tr>
+</tbody></table>
+<p>状态码大全：<a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/chapter/13553">https://cloud.tencent.com/developer/chapter/13553</a> </p>
+<h1 id="二、Tomcat"><a href="#二、Tomcat" class="headerlink" title="二、Tomcat"></a>二、Tomcat</h1><ul>
+<li><p>Web服务器</p>
+<p>web服务器就是一个应用程序（软件），对HTTP协议的操作进行封装，使得程序员不必直接对协议进行操作，让web开发更加便捷。主要功能是“提供网上信息浏览服务”</p>
+</li>
+</ul>
+<h2 id="2-1-简介"><a href="#2-1-简介" class="headerlink" title="2.1 简介"></a>2.1 简介</h2><ul>
+<li>概念：Tomcat是Apache软件基金会的一个核心项目，是一个免费开源的轻量级Web服务器，支持Servlet 、 JSP 等少量JAVAEE规范。</li>
+<li>Tomcat也被称为Web容器，Servlet容器。Servlet需要依赖于Tomcat才能运行</li>
+<li>Web服务器的作用：<ul>
+<li>封装HTTP协议操作，简化开发</li>
+<li>可以将web项目部署到服务器中，对外提供网上浏览服务</li>
+</ul>
+</li>
+</ul>
+<h2 id="2-2-基本使用"><a href="#2-2-基本使用" class="headerlink" title="2.2 基本使用"></a>2.2 基本使用</h2><ul>
+<li><p>tomcat目录简介</p>
+<ul>
+<li>bin：可执行文件存放目录</li>
+<li>conf：配置文件</li>
+<li>lib：需要依赖的jar包</li>
+<li>logs：日志文件</li>
+<li>temp：临时文件</li>
+<li>webapps：应用发布目录</li>
+<li>work：工作目录， 存放jsp</li>
+</ul>
+<p>配置时一定要配置好<code>CATALINA_HOME</code></p>
+</li>
+</ul>
+<h2 id="2-3-IDEA-中创建Maven-Web项目"><a href="#2-3-IDEA-中创建Maven-Web项目" class="headerlink" title="2.3 IDEA 中创建Maven Web项目"></a>2.3 IDEA 中创建Maven Web项目</h2><ul>
+<li><p>Web项目结构</p>
+<ul>
+<li>Maven Web项目结构：开发中的项目</li>
+</ul>
+<p>有webapp目录：包含web的资源</p>
+<ul>
+<li>部署的JavaWeb项目结构：开发完成，可以部署的项目</li>
+</ul>
+</li>
+</ul>
+<h2 id="2-4-IDEA中使用TomCat"><a href="#2-4-IDEA中使用TomCat" class="headerlink" title="2.4 IDEA中使用TomCat"></a>2.4 IDEA中使用TomCat</h2><h1 id="三、Servlet"><a href="#三、Servlet" class="headerlink" title="三、Servlet"></a>三、Servlet</h1><h1 id="四、Request-amp-Response"><a href="#四、Request-amp-Response" class="headerlink" title="四、Request &amp; Response"></a>四、Request &amp; Response</h1><h1 id="五、JSP-amp-（Cookie-amp-Session）"><a href="#五、JSP-amp-（Cookie-amp-Session）" class="headerlink" title="五、JSP &amp;（Cookie &amp; Session）"></a>五、JSP &amp;（Cookie &amp; Session）</h1><h1 id="六、Filter-amp-Listener"><a href="#六、Filter-amp-Listener" class="headerlink" title="六、Filter &amp; Listener"></a>六、Filter &amp; Listener</h1><h1 id="七、Ajax，Vue，ElementUI"><a href="#七、Ajax，Vue，ElementUI" class="headerlink" title="七、Ajax，Vue，ElementUI"></a>七、Ajax，Vue，ElementUI</h1><h1 id="八、综合案例"><a href="#八、综合案例" class="headerlink" title="八、综合案例"></a>八、综合案例</h1>
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/JavaWeb/">JavaWeb</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/JavaWeb/">JavaWeb</a>
+                    
+                      <a class="hover-with-bg" href="/tags/Http/">Http</a>
+                    
+                      <a class="hover-with-bg" href="/tags/Tomcat/">Tomcat</a>
+                    
+                      <a class="hover-with-bg" href="/tags/Servlet/">Servlet</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/09/14/Mybatis/">
+                        <span class="hidden-mobile">MyBatis</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div class="disqus" style="width:100%">
+    <div id="disqus_thread"></div>
+    
+      <script type="text/javascript">
+        var disqus_config = function() {
+          this.page.url = 'https://xielearncode.github.io/2022/09/25/Web%E6%A0%B8%E5%BF%83/';
+          this.page.identifier = '/2022/09/25/Web%E6%A0%B8%E5%BF%83/';
+        };
+        Fluid.utils.loadComments('#disqus_thread', function() {
+          var d = document, s = d.createElement('script');
+          s.src = '//' + 'fluid' + '.disqus.com/embed.js';
+          s.setAttribute('data-timestamp', new Date());
+          (d.head || d.body).appendChild(s);
+        });
+      </script>
+    
+    <noscript>Please enable JavaScript to view the comments</noscript>
+  </div>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="" target="_blank" rel="nofollow noopener"><span>个人博客</span></a> <i class="iconfont icon-love"></i> <a href="" target="_blank" rel="nofollow noopener"><span>蓝天白云</span></a> 
+	<!--《添加网站运行时间 -->
+<br/>
+
+<span id="timeDate">载入天数...</span><span id="times">载入时分秒...</span>
+<script>
+var now = new Date(); 
+
+function createtime() {
+    //此处修改你的建站时间或者网站上线时间
+    var grt = new Date('01/01/2022 8:00:00');
+    now.setTime(now.getTime() + 250);
+    days = (now - grt) / 1000 / 60 / 60 / 24;
+
+    dnum = Math.floor(days);
+    hours = (now - grt) / 1000 / 60 / 60 - (24 * dnum);
+    hnum = Math.floor(hours);
+    if (String(hnum).length == 1) {
+        hnum = "0" + hnum;
+    }
+    minutes = (now - grt) / 1000 / 60 - (24 * 60 * dnum) - (60 * hnum);
+    mnum = Math.floor(minutes);
+    if (String(mnum).length == 1) {
+        mnum = "0" + mnum;
+    }
+    seconds = (now - grt) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+    snum = Math.round(seconds);
+    if (String(snum).length == 1) {
+        snum = "0" + snum;
+    }
+    document.getElementById("timeDate").innerHTML = " 本站已安全运行 " + dnum + " 天 ";
+    document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒";
+}
+setInterval("createtime()", 250);
+</script>
+
+<!-- 添加网站运行时间》-->
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+        typing(title);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+<script src="/js/bubble.js"></script>
+<script src="//cdn.jsdelivr.net/gh/bynotes/texiao/source/js/qipao.js"></script>
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"jsonPath":"/live2dw/assets/shizuku.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/love.js"></script>
+<!-- 页面上方泡泡 -->
+<script type="text/javascript" src="/js/bubble.js"></script>
+<script type="text/javascript" src="/js/snow.js"></script>

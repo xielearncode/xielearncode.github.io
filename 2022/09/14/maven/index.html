@@ -13,28 +13,27 @@
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
   <meta name="theme-color" content="#2f4154">
-  <meta name="author" content="蓝鸟x">
+  <meta name="author" content="蓝天白云">
   <meta name="keywords" content="">
   
-    <meta name="description" content="[toc]  一、Maven简介主要功能                MyBatis">
+    <meta name="description" content="一、Maven简介Maven是专门用于管理和构建Java项目的工具, 它的主要功能有:  提供了一套标准化的项目结构(不同的IDE之间, 项目结构不一样, maven可以解决这个问题) 提供了一套标准化的构建流程(编译, 测试, 打包, 发布……) 提供了一套依赖管理机制   标准化构建流程:  编译 &#x3D;&#x3D;&gt; 测试 &#x3D;&#x3D;&gt; 打包 &#x3D;&amp;#">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Maven &amp; MyBatis">
-<meta property="og:url" content="https://xielearncode.github.io/2022/02/26/maven/index.html">
-<meta property="og:site_name" content="蓝鸟x">
-<meta property="og:description" content="[toc]  一、Maven简介主要功能                MyBatis">
+<meta property="og:title" content="Maven-基础">
+<meta property="og:url" content="https://xielearncode.github.io/2022/09/14/maven/index.html">
+<meta property="og:site_name" content="蓝天白云">
+<meta property="og:description" content="一、Maven简介Maven是专门用于管理和构建Java项目的工具, 它的主要功能有:  提供了一套标准化的项目结构(不同的IDE之间, 项目结构不一样, maven可以解决这个问题) 提供了一套标准化的构建流程(编译, 测试, 打包, 发布……) 提供了一套依赖管理机制   标准化构建流程:  编译 &#x3D;&#x3D;&gt; 测试 &#x3D;&#x3D;&gt; 打包 &#x3D;&amp;#">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://tse3-mm.cn.bing.net/th/id/OIP-C.NoKEQi4aJeTWeB_Gc-4spQHaFj?w=211&h=180&c=7&r=0&o=5&dpr=1.25&pid=1.7">
-<meta property="article:published_time" content="2022-02-26T07:04:00.000Z">
-<meta property="article:modified_time" content="2022-03-28T08:11:28.588Z">
-<meta property="article:author" content="蓝鸟x">
+<meta property="article:published_time" content="2022-09-14T07:04:00.000Z">
+<meta property="article:modified_time" content="2022-09-18T02:58:03.718Z">
+<meta property="article:author" content="蓝天白云">
 <meta property="article:tag" content="JavaWeb">
-<meta property="article:tag" content="Maven">
-<meta property="article:tag" content="MyBatis">
+<meta property="article:tag" content="Maven-基础">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://tse3-mm.cn.bing.net/th/id/OIP-C.NoKEQi4aJeTWeB_Gc-4spQHaFj?w=211&h=180&c=7&r=0&o=5&dpr=1.25&pid=1.7">
   
   
-  <title>Maven &amp; MyBatis - 蓝鸟x</title>
+  <title>Maven-基础 - 蓝天白云</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
 
@@ -88,7 +87,7 @@
     <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand" href="/">
-      <strong>蓝鸟x</strong>
+      <strong>蓝天白云</strong>
     </a>
 
     <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
@@ -185,7 +184,7 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="Maven &amp; MyBatis">
+            <span class="h2" id="subtitle" title="Maven-基础">
               
             </span>
 
@@ -195,8 +194,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2022-02-26 15:04" pubdate>
-        2022年2月26日 下午
+      <time datetime="2022-09-14 15:04" pubdate>
+        2022年9月14日 下午
       </time>
     </span>
   
@@ -206,7 +205,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      25 字
+      2.9k 字
     </span>
   
 
@@ -215,7 +214,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      1 分钟
+      25 分钟
     </span>
   
 
@@ -244,31 +243,99 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">Maven &amp; MyBatis</h1>
+            <h1 style="display: none">Maven-基础</h1>
             
             <div class="markdown-body">
-              <p>[toc]</p>
-<p><img src="/2022/02/26/maven/image-20220327210003859.png" srcset="/img/loading.gif" lazyload alt="image-20220327210003859"></p>
-<h1 id="一、Maven简介"><a href="#一、Maven简介" class="headerlink" title="一、Maven简介"></a>一、Maven简介</h1><p>主要功能</p>
-<p><img src="/2022/02/26/maven/image-20220327204954259.png" srcset="/img/loading.gif" lazyload alt="image-20220327204954259"></p>
-<p><img src="/2022/02/26/maven/image-20220327205516023.png" srcset="/img/loading.gif" lazyload alt="image-20220327205516023"><img src="/2022/02/26/maven/image-20220327205802429.png" srcset="/img/loading.gif" lazyload alt="image-20220327205802429"></p>
-<p><img src="/2022/02/26/maven/image-20220327210218471.png" srcset="/img/loading.gif" lazyload alt="image-20220327210218471"></p>
-<p><img src="/2022/02/26/maven/image-20220327210412058.png" srcset="/img/loading.gif" lazyload alt="image-20220327210412058"></p>
-<p><img src="/2022/02/26/maven/image-20220327212023419.png" srcset="/img/loading.gif" lazyload alt="image-20220327212023419"></p>
-<p><img src="/2022/02/26/maven/image-20220328110306323.png" srcset="/img/loading.gif" lazyload alt="image-20220328110306323"></p>
-<p><img src="/2022/02/26/maven/image-20220328112000406.png" srcset="/img/loading.gif" lazyload alt="image-20220328112000406"></p>
-<p><img src="/2022/02/26/maven/image-20220328112306028.png" srcset="/img/loading.gif" lazyload alt="image-20220328112306028"></p>
-<p><img src="/2022/02/26/maven/image-20220328112350914.png" srcset="/img/loading.gif" lazyload alt="image-20220328112350914"></p>
-<p><img src="/2022/02/26/maven/image-20220328112415390.png" srcset="/img/loading.gif" lazyload alt="image-20220328112415390"></p>
-<p><img src="/2022/02/26/maven/image-20220328113228345.png" srcset="/img/loading.gif" lazyload alt="image-20220328113228345"><img src="/2022/02/26/maven/image-20220328114031766.png" srcset="/img/loading.gif" lazyload alt="image-20220328114031766"></p>
-<p><img src="/2022/02/26/maven/image-20220328114118844.png" srcset="/img/loading.gif" lazyload alt="image-20220328114118844"></p>
-<p><img src="/2022/02/26/maven/image-20220328114727661.png" srcset="/img/loading.gif" lazyload alt="image-20220328114727661"></p>
-<p> <img src="/2022/02/26/maven/image-20220328121003265.png" srcset="/img/loading.gif" lazyload alt="image-20220328121003265"></p>
-<h1 id="MyBatis"><a href="#MyBatis" class="headerlink" title="MyBatis"></a>MyBatis</h1><p><img src="/2022/02/26/maven/image-20220328123510179.png" srcset="/img/loading.gif" lazyload alt="image-20220328123510179"></p>
-<p><img src="/2022/02/26/maven/image-20220328124353647.png" srcset="/img/loading.gif" lazyload alt="image-20220328124353647"></p>
-<p><img src="/2022/02/26/maven/image-20220328124531303.png" srcset="/img/loading.gif" lazyload alt="image-20220328124531303"></p>
-<p><img src="/2022/02/26/maven/image-20220328151843508.png" srcset="/img/loading.gif" lazyload alt="image-20220328151843508"></p>
-<p><img src="/2022/02/26/maven/image-20220328161128377.png" srcset="/img/loading.gif" lazyload alt="image-20220328161128377"></p>
+              <h1 id="一、Maven简介"><a href="#一、Maven简介" class="headerlink" title="一、Maven简介"></a>一、Maven简介</h1><p>Maven是专门用于管理和构建Java项目的工具, 它的主要功能有:</p>
+<ul>
+<li>提供了一套标准化的项目结构(不同的IDE之间, 项目结构不一样, maven可以解决这个问题)</li>
+<li>提供了一套标准化的构建流程(编译, 测试, 打包, 发布……)</li>
+<li>提供了一套依赖管理机制</li>
+</ul>
+<p><img src="/2022/09/14/maven/image-20220914153428101.png" srcset="/img/loading.gif" lazyload alt="image-20220914153428101"></p>
+<p><strong>标准化构建流程</strong>:  编译 &#x3D;&#x3D;&gt; 测试 &#x3D;&#x3D;&gt; 打包 &#x3D;&#x3D;&gt; 发布.</p>
+<p><strong>依赖管理</strong>: 管理项目所依赖的第三方资源(jar包, 插件…)</p>
+<div class="hljs code-wrapper"><pre><code class="hljs">1. Maven使用标准的坐标配置来管理各种依赖
+1. 只需要简单的配置就可以完成依赖管理
+</code></pre></div>
+<p>&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;</p>
+<p>Apache Maven 是一个项目管理的构建工具, 它基于项目对象模型(POM)的概念, 通过一小段描述信息来管理项目的构建, 报告和文档  (<a target="_blank" rel="noopener" href="http://maven.apache.org/">官网</a>)</p>
+<ol>
+<li>标准化项目结构</li>
+<li>标准化构建流程</li>
+<li>方便依赖管理</li>
+</ol>
+<p><strong>Maven 模型</strong></p>
+<p><img src="/2022/09/14/maven/image-20220327210412058.png" srcset="/img/loading.gif" lazyload alt="image-20220327210412058"></p>
+<p><strong>插件</strong>: 完成某些功能(例如通过编译的插件来编译项目, 通过测试插件来测试项目, 通过打包插件….)</p>
+<p><strong>项目对象模型(POM)</strong>: 将一些简短的描述信息写进xml文件中, 用来描述该项目, 作为项目的唯一标识(即坐标)</p>
+<p><strong>仓库</strong>: 本地仓库(本机), 中央仓库(Maven团队) , 远程仓库(私服: 私人公司或团队)</p>
+<p>当项目中使用坐标引入对应依赖jar包后, 首先查找本地仓库中是否有对应jar包, 如果有直接引用, 如果没有去中央仓库下载对应的jar包(maven工具自动完成) 到本地仓库再引用</p>
+<p>当搭建了远程仓库后, 引用流程为: 本地 &#x3D;&#x3D;&gt; 远程仓库 &#x3D;&#x3D;&gt; 中央仓库</p>
+<h1 id="二、Maven-安装配置"><a href="#二、Maven-安装配置" class="headerlink" title="二、Maven 安装配置"></a>二、Maven 安装配置</h1><ol>
+<li>解压apach-maven-3.6.1.rar 即安装完成</li>
+<li>配置环境MAVEN_HOME 为安装路径的bin目录</li>
+<li>配置本地仓库：修改conf&#x2F;settings.xml中的<code>&lt;localRepository&gt;</code>为一个指定目录</li>
+<li>配置阿里云私服：修改conf&#x2F;settings.xml中的<code>&lt;mirrrors&gt;</code>标签，为其添加如下子标签</li>
+</ol>
+<figure class="highlight xml"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">mirror</span>&gt;</span><br>	<span class="hljs-tag">&lt;<span class="hljs-name">id</span>&gt;</span>alimaven<span class="hljs-tag">&lt;/<span class="hljs-name">id</span>&gt;</span>	<br>    <span class="hljs-tag">&lt;<span class="hljs-name">name</span>&gt;</span>aliyun maven<span class="hljs-tag">&lt;/<span class="hljs-name">name</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">url</span>&gt;</span>http://maven.aliyun.com/nexus/content/groups/public<span class="hljs-tag">&lt;/<span class="hljs-name">url</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">mirrorOf</span>&gt;</span>central<span class="hljs-tag">&lt;/<span class="hljs-name">mirrorOf</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">mirror</span>&gt;</span><br></code></pre></div></td></tr></table></figure>
+
+
+
+
+
+<h1 id="三、Maven基本使用"><a href="#三、Maven基本使用" class="headerlink" title="三、Maven基本使用"></a>三、Maven基本使用</h1><p><strong>Maven常用的命令</strong></p>
+<ul>
+<li>compile：编译</li>
+<li>clean：清理</li>
+<li>test：测试</li>
+<li>package：打包</li>
+<li>install：安装</li>
+</ul>
+<h1 id="四、IDEA配置Maven"><a href="#四、IDEA配置Maven" class="headerlink" title="四、IDEA配置Maven"></a>四、IDEA配置Maven</h1><ul>
+<li>IDEA配置Maven</li>
+</ul>
+<p>IDEA的File &#x3D;&#x3D;&gt; settings &#x3D;&#x3D;&gt; maven : 选择安装的maven目录</p>
+<ul>
+<li>Maven坐标详解<ul>
+<li>Maven中的坐标是资源的唯一标识</li>
+<li>组成:<ul>
+<li>groupId: 定义当前maven项目所属的组织(例如com.ibm)</li>
+<li>artifactId: 定义当前maven项目的名称(通常是模块名, 如order-service, goods-service)</li>
+<li>version: 当前项目版本</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>com.ibm<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>maven-demo<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>1.0-snapshot<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span><br></code></pre></div></td></tr></table></figure>
+
+
+
+<ul>
+<li>IDEA创建Maven项目</li>
+</ul>
+<ol>
+<li>创建模块, 选择Maven, 点击Next</li>
+<li>填写模块名称, 坐标信息, 点击finish, 创建完成</li>
+<li>编写Java程序, 并编译运行</li>
+</ol>
+<ul>
+<li>IDEA导入Maven项目</li>
+</ul>
+<ol>
+<li>选择右侧的Maven面板, 点击+号</li>
+<li>选择对应的pom.xml文件, 双击即可</li>
+<li>如果没有maven面板, 选择view &#x3D;&#x3D;&gt; Appearance &#x3D;&#x3D;&gt; Tool Window Bars</li>
+</ol>
+<h1 id="五、依赖管理"><a href="#五、依赖管理" class="headerlink" title="五、依赖管理"></a>五、依赖管理</h1><p>步骤: 使用坐标导入jar包</p>
+<ol>
+<li>在pom.xml中编写<code>&lt;dependencies&gt;</code>标签</li>
+<li>在<code>&lt;dependencies&gt;</code>标签中使用<code>&lt;dependency&gt;</code>标签</li>
+<li>定义坐标的groupId, artifactId, version</li>
+<li>点击刷新按钮, 使坐标生效</li>
+</ol>
+<p><img src="/2022/09/14/maven/image-20220328121003265.png" srcset="/img/loading.gif" lazyload alt="image-20220328121003265"></p>
 
             </div>
             <hr>
@@ -288,9 +355,7 @@
                     
                       <a class="hover-with-bg" href="/tags/JavaWeb/">JavaWeb</a>
                     
-                      <a class="hover-with-bg" href="/tags/Maven/">Maven</a>
-                    
-                      <a class="hover-with-bg" href="/tags/MyBatis/">MyBatis</a>
+                      <a class="hover-with-bg" href="/tags/Maven-%E5%9F%BA%E7%A1%80/">Maven-基础</a>
                     
                   </div>
                 
@@ -307,9 +372,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/02/27/%E8%99%9A%E6%8B%9F%E7%94%BB%E7%AC%94/">
+                      <a href="/2022/09/14/Mybatis/">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">虚拟画笔 - 基于OpenCV</span>
+                        <span class="hidden-mobile">MyBatis</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -317,8 +382,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/02/24/JDBC/">
-                        <span class="hidden-mobile">JDBC</span>
+                      <a href="/2022/09/12/%E5%85%B3%E4%BA%8E%E5%8D%9A%E5%AE%A2%E7%9A%84%E6%9A%82%E5%81%9C%E6%9B%B4%E6%96%B0/">
+                        <span class="hidden-mobile">关于博客的暂停更新~~~</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -340,8 +405,8 @@
     
       <script type="text/javascript">
         var disqus_config = function() {
-          this.page.url = 'https://xielearncode.github.io/2022/02/26/maven/';
-          this.page.identifier = '/2022/02/26/maven/';
+          this.page.url = 'https://xielearncode.github.io/2022/09/14/maven/';
+          this.page.identifier = '/2022/09/14/maven/';
         };
         Fluid.utils.loadComments('#disqus_thread', function() {
           var d = document, s = d.createElement('script');
@@ -413,7 +478,7 @@
 
   <footer class="text-center mt-5 py-3">
   <div class="footer-content">
-     <a href="" target="_blank" rel="nofollow noopener"><span>个人博客</span></a> <i class="iconfont icon-love"></i> <a href="" target="_blank" rel="nofollow noopener"><span>蓝鸟x</span></a> 
+     <a href="" target="_blank" rel="nofollow noopener"><span>个人博客</span></a> <i class="iconfont icon-love"></i> <a href="" target="_blank" rel="nofollow noopener"><span>蓝天白云</span></a> 
 	<!--《添加网站运行时间 -->
 <br/>
 
